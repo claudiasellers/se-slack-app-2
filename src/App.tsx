@@ -1,4 +1,4 @@
-import React from 'react';
+// src/App.tsx
 import PlanComparisonTool from './components/PlanComparisonTool';
 
 function App() {

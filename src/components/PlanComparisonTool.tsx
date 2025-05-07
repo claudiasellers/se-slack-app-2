@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronRight, ArrowRight, Loader2, Users, FileText, MessageSquare, Lock, Settings, Zap, List, BarChart, Clock, Bot, Workflow, Shield, Database, UserCheck } from 'lucide-react';
 import { featureData } from "../data/features";
-import { cn } from "../utils/utils";
 
 // Add a new function to get feature icon
 const getFeatureIcon = (feature: string) => {
@@ -258,24 +257,6 @@ const getFeatureCategory = (feature: string) => {
   return "Other Features";
 };
 
-// Function to categorize pain points
-const categorizePainPoints = (painPoints: { [key: string]: string }) => {
-  const categorized: Record<string, { feature: string; painPoint: string }[]> = {};
-
-  // Group pain points by category
-  Object.entries(painPoints).forEach(([feature, painPoint]) => {
-    const category = getFeatureCategory(feature);
-
-    if (!categorized[category]) {
-      categorized[category] = [];
-    }
-
-    categorized[category].push({ feature, painPoint });
-  });
-
-  return categorized;
-};
-
 // Update the PlanComparisonTool component to include these new state variables
 export default function PlanComparisonTool() {
   const [currentPlan, setCurrentPlan] = useState("free");
@@ -284,11 +265,7 @@ export default function PlanComparisonTool() {
   const [upgradeFeatures, setUpgradeFeatures] = useState<string[]>([]);
   const [categorizedFeatures, setCategorizedFeatures] = useState<Record<string, string[]>>({});
   const [painPoints, setPainPoints] = useState<{ [key: string]: string }>({});
-  const [categorizedPainPoints, setCategorizedPainPoints] = useState<
-    Record<string, { feature: string; painPoint: string }[]>
-  >({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [activeTab, setActiveTab] = useState("features");
   const [isLoading, setIsLoading] = useState(false);
 
   // Function to get upgrade features
@@ -296,8 +273,8 @@ export default function PlanComparisonTool() {
     const addedFeatures: string[] = [];
 
     for (const feature in featureData.featureAvailability) {
-      const currentAccess = featureData.featureAvailability[feature][current] ?? false;
-      const futureAccess = featureData.featureAvailability[feature][future] ?? false;
+      const currentAccess = featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][current as keyof typeof featureData.featureAvailability[keyof typeof featureData.featureAvailability]] ?? false;
+      const futureAccess = featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][future as keyof typeof featureData.featureAvailability[keyof typeof featureData.featureAvailability]] ?? false;
 
       // Add feature if it's available in future plan but not in current plan
       if (currentAccess !== futureAccess && futureAccess) {
@@ -313,9 +290,9 @@ export default function PlanComparisonTool() {
     const relevantPainPoints: { [key: string]: string } = {};
 
     features.forEach((feature) => {
-      const painPoint = featureData.featurePainPoints[feature];
-      if (painPoint && painPoint[lob]) {
-        relevantPainPoints[feature] = painPoint[lob];
+      const painPoint = featureData.featurePainPoints[feature as keyof typeof featureData.featurePainPoints];
+      if (painPoint && painPoint[lob as keyof typeof painPoint]) {
+        relevantPainPoints[feature] = painPoint[lob as keyof typeof painPoint] as string;
       }
     });
 
@@ -342,13 +319,8 @@ export default function PlanComparisonTool() {
         if (lineOfBusiness) {
           const lobPainPoints = getLOBPainPoints(features, lineOfBusiness);
           setPainPoints(lobPainPoints);
-
-          // Categorize the pain points
-          const categorizedPains = categorizePainPoints(lobPainPoints);
-          setCategorizedPainPoints(categorizedPains);
         } else {
           setPainPoints({});
-          setCategorizedPainPoints({});
         }
 
         setIsSubmitted(true);
@@ -546,6 +518,8 @@ export default function PlanComparisonTool() {
                       <span className="mr-1 font-medium text-gray-700">
                         {lobOptions.find((option) => option.value === lineOfBusiness)?.label} View
                       </span>
+                      <div className="h-2 w  View
+                      </span>
                       <div className="h-2 w-2 rounded-full bg-[#E01E5A]"></div>
                     </div>
                   )}
@@ -593,7 +567,7 @@ export default function PlanComparisonTool() {
                                     <div className="w-full">
                                       <h4 className="font-semibold text-[#4A154B]">{feature}</h4>
                                       <p className="mt-1 text-sm text-gray-600">
-                                        {featureData.featureDescriptions[feature] || "No description available."}
+                                        {featureData.featureDescriptions[feature as keyof typeof featureData.featureDescriptions] || "No description available."}
                                       </p>
 
                                       {hasPainPoint && (
