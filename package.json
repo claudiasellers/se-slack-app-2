@@ -3,7 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "type": "module",
-    "homepage": "https://yourusername.github.io/se-slack-app-2/",
+    "homepage": "https://claudiasellers.github.io/se-slack-app-2/",
     "scripts": {
       "dev": "vite",
       "build": "tsc && vite build",
