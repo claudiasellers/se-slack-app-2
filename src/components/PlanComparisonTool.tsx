@@ -472,7 +472,7 @@ export default function PlanComparisonTool() {
                                 </button>
                             </form>
                         </div>
-
+                        {/* ---- THIS IS THE RESOURCES SECTION 
                         {isSubmitted && (
                             <div className="mt-6 rounded-lg bg-gray-50 p-6 shadow-sm">
                                 <h3 className="mb-4 text-lg font-semibold text-[#4A154B]">Resources</h3>
@@ -491,7 +491,7 @@ export default function PlanComparisonTool() {
                                     </a>
                                 </div>
                             </div>
-                        )}
+                        )} ---- */}
                     </div>
 
                     {/* Right Column - Results */}
