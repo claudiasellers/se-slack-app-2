@@ -9,8 +9,6 @@ A static web application that helps users compare different Slack plans and disc
 - Filter by line of business to see relevant pain points
 - Responsive design for all device sizes
 
-## Development
-
 ### Prerequisites
 
 - Node.js 16+
