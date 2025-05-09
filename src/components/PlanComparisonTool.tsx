@@ -513,7 +513,7 @@ export default function PlanComparisonTool() {
                 {/* Tabs/Info Bar */}
                 <div className="flex items-center justify-between border-b px-6 py-3">
                   <div className="font-medium text-[#36C5F0]">Upgrade Features</div>
-                  {lineOfBusiness && (
+                  {isSubmitted && lineOfBusiness && (
                     <div className="flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm">
                       <div className="mr-1 font-medium text-gray-700">
                         {lobOptions.find((option) => option.value === lineOfBusiness)?.label} View
