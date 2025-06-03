@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, ChevronRight, ArrowRight, Loader2, Users, FileText, MessageSquare, Lock, Settings, Zap, List, BarChart, Clock, Bot, Workflow, Shield, Database, UserCheck } from 'lucide-react';
+import { ChevronDown, ArrowRight, Loader2, Users, FileText, MessageSquare, Lock, Settings, Zap, List, BarChart, Clock, Bot, Workflow, Shield, Database, UserCheck } from 'lucide-react';
 import { featureData } from "../data/features";
 
 // Add a new function to get feature icon
@@ -472,26 +472,6 @@ export default function PlanComparisonTool() {
                                 </button>
                             </form>
                         </div>
-
-                        {isSubmitted && (
-                            <div className="mt-6 rounded-lg bg-gray-50 p-6 shadow-sm">
-                                <h3 className="mb-4 text-lg font-semibold text-[#4A154B]">Resources</h3>
-                                <div className="space-y-3">
-                                    <a href="#" className="flex items-center text-[#1264A3] hover:underline">
-                                        <ChevronRight className="mr-1 h-4 w-4" />
-                                        Slack Pricing
-                                    </a>
-                                    <a href="#" className="flex items-center text-[#1264A3] hover:underline">
-                                        <ChevronRight className="mr-1 h-4 w-4" />
-                                        Plan Comparison Guide
-                                    </a>
-                                    <a href="#" className="flex items-center text-[#1264A3] hover:underline">
-                                        <ChevronRight className="mr-1 h-4 w-4" />
-                                        Contact Sales
-                                    </a>
-                                </div>
-                            </div>
-                        )}
                     </div>
 
                     {/* Right Column - Results */}
