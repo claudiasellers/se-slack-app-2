@@ -267,6 +267,7 @@ export default function PlanComparisonTool() {
     const [painPoints, setPainPoints] = useState<{ [key: string]: string }>({});
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [submittedLineOfBusiness, setSubmittedLineOfBusiness] = useState("");
 
     // Function to get upgrade features
     const getUpgradeFeatures = (current: string, future: string) => {
@@ -319,8 +320,12 @@ export default function PlanComparisonTool() {
                 if (lineOfBusiness) {
                     const lobPainPoints = getLOBPainPoints(features, lineOfBusiness);
                     setPainPoints(lobPainPoints);
+                    setSubmittedLineOfBusiness(lineOfBusiness); 
+
                 } else {
                     setPainPoints({});
+                    setSubmittedLineOfBusiness(""); 
+
                 }
 
                 setIsSubmitted(true);
@@ -493,7 +498,7 @@ export default function PlanComparisonTool() {
                 {/* Tabs/Info Bar */}
                 <div className="flex items-center justify-between border-b px-6 py-3">
                   <div className="font-medium text-[#36C5F0]">Upgrade Features</div>
-                  {isSubmitted && lineOfBusiness && (
+                  {isSubmitted && submittedLineOfBusiness && (
                     <div className="flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm">
                       <div className="mr-1 font-medium text-gray-700">
                         {lobOptions.find((option) => option.value === lineOfBusiness)?.label} View
@@ -531,7 +536,7 @@ export default function PlanComparisonTool() {
                           </h4>
                           <div className="grid gap-4 sm:grid-cols-2">
                             {features.map((feature) => {
-                              const hasPainPoint = lineOfBusiness && painPoints[feature];
+                              const hasPainPoint = submittedLineOfBusiness && painPoints[feature];
 
                               return (
                                 <div
@@ -553,7 +558,7 @@ export default function PlanComparisonTool() {
                                           <div className="flex items-center">
                                             <div className="mr-2 h-2 w-2 rounded-full bg-[#E01E5A]"></div>
                                             <h5 className="text-sm font-medium text-[#E01E5A]">
-                                              {lobOptions.find((option) => option.value === lineOfBusiness)?.label} Pain
+                                              {lobOptions.find((option) => option.value === submittedLineOfBusiness)?.label} Pain
                                               Point
                                             </h5>
                                           </div>
