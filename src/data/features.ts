@@ -159,9 +159,9 @@ export const featureData = {
       "99.99% Guaranteed Uptime SLA": "Customers are entitled to SLA billing credits if downtime occurs.",
       "Thread & Channel Summaries": "Generates a textual summary of a message thread or channel.",
       "File Summaries": "Creates a summary of a file's content directly in Slack.",
-      "Recaps": "***",
+      "Recaps": "Provides a personalized digest of unread messages and key conversations",
       "Huddles Notes":"Automatically transcribes and summarizes audio from Huddles to capture key details.",
-      "Slack AI Search": "***",
+      "Slack AI Search": "Get answers to natural language questions based on the content of messages and files in Slack."
       "Enterprise Search": "***",
       "3rd Party Agent Apps" : "***",
       //"AI Language Translations": {free: false, pro: false, plus: true, grid: true},
