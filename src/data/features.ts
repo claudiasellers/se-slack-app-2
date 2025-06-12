@@ -15,7 +15,6 @@ export const featureData = {
       "Workflow Builder": { free: false, pro: true, plus: true, grid: true },
       "Message Activity": { free: false, pro: true, plus: true, grid: true },
       "Slack Catch Up": { free: true, pro: true, plus: true, grid: true },
-      "Slack AI": { free: false, pro: "(Add-on)", plus: "(Add-on)", grid: "(Add-on)" },
       "Out of Office Responder": { free: false, pro: false, plus: false, grid: true },
       "Lists": { free: false, pro: true, plus: true, grid: true },
       "Slack Channel Templates": { free: false, pro: true, plus: true, grid: true },
