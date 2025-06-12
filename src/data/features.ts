@@ -161,9 +161,9 @@ export const featureData = {
       "File Summaries": "Creates a summary of a file's content directly in Slack.",
       "Recaps": "Provides a personalized digest of unread messages and key conversations",
       "Huddles Notes":"Automatically transcribes and summarizes audio from Huddles to capture key details.",
-      "Slack AI Search": "Get answers to natural language questions based on the content of messages and files in Slack."
-      "Enterprise Search": "Includes content from connected third-party apps in your Slack search results."
-      "3rd Party Agent Apps" : "Add and use third-party AI assistants through the Slack Marketplace."
+      "Slack AI Search": "Get answers to natural language questions based on the content of messages and files in Slack.",
+      "Enterprise Search": "Includes content from connected third-party apps in your Slack search results.",
+      "3rd Party Agent Apps" : "Add and use third-party AI assistants through the Slack Marketplace.",
       //"AI Language Translations": {free: false, pro: false, plus: true, grid: true},
       //"AI Writing Assistance": {free: false, pro: false, plus: true, grid: true},
       "AI Workflow Builder": "Creates multi-step workflows from a natural language description.",
