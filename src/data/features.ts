@@ -159,17 +159,17 @@ export const featureData = {
       "99.99% Guaranteed Uptime SLA": "Customers are entitled to SLA billing credits if downtime occurs.",
       "Thread & Channel Summaries": "Generates a textual summary of a message thread or channel for quick catch-ups.",
       "File Summaries": "Quickly understand the content of documents, reports, and other files shared in Slack without ever leaving the platform.",
-      "Recaps": true,
+      "Recaps": "***",
       "Huddles Notes":"Automatically transcribes and summarizes audio from Huddles to capture key details.",
-      "Slack AI Search": {free: false, pro: false, plus: true, grid: true},
-      "Enterprise Search": {free: false, pro: false, plus: false, grid: true},
-      "3rd Party Agent Apps" : {free: false, pro: true, plus: true, grid: true},
+      "Slack AI Search": "***",
+      "Enterprise Search": "***",
+      "3rd Party Agent Apps" : "***",
       //"AI Language Translations": {free: false, pro: false, plus: true, grid: true},
       //"AI Writing Assistance": {free: false, pro: false, plus: true, grid: true},
       "AI Workflow Builder": "Creates multi-step workflows from a natural language description for rapid automation.",
       "AI Steps in Workflow Builder": "Users can add AI-powered steps within workflows, such as the 'Summarize Channel' step which can automatically generate channel summaries",
       //"Action Items / To-Dos": {free: false, pro: false, plus: false, grid: true},
-      "Salesforce Channels": {free: "Users See 90 Days Only", pro: true, plus: true, grid: true},
+      "Salesforce Channels": "***",
       "Record Unfurls":"Rich previews of Salesforce records that automatically display when a record is shared or linked in Slack channels, showing key record information like the record name, object type, and additional fields based on admin configuration ",
       "Record Search": "Allows users to search for and find Salesforce records directly within Slack.  By default, users can search across six standard Salesforce objects: Account, Case, Contact, Lead, Opportunity, and Task. (Custom objects may be configurable by a Salesforce System Administrator). ",
       "Record View & Edit": "Users can view and update Salesforce records directly within Slack without switching platforms [1 · Help Center]. Users can edit records if they have the appropriate permissions in Salesforce - their Slack access mirrors their Salesforce permissions",
@@ -177,7 +177,7 @@ export const featureData = {
       "Connect multiple Salesforce orgs": "The ability to link more than one Salesforce organization to a single Slack workspace.",
       "Salesforce standalone List Views": "Allows users to access their personal Salesforce list views (e.g., 'My Opportunities') and edit data directly within Slack. Data is bi-directionally synced.",
       "Salesforce workflow automation (“Event triggers”)": "Automatically starts a Slack workflow when a specific event occurs in Salesforce (e.g. an Opportunity Stage changing). Workflows can combine both Slack and Salesforce actions and are fully compatible with custom objects and fields in Salesforce.",
-      "Sales Home": {free: false, pro: false, plus: true, grid: true}
+      "Sales Home": "***"
     },
     featurePainPoints: {
       "Slack AI": {
