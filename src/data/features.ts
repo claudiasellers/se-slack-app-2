@@ -162,14 +162,14 @@ export const featureData = {
       "Recaps": "Provides a personalized digest of unread messages and key conversations",
       "Huddles Notes":"Automatically transcribes and summarizes audio from Huddles to capture key details.",
       "Slack AI Search": "Get answers to natural language questions based on the content of messages and files in Slack."
-      "Enterprise Search": "***",
-      "3rd Party Agent Apps" : "***",
+      "Enterprise Search": "Includes content from connected third-party apps in your Slack search results."
+      "3rd Party Agent Apps" : "Add and use third-party AI assistants through the Slack Marketplace."
       //"AI Language Translations": {free: false, pro: false, plus: true, grid: true},
       //"AI Writing Assistance": {free: false, pro: false, plus: true, grid: true},
       "AI Workflow Builder": "Creates multi-step workflows from a natural language description.",
       "AI Steps in Workflow Builder": "Users can add AI-powered steps within workflows, such as the 'Summarize Channel' step which can automatically generate channel summaries",
       //"Action Items / To-Dos": {free: false, pro: false, plus: false, grid: true},
-      "Salesforce Channels": "***",
+      "Salesforce Channels": "Dedicated Slack channel that syncs with a specific Salesforce record (e.g. Account or Opportunity)."
       "Record Unfurls":"Rich previews of Salesforce records that automatically display when a record is shared or linked in Slack channels, showing key record information like the record name, object type, and additional fields based on admin configuration ",
       "Record Search": "Allows users to search for and find Salesforce records directly within Slack.  By default, users can search across six standard Salesforce objects: Account, Case, Contact, Lead, Opportunity, and Task. (Custom objects may be configurable by a Salesforce System Administrator). ",
       "Record View & Edit": "Users can view and update Salesforce records directly within Slack without switching platforms [1 · Help Center]. Users can edit records if they have the appropriate permissions in Salesforce - their Slack access mirrors their Salesforce permissions",
@@ -177,7 +177,9 @@ export const featureData = {
       "Connect multiple Salesforce orgs": "The ability to link more than one Salesforce organization to a single Slack workspace.",
       "Salesforce standalone List Views": "Allows users to access their personal Salesforce list views (e.g., 'My Opportunities') and edit data directly within Slack. Data is bi-directionally synced.",
       "Salesforce workflow automation (“Event triggers”)": "Automatically starts a Slack workflow when a specific event occurs in Salesforce (e.g. an Opportunity Stage changing). Workflows can combine both Slack and Salesforce actions and are fully compatible with custom objects and fields in Salesforce.",
-      "Sales Home": "***"
+      "Sales Home": "A single view to track and update your pipeline, performance, and sales alerts to stay on top of your (or your teams) deals.",
+      "Multiple Workspaces": "Allows a company to create and centrally manage a network of interconnected workspaces."
+
     },
     featurePainPoints: {
       "Slack AI": {
