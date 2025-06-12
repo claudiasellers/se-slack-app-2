@@ -528,6 +528,34 @@ operations:"Finding the rationale behind a past project decision requires tracki
       sales:"Standard automations are rigid and can't handle tasks that require judgment, like summarizing meeting notes or identifying the next logical step in a process.",
       customer_support: "A standard workflow can auto-respond to a customer, but it can't analyze the customer's message to determine sentiment and tailor the response accordingly.",
       operations:"A workflow can request a status update, but it can't automatically analyze all the replies and generate a concise summary report for leadership."
+},
+"Salesforce Channels": {
+      marketing: "Marketing provides support for major deals, but lacks a single place to coordinate with the sales team on account-specific messaging and assets.",
+      sales:"Conversations, files, and decisions about a single deal are scattered across multiple DMs and channels, making it easy for things to get lost.",
+      customer_support: "When a major customer logs a support ticket, there's no easy way for the support team to loop in the sales team for context on the open deal.",
+},
+
+"Connect multiple Salesforce orgs": {
+      it: "Supporting a company with multiple Salesforce orgs requires building and maintaining separate, costly, and complex integrations for each one.",
+      marketing: "A global marketing team can't get a unified view of campaigns because customer data is siloed in separate regional Salesforce instances.",
+      sales:"After a merger, sales reps can't easily see or collaborate on customer accounts that exist in the other Salesforce org, leading to missed opportunities.",
+      customer_support: "A global support team has to log in to different Salesforce orgs to get a full picture of a customer's history, delaying support.",
+      operations:"Consolidating reporting is a massive manual effort because data has to be exported and combined from multiple, separate Salesforce orgs."
+},
+
+"Salesforce standalone List Views": {
+      it: "Building custom integrations or dashboards to display Salesforce data in other tools is a common request from the sales team that consumes developer resources.",
+      marketing: "The marketing team has no easy, real-time way to track the status of marketing-qualified leads (MQLs) once they are assigned to sales reps.",
+      sales:"To manage their pipeline, reps must constantly switch between Slack where they communicate and Salesforce where their data lives, breaking their workflow.",
+      customer_support: "Support reps who need to see a list of their assigned high-priority tickets have to leave Slack and log into Salesforce, adding friction to their day.",
+      operations:"Getting sales reps to keep their pipeline data up-to-date in Salesforce is a constant challenge because it requires them to work outside of their primary tool."
+},
+
+"Sales Home": {
+      marketing: "Marketing creates dashboards to track MQL-to-SQL conversion, but sales reps rarely look at them because they live outside their daily workflow.",
+      sales:"Reps have to jump between Salesforce reports and various Slack channels to get a full picture of their pipeline health and daily priorities.",
+      customer_support: "There's no single place for a support manager to see a combined view of their team's case load from Salesforce alongside related internal conversations.",
+      operations:"Sales leadership struggles to give reps a single source of truth for their performance, leading to reps working out of spreadsheets and out-of-date reports."
 }
     },
   }
