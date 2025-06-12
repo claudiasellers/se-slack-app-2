@@ -556,6 +556,13 @@ operations:"Finding the rationale behind a past project decision requires tracki
       sales:"Reps have to jump between Salesforce reports and various Slack channels to get a full picture of their pipeline health and daily priorities.",
       customer_support: "There's no single place for a support manager to see a combined view of their team's case load from Salesforce alongside related internal conversations.",
       operations:"Sales leadership struggles to give reps a single source of truth for their performance, leading to reps working out of spreadsheets and out-of-date reports."
+},
+"Atlas": {
+      it: "The IT helpdesk constantly fields basic questions from employees about who to contact for what, because there's no central, easy-to-navigate employee directory.",
+      marketing: "Planning a cross-functional campaign is slowed down by the difficulty of identifying the right stakeholders and decision-makers in other departments.",
+      sales:"When trying to get a complex deal approved, sales reps waste time asking around to identify the right approvers in finance or legal.",
+      customer_support: "When escalating a complex issue, support agents struggle to quickly identify the right subject matter expert or engineer in another department, delaying resolution.",
+      operations:"Maintaining and distributing an up-to-date organizational chart is a manual process, resulting in outdated documents and confusion about reporting structures."
 }
     },
   }
