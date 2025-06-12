@@ -138,7 +138,7 @@ const categorizeFeatures = (features: string[]) => {
         ],
         "Data & Exports": ["Exports (Public Data)", "Exports (Full Data)", "Exports (Single User Exports)", "Exports (Salesforce Channels)"],
         "Support & Reliability": ["Customer Support Tier", "99.99% Guaranteed Uptime SLA"],
-        "Slack AI": ["Thread & Channel Summaries", "File Summaries", "Recaps", "Huddles Notes", "Slack AI Search", "3rd Party Agent Apps", "AI Workflow Builder", "AI Steps in Workflow Builder"],
+        "Slack AI": ["Thread & Channel Summaries", "File Summaries", "Recaps", "Huddles Notes", "Slack AI Search", "Enterprise Search", "3rd Party Agent Apps", "AI Workflow Builder", "AI Steps in Workflow Builder"],
         "Salesforce Integration": ["Salesforce Channels", "Record Unfurls", "Record Search", "Record View & Edit", "Related List Views", "Connect multiple Salesforce orgs", "Salesforce standalone List Views", "Salesforce workflow automation (“Event triggers”)", "Sales Home"],
         "Other Features": [],
     };
