@@ -81,7 +81,7 @@ export const featureData = {
       "Related List Views": {free: true, pro: true, plus: true, grid: true}, 
       "Connect multiple Salesforce orgs": {free: false, pro: true, plus: true, grid: true},
       "Salesforce standalone List Views": {free: false, pro: false, plus: true, grid: true},
-      "Salesforce workflow automation (“Event triggers”)": {free: false, pro: false, plus: true, grid: true},
+      "Salesforce workflow automation (Event triggers)": {free: false, pro: false, plus: true, grid: true},
       "Sales Home": {free: false, pro: false, plus: true, grid: true}
 
 
@@ -176,7 +176,7 @@ export const featureData = {
       "Related List Views": "Displays related Salesforce records (e.g., opportunities linked to an account) as tabs directly within Slack channels.", 
       "Connect multiple Salesforce orgs": "The ability to link more than one Salesforce organization to a single Slack workspace.",
       "Salesforce standalone List Views": "Allows users to access their personal Salesforce list views (e.g., 'My Opportunities') and edit data directly within Slack. Data is bi-directionally synced.",
-      "Salesforce workflow automation (“Event triggers”)": "Automatically starts a Slack workflow when a specific event occurs in Salesforce (e.g. an Opportunity Stage changing). Workflows can combine both Slack and Salesforce actions and are fully compatible with custom objects and fields in Salesforce.",
+      "Salesforce workflow automation (Event triggers)": "Automatically starts a Slack workflow when a specific event occurs in Salesforce (e.g. an Opportunity Stage changing). Workflows can combine both Slack and Salesforce actions and are fully compatible with custom objects and fields in Salesforce.",
       "Sales Home": "A single view to track and update your pipeline, performance, and sales alerts to stay on top of your (or your teams) deals.",
       "Multiple Workspaces": "Allows a company to create and centrally manage a network of interconnected workspaces."
 
@@ -563,6 +563,15 @@ operations:"Finding the rationale behind a past project decision requires tracki
       sales:"When trying to get a complex deal approved, sales reps waste time asking around to identify the right approvers in finance or legal.",
       customer_support: "When escalating a complex issue, support agents struggle to quickly identify the right subject matter expert or engineer in another department, delaying resolution.",
       operations:"Maintaining and distributing an up-to-date organizational chart is a manual process, resulting in outdated documents and confusion about reporting structures."
-}
+},
+"Salesforce workflow automation (Event triggers)": {
+      it: "Requests for custom notifications from Salesforce to other systems often require complex, point-to-point integrations that are brittle and hard to maintain.",
+      marketing: "The handoff of a new lead from marketing to sales is a manual process, often leading to delays before the first sales contact is made.",
+      sales:"When a deal closes, the rep has to manually notify finance, legal, and onboarding, which is repetitive and can delay kicking off the post-sale process.",
+      customer_support: "When a high-priority case is logged for a key account, there is no automatic way to alert the account's sales rep, leading to a blind-sided response.",
+      operations:"Key business processes that span multiple departments, like deal desk approval, are slowed down by manual handoffs between systems."
+},
+
+
     },
   }
