@@ -169,7 +169,7 @@ export const featureData = {
       "AI Workflow Builder": "Creates multi-step workflows from a natural language description.",
       "AI Steps in Workflow Builder": "Users can add AI-powered steps within workflows, such as the 'Summarize Channel' step which can automatically generate channel summaries",
       //"Action Items / To-Dos": {free: false, pro: false, plus: false, grid: true},
-      "Salesforce Channels": "Dedicated Slack channel that syncs with a specific Salesforce record (e.g. Account or Opportunity)."
+      "Salesforce Channels": "Dedicated Slack channel that syncs with a specific Salesforce record (e.g. Account or Opportunity).",
       "Record Unfurls":"Rich previews of Salesforce records that automatically display when a record is shared or linked in Slack channels, showing key record information like the record name, object type, and additional fields based on admin configuration ",
       "Record Search": "Allows users to search for and find Salesforce records directly within Slack.  By default, users can search across six standard Salesforce objects: Account, Case, Contact, Lead, Opportunity, and Task. (Custom objects may be configurable by a Salesforce System Administrator). ",
       "Record View & Edit": "Users can view and update Salesforce records directly within Slack without switching platforms [1 · Help Center]. Users can edit records if they have the appropriate permissions in Salesforce - their Slack access mirrors their Salesforce permissions",
