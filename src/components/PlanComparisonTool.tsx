@@ -8,8 +8,8 @@ const getFeatureIcon = (feature: string) => {
         Canvas: <FileText className="h-5 w-5 text-[#2EB67D]" />,
         "Custom Canvas Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
         "Slack Sales Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-        Clips: <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-        Guests: <Users className="h-5 w-5 text-[#36C5F0]" />,
+        "Clips": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
+        "Guests": <Users className="h-5 w-5 text-[#36C5F0]" />,
         "Slack Connect (Shared Channels)": <Users className="h-5 w-5 text-[#36C5F0]" />,
         "Sponsored Connections - Slack Connect": <Users className="h-5 w-5 text-[#36C5F0]" />,
         "Per-Org Customization - Slack Connect": <Settings className="h-5 w-5 text-[#4A154B]" />,
@@ -20,7 +20,7 @@ const getFeatureIcon = (feature: string) => {
         "Slack Catch Up": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
         "Slack AI": <Bot className="h-5 w-5 text-[#4A154B]" />,
         "Out of Office Responder": <Clock className="h-5 w-5 text-[#ECB22E]" />,
-        Lists: <List className="h-5 w-5 text-[#2EB67D]" />,
+        "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
         "Slack Channel Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
         "Granular Admin Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
         "Central Channel Dashboard": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
@@ -34,10 +34,10 @@ const getFeatureIcon = (feature: string) => {
         "Google OAuth 2.0": <UserCheck className="h-5 w-5 text-[#E01E5A]" />,
         "SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
         "Multi-SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-        "SCIM API": <Settings className="h-5 w-5 text-[#4A154B]" />,
+        "SCIM API Provisioning": <Settings className="h-5 w-5 text-[#4A154B]" />,
         "SCIM API (Guest Provisioning)": <Settings className="h-5 w-5 text-[#4A154B]" />,
-        Atlas: <Users className="h-5 w-5 text-[#36C5F0]" />,
-        "User Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
+        "Atlas": <Users className="h-5 w-5 text-[#36C5F0]" />,
+        "Custom User Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
         "IDP Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
         "Session Duration": <Clock className="h-5 w-5 text-[#ECB22E]" />,
         "Session Management": <Settings className="h-5 w-5 text-[#4A154B]" />,
@@ -62,7 +62,7 @@ const getFeatureIcon = (feature: string) => {
         "Data Residency (IDR)": <Database className="h-5 w-5 text-[#E01E5A]" />,
         "Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
         "99.99% Guaranteed Uptime SLA": <Zap className="h-5 w-5 text-[#ECB22E]" />,
-        Integrations: <Zap className="h-5 w-5 text-[#ECB22E]" />,
+        "Integrations": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     };
 
     return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />;
@@ -84,8 +84,7 @@ const categorizeFeatures = (features: string[]) => {
             "Multi-Workspace Channels",
             "Lists",
             "Slack Channel Templates",
-            "Workflow Builder",
-            "Slack AI",
+            "Workflow Builder"
         ],
         "Administration & Analytics": [
             "Granular Admin Roles",
@@ -94,6 +93,7 @@ const categorizeFeatures = (features: string[]) => {
             "Analytics API (Members)",
             "Analytics API (Conversations)",
             "App Analytics",
+            "Atlas",
             "Message Activity",
             "Approve Workspaces",
         ],
@@ -106,6 +106,9 @@ const categorizeFeatures = (features: string[]) => {
             "Session Management",
             "MDM (Mobile Device Management)",
             "MAM (Mobile Application Management)",
+            "EMM (Enterprise Mobility Management)",
+            "Native Device Management: Block Jailbroken Devices",
+            "Native Device Management: Block File Download / Copy / Paste",
             "EKM (Enterprise Key Management)",
             "Block File Downloads/Copying (Desktop)",
             "Legal Holds",
@@ -125,16 +128,18 @@ const categorizeFeatures = (features: string[]) => {
             "Lock Guest Names",
         ],
         "User Management": [
-            "SCIM API",
+            "SCIM API Provisioning",
             "SCIM API (Guest Provisioning)",
             "Atlas",
-            "User Groups",
+            "Custom User Groups",
             "IDP Groups",
             "Domain Claiming (create workspace)",
             "Google OAuth 2.0",
         ],
-        "Data & Exports": ["Exports (Public Data)", "Exports (Full Data)", "Exports (Single User Exports)"],
+        "Data & Exports": ["Exports (Public Data)", "Exports (Full Data)", "Exports (Single User Exports)", "Exports (Salesforce Channels)"],
         "Support & Reliability": ["Customer Support Tier", "99.99% Guaranteed Uptime SLA"],
+        "Slack AI": ["Thread & Channel Summaries", "File Summaries", "Recaps", "Huddles Notes", "Slack AI Search", "3rd Party Agent Apps", "AI Workflow Builder", "AI Steps in Workflow Builder"],
+        "Salesforce Integration": ["Salesforce Channels", "Record Unfurls", "Record Search", "Record View & Edit", "Related List Views", "Connect multiple Salesforce orgs", "Salesforce standalone List Views", "Salesforce workflow automation (“Event triggers”)", "Sales Home"],
         "Other Features": [],
     };
 
@@ -196,7 +201,6 @@ const getFeatureCategory = (feature: string) => {
             "Lists",
             "Slack Channel Templates",
             "Workflow Builder",
-            "Slack AI",
         ],
         "Administration & Analytics": [
             "Granular Admin Roles",
@@ -236,10 +240,10 @@ const getFeatureCategory = (feature: string) => {
             "Lock Guest Names",
         ],
         "User Management": [
-            "SCIM API",
+            "SCIM API Provisioning",
             "SCIM API (Guest Provisioning)",
             "Atlas",
-            "User Groups",
+            "Custom User Groups",
             "IDP Groups",
             "Domain Claiming (create workspace)",
             "Google OAuth 2.0",
@@ -349,7 +353,7 @@ export default function PlanComparisonTool() {
         { value: "free", label: "Free" },
         { value: "pro", label: "Pro" },
         { value: "plus", label: "Business Plus" },
-        { value: "grid", label: "Enterprise Grid" },
+        { value: "grid", label: "Enterprise+" },
     ];
 
     const lobOptions = [
