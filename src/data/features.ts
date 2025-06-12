@@ -457,6 +457,77 @@ export const featureData = {
       },
       "Multiple Workspaces": {
         it: "Difficulty managing security, compliance, information silos, and potential sprawl across multiple, disconnected Slack workspaces within the organization.",
-      },
+      } ,
+      "Thread & Channel Summaries": {
+        it: "On-call engineers joining a critical incident mid-stream waste valuable time reading the entire channel history to get context.",
+        marketing: "Team members miss key decisions on a campaign launch because catching up on noisy channels takes too long.",
+        sales:"Reps returning from PTO have to manually read through long deal channel histories, delaying their ability to re-engage with customers.",
+        customer_support: "When a support case is escalated, the next agent has to read the entire internal discussion, which delays customer response time.",
+        operations:"Extracting key decisions and blockers from project channels for a weekly status report is a manual and time-consuming process."
+},
+
+"File Summaries": {
+it: "Reviewing lengthy vendor security documentation or compliance reports to find specific clauses is a tedious, manual process.",
+marketing: "Getting the key takeaways from creative briefs or lengthy market research reports takes too much time away from creative work.",
+sales:"Reviewing dense RFPs or legal contracts consumes significant time that could be spent actively selling.",
+customer_support: "Understanding a customer's issue from a long, attached log file or technical document requires significant time to parse.",
+operations:"Extracting key data points from project plans or SOWs shared as PDFs is manual and error-prone."
+},
+
+"Recaps": {
+it: "Critical system alerts or security update notifications get lost in the noise of everyday channel traffic, delaying response to important issues.",
+marketing: "Keeping track of feedback and approvals across multiple campaign channels is difficult, leading to missed deadlines.",
+sales:"Important updates on active deals get buried in busy channels, leading to missed follow-ups or reps acting on outdated information.",
+customer_support: "Managers struggle to keep a pulse on urgent tickets and escalations happening across the team without manually checking every channel.",
+operations:"Team members find it hard to prioritize which of their 50+ unread messages across various project channels need immediate attention."
+},
+
+"Huddles Notes": {
+it: "Key decisions from impromptu incident response or troubleshooting huddles are often not documented, leading to confusion later.",
+marketing: "Creative brainstorming sessions over huddles result in great ideas that are lost because no one was assigned to take detailed notes.",
+sales:"Action items from internal deal strategy calls are often forgotten or not documented, leading to dropped balls.",
+customer_support: "Knowledge shared during a quick huddle between a senior and junior agent to solve a customer issue isn't captured for future training.",
+operations:"Spontaneous project check-ins via huddles lead to verbal agreements on next steps that are never formally tracked, causing misalignment."
+},
+
+"Slack AI Search": {
+it: "Finding the solution to a past incident is difficult unless you know the exact error code or keywords used in the original conversation.",
+marketing: "Locating the final approved version of a creative asset or the context behind a past decision is nearly impossible without remembering who said what and in which channel.",
+sales:"Finding specific customer feedback or competitive intel is difficult and time-consuming, relying on knowing the exact keywords to search for.",
+customer_support: "Locating a past conversation where a similar customer issue was solved requires scrolling through endless channels or guessing at search terms.",
+operations:"Finding the rationale behind a past project decision requires tracking down the original participants, as a simple keyword search doesn't understand the context."
+},
+
+"Enterprise Search": {
+      it: "Troubleshooting an issue requires searching for error logs in one system, ticket history in another, and developer conversations in Slack, wasting valuable time.",
+      marketing: "Campaign assets, performance data, and team discussions are stored in different places, making a holistic review difficult and time-consuming.",
+      sales:"Information about a single customer is scattered across the CRM, support desk, and cloud storage, forcing reps to search in many different places.",
+      customer_support: "Resolving a ticket requires looking up customer details in Salesforce, ticket history in Zendesk, and internal discussions in Slack separately.",
+      operations:"Creating a project status report means manually pulling documents from SharePoint, task updates from Asana, and team discussions from Slack."
+},
+
+"3rd Party Agent Apps": {
+      it: "Using specialized AI tools for code generation or log analysis requires developers to constantly switch contexts between their IDE, the tool's website, and Slack.",
+      marketing: "Content creators have to jump between Slack and various AI writing or image generation tools, breaking their creative flow and making collaboration difficult.",
+      sales:"Sales reps have to constantly switch between their primary communication hub and various specialized AI tools for prospecting or content creation.",
+      customer_support: "Agents using AI tools to help draft responses have to copy and paste information between the support tool, the AI website, and Slack.",
+      operations:"Project managers using AI for task scheduling or risk analysis have to work outside of their main communication platform, creating information silos."
+},
+
+"AI Workflow Builder": {
+      it: "Simple automation requests from other departments get backlogged because they require an IT developer to build them in a complex tool.",
+      marketing: "Creating a workflow to manage creative approvals is too complicated for most marketers, so the process remains a manual series of DMs and channel posts.",
+      sales:"Building automations to handle repetitive sales tasks, like creating follow-up reminders, is often too complex and requires technical resources.",
+      customer_support: "Automating the process of creating a follow-up ticket after a customer call requires technical skills that support agents don't have.",
+      operations:"Team leads who want to automate simple processes, like a weekly project update request, can't do so without help from a technical team."
+},
+
+"AI Steps in Workflow Builder": {
+      it: "While a workflow can flag a new support ticket, it can't intelligently summarize the user's issue and route it to the right on-call engineer.",
+      marketing: "A workflow can request campaign feedback, but it can't automatically summarize the sentiment from all the replies to give a quick overview.",
+      sales:"Standard automations are rigid and can't handle tasks that require judgment, like summarizing meeting notes or identifying the next logical step in a process.",
+      customer_support: "A standard workflow can auto-respond to a customer, but it can't analyze the customer's message to determine sentiment and tailor the response accordingly.",
+      operations:"A workflow can request a status update, but it can't automatically analyze all the replies and generate a concise summary report for leadership."
+}
     },
   }
