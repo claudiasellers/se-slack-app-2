@@ -563,8 +563,13 @@ operations:"Finding the rationale behind a past project decision requires tracki
       sales:"When trying to get a complex deal approved, sales reps waste time asking around to identify the right approvers in finance or legal.",
       customer_support: "When escalating a complex issue, support agents struggle to quickly identify the right subject matter expert or engineer in another department, delaying resolution.",
       operations:"Maintaining and distributing an up-to-date organizational chart is a manual process, resulting in outdated documents and confusion about reporting structures."
+},
+"Salesforce workflow automation (Event triggers)": {
+      it: "Requests for custom notifications from Salesforce to other systems often require complex, point-to-point integrations that are brittle and hard to maintain.",
+      marketing: "The handoff of a new lead from marketing to sales is a manual process, often leading to delays before the first sales contact is made.",
+      sales:"When a deal closes, the rep has to manually notify finance, legal, and onboarding, which is repetitive and can delay kicking off the post-sale process.",
+      customer_support: "When a high-priority case is logged for a key account, there is no automatic way to alert the account's sales rep, leading to a blind-sided response.",
+      operations:"Key business processes that span multiple departments, like deal desk approval, are slowed down by manual handoffs between systems."
 }
-
-
     },
   }
