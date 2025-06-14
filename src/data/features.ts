@@ -364,10 +364,6 @@ export const featureData = {
       "SCIM API Provisioning (Guest Provisioning)": {
         it: "Manually inviting and managing guest accounts at scale is inefficient and lacks synchronization with central identity systems.",
       },
-      Atlas: {
-        it: "Lack of rich user profiles and org chart visibility within Slack makes it hard for employees to understand roles, reporting structures, and find the right contacts.",
-        hr: "Difficult for employees (especially new hires) to navigate the organization, find colleagues by expertise or department, and understand team structures within Slack.",
-      },
       "Custom User Groups": {
         it: "Manually adding relevant users to channels or mentioning large teams is inefficient and prone to missing people.",
       },
@@ -558,7 +554,8 @@ operations:"Finding the rationale behind a past project decision requires tracki
       operations:"Sales leadership struggles to give reps a single source of truth for their performance, leading to reps working out of spreadsheets and out-of-date reports."
 },
 "Atlas": {
-      it: "The IT helpdesk constantly fields basic questions from employees about who to contact for what, because there's no central, easy-to-navigate employee directory.",
+      it: "Lack of rich user profiles and org chart visibility within Slack makes it hard for employees to understand roles, reporting structures, and find the right contacts.",
+      hr: "Difficult for employees (especially new hires) to navigate the organization, find colleagues by expertise or department, and understand team structures within Slack.",
       marketing: "Planning a cross-functional campaign is slowed down by the difficulty of identifying the right stakeholders and decision-makers in other departments.",
       sales:"When trying to get a complex deal approved, sales reps waste time asking around to identify the right approvers in finance or legal.",
       customer_support: "When escalating a complex issue, support agents struggle to quickly identify the right subject matter expert or engineer in another department, delaying resolution.",
