@@ -236,11 +236,6 @@ const getSectionColor = (category: string) => {
   return colorMap[category] || "#4A154B" // Default to Slack Purple
 }
 
-// Function to get all features (for comparison table default)
-const getAllFeatures = () => {
-  return Object.keys(featureData.featureAvailability)
-}
-
 // Update the PlanComparisonTool component to include these new state variables
 export default function PlanComparisonTool() {
   // Tab state
@@ -253,7 +248,6 @@ export default function PlanComparisonTool() {
 
   // Comparison Table tab states (new functionality)
   const [selectedPlans, setSelectedPlans] = useState<string[]>(["free", "pro"])
-  const [allPlanFeatures, setAllPlanFeatures] = useState<Record<string, string[]>>({})
 
   // Shared states
   const [lineOfBusiness, setLineOfBusiness] = useState("")
@@ -285,34 +279,6 @@ export default function PlanComparisonTool() {
     }
 
     return addedFeatures
-  }
-
-  // Function to get all features for selected plans (for Comparison Table tab)
-  const getAllPlanFeatures = (plans: string[]) => {
-    const featuresMap: Record<string, string[]> = {}
-
-    // Initialize with all features
-    const allFeatures = Object.keys(featureData.featureAvailability)
-
-    // For each plan, get its features
-    plans.forEach((plan) => {
-      const planFeatures: string[] = []
-
-      for (const feature of allFeatures) {
-        const hasAccess =
-          featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][
-            plan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-          ] ?? false
-
-        if (hasAccess) {
-          planFeatures.push(feature)
-        }
-      }
-
-      featuresMap[plan] = planFeatures
-    })
-
-    return featuresMap
   }
 
   // Function to toggle category expansion
@@ -603,9 +569,6 @@ export default function PlanComparisonTool() {
           }
         } else {
           // Comparison Table logic - show all features from the highest selected plan
-          const features = getAllPlanFeatures(selectedPlans)
-          setAllPlanFeatures(features)
-
           // Get features from the highest selected plan
           const planHierarchy = ["free", "pro", "plus", "grid"]
           const highestSelectedPlan =
