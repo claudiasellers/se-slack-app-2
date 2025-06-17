@@ -123,6 +123,7 @@ const categorizeFeatures = (features: string[]) => {
       "Lists",
       "Slack Channel Templates",
       "Workflow Builder",
+      "Channel Posting Permissions"
     ],
     "Administration & Analytics": [
       "Granular Admin Roles",
@@ -163,8 +164,7 @@ const categorizeFeatures = (features: string[]) => {
       "Guests",
       "Sponsored Connections - Slack Connect",
       "Per-Org Customization - Slack Connect",
-      "Channel Posting Permissions",
-      "Lock Guest Names",
+      "Lock Guest Names"
     ],
     "User Management": [
       "SCIM API Provisioning",
