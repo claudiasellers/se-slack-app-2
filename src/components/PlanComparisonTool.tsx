@@ -665,6 +665,7 @@ export default function PlanComparisonTool() {
   const lobOptions = [
     { value: "", label: "Select Line of Business (Optional)" },
     { value: "it", label: "IT" },
+    { value: "engineering", label: "Engineering" },
     { value: "sales", label: "Sales" },
     { value: "hr", label: "Human Resources" },
     { value: "marketing", label: "Marketing" },
