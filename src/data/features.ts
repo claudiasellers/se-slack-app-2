@@ -60,7 +60,6 @@ export const featureData = {
       "Approve Workspaces": { free: false, pro: false, plus: true, grid: true },
       "Data Residency (IDR)": { free: false, pro: false, plus: true, grid: true },
       "Customer Support Tier": {free: "Standard support", pro: "24/7 support", plus: "24/7 support (4-hour first response)", grid: "24/7 priority support (4-hour first response)"},
-      "99.99% Guaranteed Uptime SLA": { free: false, pro: false, plus: true, grid: true },
       "Integrations": {free: false, pro: true, plus: true, grid: true},
       "Thread & Channel Summaries": {free: false, pro: true, plus: true, grid: true},
       "File Summaries": {free: false, pro: false, plus: true, grid: true},
@@ -152,11 +151,10 @@ export const featureData = {
       "Data Residency (IDR)": "Change where data is physically hosted (default: United States).",
       "Flag Messages": "End users can flag messages for review by admins.",
       "Report to Slack for EU Users":
-        "Allows users to report prohibited content to Slack for review (EU Digital Services Act compliance).",
+      "Allows users to report prohibited content to Slack for review (EU Digital Services Act compliance).",
       "Lock Threads": "Prevent additional messages from being sent in a thread.",
       "Customer Support Tier":
-        "Enterprise+ customers may be supported by a dedicated Account Executive and Success Guide.",
-      "99.99% Guaranteed Uptime SLA": "Customers are entitled to SLA billing credits if downtime occurs.",
+      "Enterprise+ customers may be supported by a dedicated Account Executive and Success Guide.",
       "Thread & Channel Summaries": "Generates a textual summary of a message thread or channel.",
       "File Summaries": "Creates a summary of a file's content directly in Slack.",
       "Recaps": "Provides a personalized digest of unread messages and key conversations",
@@ -435,9 +433,6 @@ export const featureData = {
       },
       "Customer Support Tier": {
         it: "Standard support response times may not be sufficient for resolving critical Slack issues impacting business operations.",
-      },
-      "99.99% Guaranteed Uptime SLA": {
-        it: "Service disruptions can impact business continuity with no contractual recourse for financial credits on lower tiers.",
       },
       Integrations: {
         it: "Inefficiencies and potential data inconsistencies due to lack of interoperability between critical business systems (e.g., ticketing, monitoring, code repos) and the collaboration platform.",
