@@ -103,6 +103,7 @@ const categorizeFeatures = (features: string[]) => {
       "Custom Canvas Templates",
       "Clips",
       "Slack Connect (Shared Channels)",
+      "Multiple Workspaces",
       "Multi-Workspace Channels",
       "Lists",
       "Slack Channel Templates",
@@ -141,6 +142,7 @@ const categorizeFeatures = (features: string[]) => {
       "Audit Logs (Native Dashboard)",
       "Discovery/DLP API",
       "Data Residency (IDR)",
+      "Custom Terms of Service"
     ],
     "External Collaboration": [
       "Guests",
@@ -151,7 +153,7 @@ const categorizeFeatures = (features: string[]) => {
     ],
     "User Management": [
       "SCIM API Provisioning",
-      "SCIM API (Guest Provisioning)",
+      "SCIM API Provisioning (Guest Provisioning)",
       "Atlas",
       "Custom User Groups",
       "IDP Groups",
@@ -184,7 +186,7 @@ const categorizeFeatures = (features: string[]) => {
       "Related List Views",
       "Connect multiple Salesforce orgs",
       "Salesforce standalone List Views",
-      'Salesforce workflow automation ("Event triggers")',
+      "Salesforce workflow automation (Event triggers)",
       "Sales Home",
       "Slack Sales Templates",
     ],

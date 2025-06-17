@@ -123,7 +123,7 @@ export const featureData = {
       "SAML SSO": "Advanced SSO (used with Okta, Azure, etc.).",
       "Multi-SAML SSO": "Connect multiple different SSO Providers into the same Grid Org.",
       "SCIM API Provisioning": "Automate user management processes (create, update, and deactivate users).",
-      "SCIM API Provisioning (Guest Provisioning)": "Provision Multi-Channel Guests via SCIM.",
+      "SCIM API (Guest Provisioning)": "Provision Multi-Channel Guests via SCIM.",
       "Atlas": "Enhanced profile fields and an org chart user directory.",
       "Custom User Groups": "Workspace-level groups to sync users to channels.",
       "IDP Groups": "Org-level groups to sync users to workspaces and channels.",
