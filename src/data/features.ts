@@ -72,7 +72,7 @@ export const featureData = {
       //"AI Writing Assistance": {free: false, pro: false, plus: true, grid: true},
       "AI Workflow Builder": {free: false, pro: false, plus: true, grid: true},
       "AI Steps in Workflow Builder": {free: false, pro: false, plus: true, grid: true},
-      //"Action Items / To-Dos": {free: false, pro: false, plus: false, grid: true},
+      "AI Action Items": {free: false, pro: false, plus: false, grid: true},
       "Salesforce Channels": {free: "Users See 90 Days Only", pro: true, plus: true, grid: true},
       "Record Unfurls":{free: true, pro: true, plus: true, grid: true},
       "Record Search": {free: true, pro: true, plus: true, grid: true},
@@ -81,7 +81,12 @@ export const featureData = {
       "Connect multiple Salesforce orgs": {free: false, pro: true, plus: true, grid: true},
       "Salesforce standalone List Views": {free: false, pro: false, plus: true, grid: true},
       "Salesforce workflow automation (Event triggers)": {free: false, pro: false, plus: true, grid: true},
-      "Sales Home": {free: false, pro: false, plus: true, grid: true}
+      "Sales Home": {free: false, pro: false, plus: true, grid: true},
+      //"Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true },
+      //"Admin analytics dashboard": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
+      //"Catchup Summaries on Mobile": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+      //"Salesforce workflow automation (Scheduled triggers)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+
 
 
 
