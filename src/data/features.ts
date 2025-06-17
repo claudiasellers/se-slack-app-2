@@ -180,6 +180,7 @@ export const featureData = {
       "Multiple Workspaces": "Allows a company to create and centrally manage a network of interconnected workspaces.",
       "Native Device Management: Block Jailbroken Devices": "Automatically blocks access from jailbroken (iOS) or rooted (Android) devices to protect corporate data.",
       "Native Device Management: Block File Download / Copy / Paste": "Prevents data leakage by disabling file downloads and restricting copy/paste from managed apps to personal ones.",
+      "AI Action Items":"intelligent nudges that help you stay on top of your tasks by automatically identifying when someone expects you to take action."
 
     },
     featurePainPoints: {
