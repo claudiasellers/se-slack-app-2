@@ -100,8 +100,7 @@ export const featureData = {
       "Per-Org Customization - Slack Connect": "Some Slack Connect settings can be customized on a per-org basis.",
       "Slack Connect Workspaces": "A special workspace for external connections. Currently in Pilot.",
       "Multi-Workspace Channels": "Channels shared internally between workspaces in a Grid Org.",
-      "Channel Posting Permissions":
-        "Limit who can post in channels (e.g., lock down a channel to create an 'announcement channel').",
+      "Channel Posting Permissions": "Limit who can post in channels (e.g., lock down a channel to create an 'announcement channel').",
       "Workflow Builder": "No code/low code tool to automate common processes.",
       "Message Activity": "View the engagement stats of individual messages.",
       "Slack Catch Up": "Swipe through unread conversations on Mobile.",
@@ -111,12 +110,10 @@ export const featureData = {
       "Granular Admin Roles": "Create admin users with specific admin permissions.",
       "Central Channel Dashboard": "View and edit all channels from one dashboard.",
       "Admin API": "Automate admin processes.",
-      "Analytics API (Members)":
-        "Connect data from the Analytics Dashboard into a third-party BI tool to create custom analytics dashboards.",
+      "Analytics API (Members)": "Connect data from the Analytics Dashboard into a third-party BI tool to create custom analytics dashboards.",
       "Analytics API (Conversations)": "View engagement metrics related to installed apps.",
       "App Analytics": "View engagement metrics related to installed apps.",
-      "Custom Retention Policies (Workspace)":
-        "Set preferences for how long messages/files should be retained on a workspace.",
+      "Custom Retention Policies (Workspace)": "Set preferences for how long messages/files should be retained on a workspace.",
       "Custom Retention Policies (Org-Wide)": "Set specific retention settings on workspaces within a Grid Org.",
       "Lock Guest Names": "Restrict guests from changing their display names.",
       "Google OAuth 2.0": "Basic version of SSO (commonly used on the Pro plan).",
@@ -150,8 +147,7 @@ export const featureData = {
       "Approve Workspaces": "Configure a corporate network/VPN to only allow access to specific workspace URLs.",
       "Data Residency (IDR)": "Change where data is physically hosted (default: United States).",
       "Flag Messages": "End users can flag messages for review by admins.",
-      "Report to Slack for EU Users":
-      "Allows users to report prohibited content to Slack for review (EU Digital Services Act compliance).",
+      "Report to Slack for EU Users": "Allows users to report prohibited content to Slack for review (EU Digital Services Act compliance).",
       "Lock Threads": "Prevent additional messages from being sent in a thread.",
       "Customer Support Tier":
       "Enterprise+ customers may be supported by a dedicated Account Executive and Success Guide.",
@@ -176,7 +172,9 @@ export const featureData = {
       "Salesforce standalone List Views": "Allows users to access their personal Salesforce list views (e.g., 'My Opportunities') and edit data directly within Slack. Data is bi-directionally synced.",
       "Salesforce workflow automation (Event triggers)": "Automatically starts a Slack workflow when a specific event occurs in Salesforce (e.g. an Opportunity Stage changing). Workflows can combine both Slack and Salesforce actions and are fully compatible with custom objects and fields in Salesforce.",
       "Sales Home": "A single view to track and update your pipeline, performance, and sales alerts to stay on top of your (or your teams) deals.",
-      "Multiple Workspaces": "Allows a company to create and centrally manage a network of interconnected workspaces."
+      "Multiple Workspaces": "Allows a company to create and centrally manage a network of interconnected workspaces.",
+      "Native Device Management: Block Jailbroken Devices": "Automatically blocks access from jailbroken (iOS) or rooted (Android) devices to protect corporate data.",
+      "Native Device Management: Block File Download / Copy / Paste": "Prevents data leakage by disabling file downloads and restricting copy/paste from managed apps to personal ones.",
 
     },
     featurePainPoints: {
