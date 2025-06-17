@@ -181,7 +181,7 @@ const categorizeFeatures = (features: string[]) => {
       "Exports (Single User Exports)",
       "Exports (Salesforce Channels)",
     ],
-    //"Support & Reliability": ["Customer Support Tier", "99.99% Guaranteed Uptime SLA"],
+    "Support & Reliability": ["Guaranteed Uptime and Fast Customer Support"],
     "Slack AI": [
       "Thread & Channel Summaries",
       "File Summaries",
