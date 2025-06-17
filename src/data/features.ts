@@ -154,7 +154,7 @@ export const featureData = {
       "Enterprise Search": "Includes content from connected third-party apps in your Slack search results.",
       "3rd Party Agent Apps" : "Add and use third-party AI assistants through the Slack Marketplace.",
       "AI Workflow Builder": "Creates multi-step workflows from a natural language description.",
-      "AI Steps in Workflow Builder": "Users can add AI-powered steps within workflows, such as the 'Summarize Channel' step which can automatically generate channel summaries",
+      "AI Steps in Workflow Builder": "Users can add AI-powered steps within workflows, such as the 'Summarize Public Channels' step which can automatically generate channel summaries",
       "Salesforce Channels": "Dedicated Slack channel that syncs with a specific Salesforce record (e.g. Account or Opportunity).",
       "Record Unfurls":"Rich previews of Salesforce records that automatically display when a record is shared or linked in Slack channels, showing key record information like the record name, object type, and additional fields based on admin configuration ",
       "Record Search": "Allows users to search for and find Salesforce records directly within Slack.  By default, users can search across six standard Salesforce objects: Account, Case, Contact, Lead, Opportunity, and Task. (Custom objects may be configurable by a Salesforce System Administrator). ",
@@ -525,16 +525,18 @@ export const featureData = {
         operations:"Creating a project status report means manually pulling documents from SharePoint, task updates from Asana, and team discussions from Slack."
       },
       "3rd Party Agent Apps": {
+        engineering: "Without access to third-party AI assistants, engineers have to build or manage internal bots manually—slowing down adoption of helpful AI tools and creating friction when teams want to experiment with new assistants for support, ticketing, or workflow augmentation."
         },
       "AI Workflow Builder": {
         it: "Simple automation requests from other departments get backlogged because they require an IT developer to build them in a complex tool.",
-        engineering: "Automating repetitive developer tasks, like creating a bug ticket from a channel message, is often too complex and requires engineering resources to build.",
+        engineering: "Can't easily create workflows from natural language instructions",
         marketing: "Creating a workflow to manage creative approvals is too complicated for most marketers, so the process remains a manual series of DMs and channel posts.",
         sales:"Building automations to handle repetitive sales tasks, like creating follow-up reminders, is often too complex and requires technical resources.",
         customer_support: "Automating the process of creating a follow-up ticket after a customer call requires technical skills that support agents don't have.",
         operations:"Team leads who want to automate simple processes, like a weekly project update request, can't do so without help from a technical team."
       },
       "AI Steps in Workflow Builder": {
+        engineering: "Engineers might want to automatically summarize bug threads, incident chatter, or release updates from public channels as part of a Slack workflow—but can't without Slack AI being a step in workflow builder."
       },
       "Salesforce Channels": {
         marketing: "Marketing provides support for major deals, but lacks a single place to coordinate with the sales team on account-specific messaging and assets.",
