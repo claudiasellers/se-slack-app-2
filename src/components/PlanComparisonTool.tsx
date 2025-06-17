@@ -22,7 +22,8 @@ import {
   Database,
   UserCheck,
   Download,
-  Cloud
+  Cloud,
+  Smartphone
 } from "lucide-react"
 import { featureData } from "../data/features"
 
@@ -60,7 +61,7 @@ const getFeatureIcon = (feature: string) => {
     "Multi-SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "SCIM API Provisioning": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "SCIM API (Guest Provisioning)": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    Atlas: <Users className="h-5 w-5 text-[#36C5F0]" />,
+    "Atlas": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Custom User Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "IDP Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Session Duration": <Clock className="h-5 w-5 text-[#ECB22E]" />,
@@ -68,7 +69,7 @@ const getFeatureIcon = (feature: string) => {
     "Domain Claiming (create workspace)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
     "MDM (Mobile Device Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "MAM (Mobile Application Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "Native Mobile Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
+    //"Native Mobile Controls": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
     "EKM (Enterprise Key Management)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
     "Block File Downloads/Copying (Desktop)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
     "Legal Holds": <Lock className="h-5 w-5 text-[#E01E5A]" />,
@@ -95,7 +96,10 @@ const getFeatureIcon = (feature: string) => {
     "Connect multiple Salesforce orgs": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce standalone List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce workflow automation (Event triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Sales Home": <Cloud className="h-5 w-5 text-[#36C5F0]" />
+    "Sales Home": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Exports (Salesforce Channels)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Native Device Management: Block Jailbroken Devices": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
+    "Native Device Management: Block File Download / Copy / Paste": <Smartphone className="h-5 w-5 text-[#4A154B]" />
     
   }
 
