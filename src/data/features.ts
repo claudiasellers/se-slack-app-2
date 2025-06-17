@@ -302,7 +302,7 @@ export const featureData = {
         it: "Communication delays and frustration due to colleagues being unaware of a user's absence and not knowing when to expect a response.",
         engineering: "Code reviews get blocked and deployments are delayed because a required reviewer is on vacation, and the team was unaware of their absence.",
       },
-      Lists: {
+      "Lists": {
         it: "Tracking IT assets, project tasks, or compliance items within Slack relies on unstructured messages or external spreadsheets.",
         engineering: "Tracking bugs, feature requests from other teams, or action items from a post-mortem within Slack is chaotic and requires switching to an external project management tool.",
         sales:
@@ -311,7 +311,7 @@ export const featureData = {
         marketing:
           "Managing campaign tasks, event attendees, or content calendars within Slack lacks structure and clear ownership.",
         customer_support:
-          "Tracking customer support tickets, feature requests, or account health metrics within Slack is cumbersome without a dedicated list format.",
+          "Tracking customer support tickets, feature requests, or account health metrics is cumbersome without a dedicated list format.",
         operations:
           "Managing project deliverables, inventory, or team tasks within Slack requires switching to external tools or using unstructured formats.",
       },
@@ -336,16 +336,12 @@ export const featureData = {
       },
       "Admin API": {
         it: "Manual execution of routine administrative tasks (user provisioning, workspace settings) is time-consuming and doesn't scale.",
-        engineering: "Automating engineering-specific admin tasks, like adding new hires to the right engineering channels and user groups, is impossible without an API.",
+        engineering: "Engineers struggle to build tools around Slack that help manage users, channels, and workspaces at scale across an organization because Slack's standard APIs lack the power to automate organization-level operations or programmatically enforce standards.",
       },
       "Analytics API (Members)": {
-        it: "Difficulty programmatically analyzing user adoption, activity trends, or identifying inactive accounts across the organization.",
-        engineering: "Inability to programmatically analyze developer activity to identify knowledge silos or measure the adoption of new engineering tools and processes discussed in Slack.",
-      },
+        it: "Difficulty programmatically analyzing user adoption, activity trends, or identifying inactive accounts across the organization."      },
       "Analytics API (Conversations)": {
-        it: "Inability to programmatically analyze communication patterns, channel engagement, or information flow within Slack for optimization or governance.",
-        engineering: "Difficult to programmatically measure metrics like incident response times or the frequency of discussions around specific technologies without API access to conversation data.",
-      },
+        it: "Inability to programmatically analyze communication patterns, channel engagement, or information flow within Slack for optimization or governance."      },
       "App Analytics": {
         it: "Lack of visibility into which third-party apps are being used, by whom, and how frequently, making app governance and ROI assessment difficult.",
         engineering: "Difficult to assess the ROI and usage of expensive developer tools integrated into Slack (e.g., PagerDuty, Jira, GitHub) to justify costs or drive adoption.",
@@ -529,13 +525,7 @@ export const featureData = {
         operations:"Creating a project status report means manually pulling documents from SharePoint, task updates from Asana, and team discussions from Slack."
       },
       "3rd Party Agent Apps": {
-        it: "Using specialized AI tools for code generation or log analysis requires developers to constantly switch contexts between their IDE, the tool's website, and Slack.",
-        engineering: "Using specialized AI tools for code generation or log analysis requires developers to constantly switch contexts between their IDE, the tool's website, and Slack.",
-        marketing: "Content creators have to jump between Slack and various AI writing or image generation tools, breaking their creative flow and making collaboration difficult.",
-        sales:"Sales reps have to constantly switch between their primary communication hub and various specialized AI tools for prospecting or content creation.",
-        customer_support: "Agents using AI tools to help draft responses have to copy and paste information between the support tool, the AI website, and Slack.",
-        operations:"Project managers using AI for task scheduling or risk analysis have to work outside of their main communication platform, creating information silos."
-      },
+        },
       "AI Workflow Builder": {
         it: "Simple automation requests from other departments get backlogged because they require an IT developer to build them in a complex tool.",
         engineering: "Automating repetitive developer tasks, like creating a bug ticket from a channel message, is often too complex and requires engineering resources to build.",
@@ -545,12 +535,6 @@ export const featureData = {
         operations:"Team leads who want to automate simple processes, like a weekly project update request, can't do so without help from a technical team."
       },
       "AI Steps in Workflow Builder": {
-        it: "While a workflow can flag a new support ticket, it can't intelligently summarize the user's issue and route it to the right on-call engineer.",
-        engineering: "A standard workflow can trigger a build, but it can't analyze test results to intelligently decide if a rollback is needed.",
-        marketing: "A workflow can request campaign feedback, but it can't automatically summarize the sentiment from all the replies to give a quick overview.",
-        sales:"Standard automations are rigid and can't handle tasks that require judgment, like summarizing meeting notes or identifying the next logical step in a process.",
-        customer_support: "A standard workflow can auto-respond to a customer, but it can't analyze the customer's message to determine sentiment and tailor the response accordingly.",
-        operations:"A workflow can request a status update, but it can't automatically analyze all the replies and generate a concise summary report for leadership."
       },
       "Salesforce Channels": {
         marketing: "Marketing provides support for major deals, but lacks a single place to coordinate with the sales team on account-specific messaging and assets.",
