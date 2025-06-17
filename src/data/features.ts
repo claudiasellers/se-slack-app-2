@@ -59,7 +59,7 @@ export const featureData = {
       "Custom Terms of Service": { free: false, pro: false, plus: false, grid: true },
       "Approve Workspaces": { free: false, pro: false, plus: true, grid: true },
       "Data Residency (IDR)": { free: false, pro: false, plus: true, grid: true },
-      "Customer Support Tier": {free: "Standard support", pro: "24/7 support", plus: "24/7 support (4-hour first response)", grid: "24/7 priority support (4-hour first response)"},
+      //"Customer Support Tier": {free: "Standard support", pro: "24/7 support", plus: "24/7 support (4-hour first response)", grid: "24/7 priority support (4-hour first response)"},
       "Integrations": {free: false, pro: true, plus: true, grid: true},
       "Thread & Channel Summaries": {free: false, pro: true, plus: true, grid: true},
       "File Summaries": {free: false, pro: false, plus: true, grid: true},

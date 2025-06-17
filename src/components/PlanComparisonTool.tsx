@@ -85,7 +85,7 @@ const getFeatureIcon = (feature: string) => {
     "Custom Terms of Service": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Approve Workspaces": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Data Residency (IDR)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
+    //"Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "99.99% Guaranteed Uptime SLA": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "Integrations": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "Salesforce Channels":  <Cloud className="h-5 w-5 text-[#36C5F0]" />,
@@ -181,7 +181,7 @@ const categorizeFeatures = (features: string[]) => {
       "Exports (Single User Exports)",
       "Exports (Salesforce Channels)",
     ],
-    "Support & Reliability": ["Customer Support Tier", "99.99% Guaranteed Uptime SLA"],
+    //"Support & Reliability": ["Customer Support Tier", "99.99% Guaranteed Uptime SLA"],
     "Slack AI": [
       "Thread & Channel Summaries",
       "File Summaries",
