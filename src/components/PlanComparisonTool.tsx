@@ -22,6 +22,7 @@ import {
   Database,
   UserCheck,
   Download,
+  Cloud
 } from "lucide-react"
 import { featureData } from "../data/features"
 
@@ -31,8 +32,8 @@ const getFeatureIcon = (feature: string) => {
     Canvas: <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Custom Canvas Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Sales Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    Clips: <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    Guests: <Users className="h-5 w-5 text-[#36C5F0]" />,
+    "Clips": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
+    "Guests": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Slack Connect (Shared Channels)": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Sponsored Connections - Slack Connect": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Per-Org Customization - Slack Connect": <Settings className="h-5 w-5 text-[#4A154B]" />,
@@ -43,7 +44,7 @@ const getFeatureIcon = (feature: string) => {
     "Slack Catch Up": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "Slack AI": <Bot className="h-5 w-5 text-[#4A154B]" />,
     "Out of Office Responder": <Clock className="h-5 w-5 text-[#ECB22E]" />,
-    Lists: <List className="h-5 w-5 text-[#2EB67D]" />,
+    "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Channel Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Granular Admin Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Central Channel Dashboard": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
@@ -85,7 +86,17 @@ const getFeatureIcon = (feature: string) => {
     "Data Residency (IDR)": <Database className="h-5 w-5 text-[#E01E5A]" />,
     "Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "99.99% Guaranteed Uptime SLA": <Zap className="h-5 w-5 text-[#ECB22E]" />,
-    Integrations: <Zap className="h-5 w-5 text-[#ECB22E]" />,
+    "Integrations": <Zap className="h-5 w-5 text-[#ECB22E]" />,
+    "Salesforce Channels":  <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Record Unfurls":<Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Record Search": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Record View & Edit": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Related List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Connect multiple Salesforce orgs": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Salesforce standalone List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Salesforce workflow automation (Event triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Sales Home": <Cloud className="h-5 w-5 text-[#36C5F0]" />
+    
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
