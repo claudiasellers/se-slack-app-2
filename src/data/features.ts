@@ -2,8 +2,8 @@
 export const featureData = {
     featureAvailability: {
       "Multiple Workspaces": { free: false, pro: false, plus: false, grid: true },
-      "Canvas": { free: false, pro: true, plus: true, grid: true },
-      "Custom Canvas Templates": { free: false, pro: false, plus: false, grid: true },
+      "Canvas": { free: "1 per DM/channel", pro: true, plus: true, grid: true },
+      "Custom Canvas Templates": { free: false, pro:"User-created Only", plus: "User-created Only", grid: "User + Admin Created" },
       "Slack Sales Templates": { free: false, pro: false, plus: false, grid: true },
       "Clips": { free: true, pro: true, plus: true, grid: true },
       "Guests": { free: false, pro: true, plus: true, grid: true },
