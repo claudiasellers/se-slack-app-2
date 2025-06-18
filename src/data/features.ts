@@ -171,7 +171,7 @@ export const featureData = {
     "Native Device Management: Block File Download / Copy / Paste": "Prevents data leakage by disabling file downloads and restricting copy/paste from managed apps to personal ones.",
     "AI Action Items":"Intelligent nudges that help you stay on top of your tasks by automatically identifying when someone expects you to take action.",
     "Salesforce Channel AI Summary Tab": "Provides an AI-generated summary of conversations from both the current Salesforce channel and its related Salesforce channels.",
-    "Salesforce workflow automation (Scheduled triggers)": "Allows you to create scheduled triggers that can automate routine tasks and processes. Using Workflow Builder, you can set up workflows that automatically execute at specified times",
+    "Salesforce workflow automation (Scheduled triggers)": "Allows you to create scheduled Slack notifications that can summarize specific records or out-of-date records in Salesforce.",
     "Catchup Summaries on Mobile": "Allows users to get AI-powered summaries of unread messages in their Slack catch-up cards",
     "AI Language Translations": "Allows users to translate messages into their language of choice, breaking down language barriers for global collaboration",
     "EMM (Enterprise Mobility Management)": "Integrates with a companies existing EMM to enforce mobile security policies like blocking access from unmanaged devices and requiring use of a managed EMM app."
