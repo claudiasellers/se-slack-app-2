@@ -4,7 +4,7 @@ import mixpanel from 'mixpanel-browser';
 import PlanComparisonTool from './components/PlanComparisonTool';
 
 mixpanel.init("279095a5ea069a0f5f5ee40971a60101", {
-  debug: true,
+  debug: false,
   track_pageview: true,
   persistence: 'localStorage',
 });
