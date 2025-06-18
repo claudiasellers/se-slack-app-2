@@ -26,6 +26,7 @@ import {
   Smartphone
 } from "lucide-react"
 import { featureData } from "../data/features"
+import mixpanel from "mixpanel-browser"
 
 // Add a new function to get feature icon
 const getFeatureIcon = (feature: string) => {
@@ -593,7 +594,9 @@ export default function PlanComparisonTool() {
         } else {
           // Comparison Table logic - show all features from the highest selected plan
           // Get features from the highest selected plan
-          const highestSelectedPlan = selectedPlans[selectedPlans.length - 1] || "grid_v2"
+          const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
+          const highestSelectedPlan =
+            planHierarchy.reverse().find((plan) => selectedPlans.includes(plan)) || selectedPlans[0]
 
           // Get all features available in the highest selected plan
           const highestPlanFeatures: string[] = []
@@ -632,13 +635,21 @@ export default function PlanComparisonTool() {
 
         setIsSubmitted(true)
 
-        // Track event (would connect to analytics in production)
-        console.log("Tracking: Plan Comparison Viewed", {
-          activeTab,
+        // Track event
+        mixpanel.track("Plan Comparison Submitted", {
+          tab: activeTab,
           currentPlan,
           futurePlan,
           selectedPlans,
           lineOfBusiness,
+        })
+
+        // Update user profile
+        mixpanel.people.increment("Total Comparisons")
+        mixpanel.people.set({
+          "Line of Business": lineOfBusiness,
+          "Last Comparison Date": new Date().toISOString(),
+          "Last Used Tab": activeTab,
         })
       } catch (error) {
         console.error("Error during plan comparison:", error)
@@ -656,6 +667,9 @@ export default function PlanComparisonTool() {
     setExpandedCategories({})
     setPainPoints({})
     setSubmittedLineOfBusiness("")
+
+    // Track tab change
+    mixpanel.track("Tab Changed", { tab: tab })
   }
 
   type PlanOption = { value: string; label: string }
@@ -693,8 +707,6 @@ export default function PlanComparisonTool() {
     { value: "customer_support", label: "Customer Support" },
     { value: "operations", label: "Operations" },
   ]
-
-  const planOrder = planOptions.map((option) => option.value)
 
   return (
     <div className="min-h-screen bg-white">
@@ -739,7 +751,14 @@ export default function PlanComparisonTool() {
                         <select
                           id="currentPlan"
                           value={currentPlan}
-                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCurrentPlan(e.target.value)}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                            setCurrentPlan(e.target.value)
+                            mixpanel.track("Plan Selection Changed", {
+                              plan_type: "current",
+                              selected_plan: e.target.value,
+                              tab: activeTab,
+                            })
+                          }}
                           className="w-full appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 pr-10 text-gray-900 shadow-sm focus:border-[#36C5F0] focus:outline-none focus:ring-2 focus:ring-[#36C5F0]/50"
                           disabled={isLoading}
                         >
@@ -774,7 +793,14 @@ export default function PlanComparisonTool() {
                         <select
                           id="futurePlan"
                           value={futurePlan}
-                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFuturePlan(e.target.value)}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                            setFuturePlan(e.target.value)
+                            mixpanel.track("Plan Selection Changed", {
+                              plan_type: "future",
+                              selected_plan: e.target.value,
+                              tab: activeTab,
+                            })
+                          }}
                           className="w-full appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 pr-10 text-gray-900 shadow-sm focus:border-[#36C5F0] focus:outline-none focus:ring-2 focus:ring-[#36C5F0]/50"
                           disabled={isLoading}
                         >
@@ -815,12 +841,14 @@ export default function PlanComparisonTool() {
                             id={`plan-${option.value}`}
                             checked={selectedPlans.includes(option.value)}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              setSelectedPlans((prev) => {
-                                const newSelected = e.target.checked
-                                  ? [...prev, option.value]
-                                  : prev.filter((p) => p !== option.value)
-                                return newSelected.sort((a, b) => planOrder.indexOf(a) - planOrder.indexOf(b))
-                              })
+                              const plan = option.value
+                              const action = e.target.checked ? "selected" : "deselected"
+                              if (e.target.checked) {
+                                setSelectedPlans((prev) => [...prev, option.value])
+                              } else {
+                                setSelectedPlans((prev) => prev.filter((p) => p !== option.value))
+                              }
+                              mixpanel.track("Compared Plans Selected", { plan, action, tab: activeTab })
                             }}
                             className="h-4 w-4 rounded border-gray-300 text-[#36C5F0] focus:ring-[#36C5F0]"
                             disabled={isLoading}
@@ -845,7 +873,11 @@ export default function PlanComparisonTool() {
                     <select
                       id="lineOfBusiness"
                       value={lineOfBusiness}
-                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setLineOfBusiness(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                        const lob = e.target.value
+                        setLineOfBusiness(lob)
+                        mixpanel.track("Line of Business Changed", { selected_lob: lob, tab: activeTab })
+                      }}
                       className="w-full appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 pr-10 text-gray-900 shadow-sm focus:border-[#36C5F0] focus:outline-none focus:ring-2 focus:ring-[#36C5F0]/50"
                       disabled={isLoading}
                     >
@@ -1016,7 +1048,14 @@ export default function PlanComparisonTool() {
 
                       {/* Download PDF Button */}
                       <button
-                        onClick={downloadPDF}
+                        onClick={() => {
+                          downloadPDF()
+                          mixpanel.track("PDF Downloaded", {
+                            compared_plans: selectedPlans,
+                            line_of_business: submittedLineOfBusiness,
+                            tab: activeTab,
+                          })
+                        }}
                         className="flex items-center space-x-2 rounded-md bg-[#4A154B] px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#3A1240] focus:outline-none focus:ring-2 focus:ring-[#4A154B]/50 focus:ring-offset-2"
                       >
                         <Download className="h-4 w-4" />
@@ -1054,7 +1093,14 @@ export default function PlanComparisonTool() {
                       {Object.entries(categorizedFeatures).map(([category, features]) => (
                         <div key={category} className="rounded-lg border border-gray-200">
                           <button
-                            onClick={() => toggleCategory(category)}
+                            onClick={() => {
+                              toggleCategory(category)
+                              mixpanel.track("Category Expanded", {
+                                category_name: category,
+                                action: expandedCategories[category] ? "collapsed" : "expanded",
+                                tab: activeTab,
+                              })
+                            }}
                             className="flex w-full items-center justify-between rounded-t-lg bg-gray-50 px-4 py-3 text-left"
                           >
                             <h4 className="text-lg font-medium" style={{ color: getSectionColor(category) }}>
