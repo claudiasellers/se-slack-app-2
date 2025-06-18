@@ -593,9 +593,7 @@ export default function PlanComparisonTool() {
         } else {
           // Comparison Table logic - show all features from the highest selected plan
           // Get features from the highest selected plan
-          const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
-          const highestSelectedPlan =
-            planHierarchy.reverse().find((plan) => selectedPlans.includes(plan)) || selectedPlans[0]
+          const highestSelectedPlan = selectedPlans[selectedPlans.length - 1] || "grid_v2"
 
           // Get all features available in the highest selected plan
           const highestPlanFeatures: string[] = []
@@ -695,6 +693,8 @@ export default function PlanComparisonTool() {
     { value: "customer_support", label: "Customer Support" },
     { value: "operations", label: "Operations" },
   ]
+
+  const planOrder = planOptions.map((option) => option.value)
 
   return (
     <div className="min-h-screen bg-white">
@@ -815,11 +815,12 @@ export default function PlanComparisonTool() {
                             id={`plan-${option.value}`}
                             checked={selectedPlans.includes(option.value)}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              if (e.target.checked) {
-                                setSelectedPlans((prev) => [...prev, option.value])
-                              } else {
-                                setSelectedPlans((prev) => prev.filter((p) => p !== option.value))
-                              }
+                              setSelectedPlans((prev) => {
+                                const newSelected = e.target.checked
+                                  ? [...prev, option.value]
+                                  : prev.filter((p) => p !== option.value)
+                                return newSelected.sort((a, b) => planOrder.indexOf(a) - planOrder.indexOf(b))
+                              })
                             }}
                             className="h-4 w-4 rounded border-gray-300 text-[#36C5F0] focus:ring-[#36C5F0]"
                             disabled={isLoading}
