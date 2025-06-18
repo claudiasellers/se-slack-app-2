@@ -80,7 +80,7 @@ export const featureData = {
     "Related List Views": {free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true}, 
     "Connect multiple Salesforce orgs": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Salesforce standalone List Views": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Salesforce workflow automation (Event triggers)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: true, grid_v2: true},
+    "Salesforce workflow automation (Event triggers)": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Salesforce workflow automation (Scheduled triggers)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Sales Home": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true }
