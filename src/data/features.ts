@@ -270,6 +270,7 @@ export const featureData = {
     },
     "Sponsored Connections - Slack Connect": {
       it: "Inability to centrally manage and secure collaboration channels with partners or vendors who are using the free version of Slack.",
+      sales: "Without sponsored connections, teams can't can't use Slack Connect channels with non-Slack partners and customers, forcing them to rely on email or fragmented tools.",
       engineering: "Cannot collaborate effectively with smaller open-source projects or individual contractors who use the free version of Slack, forcing communication into less secure or efficient channels.",
     },
     "Per-Org Customization - Slack Connect": {
@@ -292,6 +293,7 @@ export const featureData = {
       it: "Important announcements in key channels get lost in conversational noise, and controlling message flow relies on manual moderation.",
       engineering: "Critical deployment alerts or production incident updates in a channel get buried by questions and chatter, making it hard to track the source of truth.",
       hr: "Company-wide announcements or policy updates in general channels are easily missed or diluted by unrelated replies.",
+      sales:"Without channel posting permissions, sales leaders can't restrict who posts—so update channels get cluttered fast, making it impossible to maintain a single source of truth for things like comp changes, product rollouts, or team goals.",
       marketing:
         "Campaign launch announcements or official communications get buried in channel chatter, reducing visibility.",
       operations:
@@ -388,7 +390,7 @@ export const featureData = {
     },
     "IDP Groups": {
       it: "Keeping Slack channel memberships and workspace access synchronized with dynamic groups defined in the corporate identity provider (IDP) requires manual effort.",
-      engineering: "Automatically adding new engineers to the correct team channels (`#backend-eng`, `#frontend-guild`) based on their department in Okta or Azure AD is impossible without IDP group sync.",
+      sales: "Without IDP groups, new sales reps aren't auto-added to the right set of channels—so they waste time figuring out where to go for deal support, team updates, and onboarding, leading to missed info and slower ramp-up.",
     },
     "Session Duration": {
       it: "Users remaining logged into Slack indefinitely on shared or public computers poses a security risk.",
@@ -593,6 +595,9 @@ export const featureData = {
       sales:"Managers often assign tasks in DMs, like 'follow up with that lead,' but these requests aren't automatically tracked and can easily slip through the cracks.",
       customer_support: "When collaborating on a ticket, one agent might ask another to 'check a customer's purchase history,' but this informal request can be missed if the second agent gets pulled into another issue.",
       operations:"Critical requests made in project channels, like 'can you update the budget spreadsheet?', often get missed by busy project managers, leading to project delays."
+    },
+    "EMM (Enterprise Mobility Management)": {
+      it: "Without EMM, IT can't prevent employees from accessing Slack on personal or jailbroken devices—making it easy for sensitive company data to be downloaded, screen-captured, or shared outside managed environments, increasing the risk of data leaks, compliance violations, and insider threats."
     }
   }
 }
