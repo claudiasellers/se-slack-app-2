@@ -33,8 +33,8 @@ const getFeatureIcon = (feature: string) => {
     Canvas: <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Custom Canvas Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Sales Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Clips": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    "Guests": <Users className="h-5 w-5 text-[#36C5F0]" />,
+    Clips: <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
+    Guests: <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Slack Connect (Shared Channels)": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Sponsored Connections - Slack Connect": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Per-Org Customization - Slack Connect": <Settings className="h-5 w-5 text-[#4A154B]" />,
@@ -45,7 +45,7 @@ const getFeatureIcon = (feature: string) => {
     "Slack Catch Up": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "Slack AI": <Bot className="h-5 w-5 text-[#4A154B]" />,
     "Out of Office Responder": <Clock className="h-5 w-5 text-[#ECB22E]" />,
-    "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
+    Lists: <List className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Channel Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Granular Admin Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Central Channel Dashboard": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
@@ -61,7 +61,7 @@ const getFeatureIcon = (feature: string) => {
     "Multi-SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "SCIM API Provisioning": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "SCIM API (Guest Provisioning)": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Atlas": <Users className="h-5 w-5 text-[#36C5F0]" />,
+    Atlas: <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Custom User Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "IDP Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Session Duration": <Clock className="h-5 w-5 text-[#ECB22E]" />,
@@ -69,13 +69,13 @@ const getFeatureIcon = (feature: string) => {
     "Domain Claiming (create workspace)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
     "MDM (Mobile Device Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "MAM (Mobile Application Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    //"Native Mobile Controls": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
+    "Native Mobile Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "EKM (Enterprise Key Management)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
     "Block File Downloads/Copying (Desktop)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
     "Legal Holds": <Lock className="h-5 w-5 text-[#E01E5A]" />,
     "Information Barriers": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "DLP (Data Loss Prevention)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "Native DLP (Slack Connect Only)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
+    "Native DLP": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Audit Logs API": <Database className="h-5 w-5 text-[#E01E5A]" />,
     "Audit Logs (Native Dashboard)": <Database className="h-5 w-5 text-[#E01E5A]" />,
     "Discovery/DLP API": <Shield className="h-5 w-5 text-[#E01E5A]" />,
@@ -85,7 +85,7 @@ const getFeatureIcon = (feature: string) => {
     "Custom Terms of Service": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Approve Workspaces": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Data Residency (IDR)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    //"Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
+    "Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "99.99% Guaranteed Uptime SLA": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "Integrations": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "Salesforce Channels":  <Cloud className="h-5 w-5 text-[#36C5F0]" />,
@@ -96,11 +96,12 @@ const getFeatureIcon = (feature: string) => {
     "Connect multiple Salesforce orgs": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce standalone List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce workflow automation (Event triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Salesforce workflow automation (Scheduled triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Sales Home": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Exports (Salesforce Channels)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Native Device Management: Block Jailbroken Devices": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
-    "Native Device Management: Block File Download / Copy / Paste": <Smartphone className="h-5 w-5 text-[#4A154B]" />
-    
+    "Native Device Management: Block File Download / Copy / Paste": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
+    "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />,
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -113,7 +114,7 @@ const categorizeFeatures = (features: string[]) => {
   }
 
   const categories: Record<string, string[]> = {
-    "Collaboration Tools": [
+   "Collaboration Tools": [
       "Canvas",
       "Custom Canvas Templates",
       "Clips",
@@ -153,7 +154,7 @@ const categorizeFeatures = (features: string[]) => {
       "Legal Holds",
       "Information Barriers",
       "DLP (Data Loss Prevention)",
-      "Native DLP (Slack Connect Only)",
+      "Native DLP",
       "Audit Logs API",
       "Audit Logs (Native Dashboard)",
       "Discovery/DLP API",
@@ -192,7 +193,9 @@ const categorizeFeatures = (features: string[]) => {
       "3rd Party Agent Apps",
       "AI Workflow Builder",
       "AI Steps in Workflow Builder",
-      "AI Action Items"
+      "AI Action Items",
+      "Catchup Summaries on Mobile",
+      "AI Language Translations"
     ],
     "Salesforce Integration": [
       "Salesforce Channels",
@@ -203,8 +206,10 @@ const categorizeFeatures = (features: string[]) => {
       "Connect multiple Salesforce orgs",
       "Salesforce standalone List Views",
       "Salesforce workflow automation (Event triggers)",
+      "Salesforce workflow automation (Scheduled triggers)",
       "Sales Home",
       "Slack Sales Templates",
+      "Salesforce Channel AI Summary Tab"
     ],
     "Other Features": [],
   }
@@ -561,7 +566,7 @@ export default function PlanComparisonTool() {
   }
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
 
@@ -588,7 +593,7 @@ export default function PlanComparisonTool() {
         } else {
           // Comparison Table logic - show all features from the highest selected plan
           // Get features from the highest selected plan
-          const planHierarchy = ["free", "pro", "plus", "grid"]
+          const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
           const highestSelectedPlan =
             planHierarchy.reverse().find((plan) => selectedPlans.includes(plan)) || selectedPlans[0]
 
@@ -655,17 +660,34 @@ export default function PlanComparisonTool() {
     setSubmittedLineOfBusiness("")
   }
 
-  const planOptions = [
+  type PlanOption = { value: string; label: string }
+  type PlanGroup = { label: string; options: PlanOption[] }
+  type PlanStructure = (PlanOption | PlanGroup)[]
+
+  const planGroups: PlanStructure = [
     { value: "free", label: "Free" },
     { value: "pro", label: "Pro" },
-    { value: "plus", label: "Business Plus" },
-    { value: "grid", label: "Enterprise+" },
+    {
+      label: "Business+",
+      options: [
+        { value: "plus_v1", label: "Business+ V1" },
+        { value: "plus_v2", label: "Business+ V2" },
+      ],
+    },
+    {
+      label: "Enterprise+",
+      options: [
+        { value: "grid_v1", label: "Enterprise+ V1" },
+        { value: "grid_v2", label: "Enterprise+ V2" },
+      ],
+    },
   ]
 
-  const lobOptions = [
+  const planOptions: PlanOption[] = planGroups.flatMap((g) => ("options" in g ? g.options : g))
+
+  const lobOptions: { value: string; label: string }[] = [
     { value: "", label: "Select Line of Business (Optional)" },
     { value: "it", label: "IT" },
-    { value: "engineering", label: "Engineering" },
     { value: "sales", label: "Sales" },
     { value: "hr", label: "Human Resources" },
     { value: "marketing", label: "Marketing" },
@@ -717,15 +739,28 @@ export default function PlanComparisonTool() {
                         <select
                           id="currentPlan"
                           value={currentPlan}
-                          onChange={(e) => setCurrentPlan(e.target.value)}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setCurrentPlan(e.target.value)}
                           className="w-full appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 pr-10 text-gray-900 shadow-sm focus:border-[#36C5F0] focus:outline-none focus:ring-2 focus:ring-[#36C5F0]/50"
                           disabled={isLoading}
                         >
-                          {planOptions.map((option) => (
-                            <option key={option.value} value={option.value}>
-                              {option.label}
-                            </option>
-                          ))}
+                          {planGroups.map((group) => {
+                            if ("options" in group) {
+                              return (
+                                <optgroup label={group.label} key={group.label}>
+                                  {group.options.map((option) => (
+                                    <option key={option.value} value={option.value}>
+                                      {option.label}
+                                    </option>
+                                  ))}
+                                </optgroup>
+                              )
+                            }
+                            return (
+                              <option key={group.value} value={group.value}>
+                                {group.label}
+                              </option>
+                            )
+                          })}
                         </select>
                         <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
                       </div>
@@ -739,15 +774,28 @@ export default function PlanComparisonTool() {
                         <select
                           id="futurePlan"
                           value={futurePlan}
-                          onChange={(e) => setFuturePlan(e.target.value)}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFuturePlan(e.target.value)}
                           className="w-full appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 pr-10 text-gray-900 shadow-sm focus:border-[#36C5F0] focus:outline-none focus:ring-2 focus:ring-[#36C5F0]/50"
                           disabled={isLoading}
                         >
-                          {planOptions.map((option) => (
-                            <option key={option.value} value={option.value}>
-                              {option.label}
-                            </option>
-                          ))}
+                          {planGroups.map((group) => {
+                            if ("options" in group) {
+                              return (
+                                <optgroup label={group.label} key={group.label}>
+                                  {group.options.map((option) => (
+                                    <option key={option.value} value={option.value}>
+                                      {option.label}
+                                    </option>
+                                  ))}
+                                </optgroup>
+                              )
+                            }
+                            return (
+                              <option key={group.value} value={group.value}>
+                                {group.label}
+                              </option>
+                            )
+                          })}
                         </select>
                         <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
                       </div>
@@ -766,7 +814,7 @@ export default function PlanComparisonTool() {
                             type="checkbox"
                             id={`plan-${option.value}`}
                             checked={selectedPlans.includes(option.value)}
-                            onChange={(e) => {
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                               if (e.target.checked) {
                                 setSelectedPlans((prev) => [...prev, option.value])
                               } else {
@@ -796,7 +844,7 @@ export default function PlanComparisonTool() {
                     <select
                       id="lineOfBusiness"
                       value={lineOfBusiness}
-                      onChange={(e) => setLineOfBusiness(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setLineOfBusiness(e.target.value)}
                       className="w-full appearance-none rounded-md border border-gray-300 bg-white px-4 py-2 pr-10 text-gray-900 shadow-sm focus:border-[#36C5F0] focus:outline-none focus:ring-2 focus:ring-[#36C5F0]/50"
                       disabled={isLoading}
                     >
@@ -1072,7 +1120,7 @@ export default function PlanComparisonTool() {
                                           return (
                                             <td
                                               key={`${feature}-${plan}`}
-                                              className="px-6 py-4 text-sm align-top"
+                                              className="whitespace-nowrap px-6 py-4 text-sm align-top"
                                             >
                                               {hasFeature === true ? (
                                                 <div className="flex items-center text-green-600">
