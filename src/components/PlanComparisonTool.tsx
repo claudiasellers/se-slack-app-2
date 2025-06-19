@@ -687,9 +687,9 @@ export default function PlanComparisonTool() {
       ],
     },
     {
-      label: "Enterprise+",
+      label: "Enterprise",
       options: [
-        { value: "grid_v1", label: "Enterprise+ V1" },
+        { value: "grid_v1", label: "Grid V1" },
         { value: "grid_v2", label: "Enterprise+ V2" },
       ],
     },
