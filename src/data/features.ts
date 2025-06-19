@@ -66,7 +66,7 @@ export const featureData = {
     "Recaps": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Huddles Notes":{free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Slack AI Search": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Enterprise Search": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "Enterprise Search": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: false, grid_v2: true},
     "3rd Party Agent Apps" : {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "AI Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "AI Steps in Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
