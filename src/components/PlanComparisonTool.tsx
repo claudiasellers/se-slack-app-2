@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import {useState} from "react"
+import { useState } from "react"
 import {
   ChevronDown,
   ChevronRight,
@@ -25,7 +25,7 @@ import {
   Cloud,
   Smartphone
 } from "lucide-react"
-import {featureData} from "../data/features"
+import { featureData } from "../data/features"
 import mixpanel from "mixpanel-browser"
 
 // get feature icon
