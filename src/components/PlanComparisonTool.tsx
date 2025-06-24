@@ -247,22 +247,22 @@ const categorizeFeatures = (features: string[]) => {
 // get section colors
 const getSectionColor = (category: string) => {
   const colorMap: Record<string, string> = {
-    "Collaboration Tools": "#36C5F0", // Slack Blue
-    "Administration & Analytics": "#4A154B", // Slack Purple
-    "Security & Compliance": "#E01E5A", // Slack Red
-    "External Collaboration": "#2EB67D", // Slack Green
-    "User Management": "#ECB22E", // Slack Yellow
-    "Data & Exports": "#E01E5A", // Slack Red
-    "Support & Reliability": "#36C5F0", // Slack Blue
-    "Other Features": "#4A154B", // Slack Purple
+    "Collaboration Tools": "#36C5F0", // slack blue
+    "Administration & Analytics": "#4A154B", // slack purple
+    "Security & Compliance": "#E01E5A", // slack red
+    "External Collaboration": "#2EB67D", // slack green
+    "User Management": "#ECB22E", // slack yellow
+    "Data & Exports": "#E01E5A", // slack red
+    "Support & Reliability": "#36C5F0", // slack blue
+    "Other Features": "#4A154B", // slack purple
   }
 
-  return colorMap[category] || "#4A154B" // Default to Slack Purple
+  return colorMap[category] || "#4A154B" // defaukt to slack purple
 }
 
 // include  new state variables
 export default function PlanComparisonTool() {
-  // Tab state
+  // tab state
   const [activeTab, setActiveTab] = useState<"feature-list" | "comparison-table">("feature-list")
 
   // feature List tab states (original functionality)
@@ -270,7 +270,7 @@ export default function PlanComparisonTool() {
   const [futurePlan, setFuturePlan] = useState("pro")
   const [upgradeFeatures, setUpgradeFeatures] = useState<string[]>([])
 
-  // comparison Table tab states (new functionality)
+  // comparison table tab states (new functionality)
   const [selectedPlans, setSelectedPlans] = useState<string[]>(["free", "pro"])
 
   // shared states
@@ -330,18 +330,18 @@ export default function PlanComparisonTool() {
   // download PDF
   const downloadPDF = async () => {
     try {
-      // Create a new window for the PDF content
+      // new window for PDF content
       const printWindow = window.open("", "_blank")
       if (!printWindow) return
 
-      // Get current date for the filename
+      // get current date for the filename
       const currentDate = new Date().toLocaleDateString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
       })
 
-      // Build the HTML content for the PDF
+      // build HTML for PDF
       let htmlContent = `
         <!DOCTYPE html>
         <html>
@@ -475,7 +475,7 @@ export default function PlanComparisonTool() {
           </div>
       `
 
-      // Add each category and its features
+      // add each category and its features
       Object.entries(categorizedFeatures).forEach(([category, features]) => {
         htmlContent += `
           <div class="category">
@@ -574,15 +574,15 @@ export default function PlanComparisonTool() {
     setTimeout(() => {
       try {
         if (activeTab === "feature-list") {
-          // Feature List logic
+          // feature list logic
           const features = getUpgradeFeatures(currentPlan, futurePlan)
           setUpgradeFeatures(features)
 
-          // Categorize the features
+          // categoriz features
           const categorized = categorizeFeatures(features)
           setCategorizedFeatures(categorized)
 
-          // Get pain points if line of business is selected
+          // get pain points if line of business is selected
           if (lineOfBusiness) {
             const lobPainPoints = getLOBPainPoints(features, lineOfBusiness)
             setPainPoints(lobPainPoints)
@@ -592,13 +592,13 @@ export default function PlanComparisonTool() {
             setSubmittedLineOfBusiness("")
           }
         } else {
-          // Comparison Table logic - show all features from the highest selected plan
-          // Get features from the highest selected plan
+          // comparison table logic - show all features from highest selected plan
+          // get features from highest selected plan
           const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
           const highestSelectedPlan =
             planHierarchy.reverse().find((plan) => selectedPlans.includes(plan)) || selectedPlans[0]
 
-          // Get all features available in the highest selected plan
+          // get ALL features available in highest selected plan
           const highestPlanFeatures: string[] = []
           for (const feature in featureData.featureAvailability) {
             const hasAccess =
@@ -611,11 +611,11 @@ export default function PlanComparisonTool() {
             }
           }
 
-          // Categorize features from the highest plan
+          // categorize features from highest plan
           const categorized = categorizeFeatures(highestPlanFeatures)
           setCategorizedFeatures(categorized)
 
-          // Initialize all categories as expanded
+          // default all categories expanded
           const initialExpandState: Record<string, boolean> = {}
           Object.keys(categorized).forEach((category) => {
             initialExpandState[category] = true
