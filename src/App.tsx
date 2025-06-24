@@ -1,5 +1,5 @@
 // src/App.tsx
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 import mixpanel from 'mixpanel-browser';
 import PlanComparisonTool from './components/PlanComparisonTool';
 
