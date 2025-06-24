@@ -108,7 +108,7 @@ const getFeatureIcon = (feature: string) => {
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
 }
 
-// Add a function to categorize features
+// categorize features
 const categorizeFeatures = (features: string[]) => {
   if (!features || features.length === 0) {
     return {}
@@ -218,7 +218,7 @@ const categorizeFeatures = (features: string[]) => {
   // Create a map of categorized features
   const categorized: Record<string, string[]> = {}
 
-  // First, add all features that match our predefined categories
+  // add all features that match  predefined categories
   for (const category in categories) {
     const categoryFeatures = features.filter((feature) => categories[category].includes(feature))
 
@@ -227,7 +227,7 @@ const categorizeFeatures = (features: string[]) => {
     }
   }
 
-  // Then add any remaining features to "Other Features"
+  // add remaining features to "Other Features"
   const otherFeatures = features.filter((feature) => {
     for (const category in categories) {
       if (category !== "Other Features" && categories[category].includes(feature)) {
@@ -244,7 +244,7 @@ const categorizeFeatures = (features: string[]) => {
   return categorized
 }
 
-// Add a function to get section colors
+// get section colors
 const getSectionColor = (category: string) => {
   const colorMap: Record<string, string> = {
     "Collaboration Tools": "#36C5F0", // Slack Blue
@@ -260,20 +260,20 @@ const getSectionColor = (category: string) => {
   return colorMap[category] || "#4A154B" // Default to Slack Purple
 }
 
-// Update the PlanComparisonTool component to include these new state variables
+// include  new state variables
 export default function PlanComparisonTool() {
   // Tab state
   const [activeTab, setActiveTab] = useState<"feature-list" | "comparison-table">("feature-list")
 
-  // Feature List tab states (original functionality)
+  // feature List tab states (original functionality)
   const [currentPlan, setCurrentPlan] = useState("free")
   const [futurePlan, setFuturePlan] = useState("pro")
   const [upgradeFeatures, setUpgradeFeatures] = useState<string[]>([])
 
-  // Comparison Table tab states (new functionality)
+  // comparison Table tab states (new functionality)
   const [selectedPlans, setSelectedPlans] = useState<string[]>(["free", "pro"])
 
-  // Shared states
+  // shared states
   const [lineOfBusiness, setLineOfBusiness] = useState("")
   const [categorizedFeatures, setCategorizedFeatures] = useState<Record<string, string[]>>({})
   const [painPoints, setPainPoints] = useState<{ [key: string]: string }>({})
@@ -282,7 +282,7 @@ export default function PlanComparisonTool() {
   const [submittedLineOfBusiness, setSubmittedLineOfBusiness] = useState("")
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({})
 
-  // Function to get upgrade features (for Feature List tab)
+  // get upgrade features (for Feature List tab)
   const getUpgradeFeatures = (current: string, future: string) => {
     const addedFeatures: string[] = []
 
@@ -305,7 +305,7 @@ export default function PlanComparisonTool() {
     return addedFeatures
   }
 
-  // Function to toggle category expansion
+  // toggle category expansion
   const toggleCategory = (category: string) => {
     setExpandedCategories((prev) => ({
       ...prev,
@@ -313,7 +313,7 @@ export default function PlanComparisonTool() {
     }))
   }
 
-  // Function to get LOB pain points
+  // get LOB pain points
   const getLOBPainPoints = (features: string[], lob: string) => {
     const relevantPainPoints: { [key: string]: string } = {}
 
@@ -327,7 +327,7 @@ export default function PlanComparisonTool() {
     return relevantPainPoints
   }
 
-  // Function to download PDF
+  // download PDF
   const downloadPDF = async () => {
     try {
       // Create a new window for the PDF content
@@ -549,11 +549,11 @@ export default function PlanComparisonTool() {
         </html>
       `
 
-      // Write content to the new window
+      // write content to new window
       printWindow.document.write(htmlContent)
       printWindow.document.close()
 
-      // Wait for content to load, then print
+      // wait for content to load then print
       printWindow.onload = () => {
         setTimeout(() => {
           printWindow.print()
@@ -566,7 +566,7 @@ export default function PlanComparisonTool() {
     }
   }
 
-  // Handle form submission
+  // handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsLoading(true)
@@ -635,7 +635,7 @@ export default function PlanComparisonTool() {
 
         setIsSubmitted(true)
 
-        // Track event
+        // mp event
         mixpanel.track("Plan Comparison Submitted", {
           tab: activeTab,
           currentPlan,
@@ -644,7 +644,7 @@ export default function PlanComparisonTool() {
           lineOfBusiness,
         })
 
-        // Update user profile
+        // mp user profile
         mixpanel.people.increment("Total Comparisons")
         mixpanel.people.set({
           "Line of Business": lineOfBusiness,
@@ -668,7 +668,7 @@ export default function PlanComparisonTool() {
     setPainPoints({})
     setSubmittedLineOfBusiness("")
 
-    // Track tab change
+    // mp event tab change
     mixpanel.track("Tab Changed", { tab: tab })
   }
 
