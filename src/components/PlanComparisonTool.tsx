@@ -28,14 +28,14 @@ import {
 import { featureData } from "../data/features"
 import mixpanel from "mixpanel-browser"
 
-// Add a new function to get feature icon
+// get feature icon
 const getFeatureIcon = (feature: string) => {
   const iconMap: Record<string, React.ReactNode> = {
     Canvas: <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Custom Canvas Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Sales Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    Clips: <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    Guests: <Users className="h-5 w-5 text-[#36C5F0]" />,
+    "Clips": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
+    "Guests": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Slack Connect (Shared Channels)": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Sponsored Connections - Slack Connect": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Per-Org Customization - Slack Connect": <Settings className="h-5 w-5 text-[#4A154B]" />,
@@ -46,7 +46,7 @@ const getFeatureIcon = (feature: string) => {
     "Slack Catch Up": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "Slack AI": <Bot className="h-5 w-5 text-[#4A154B]" />,
     "Out of Office Responder": <Clock className="h-5 w-5 text-[#ECB22E]" />,
-    Lists: <List className="h-5 w-5 text-[#2EB67D]" />,
+    "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Channel Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Granular Admin Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Central Channel Dashboard": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
@@ -62,7 +62,7 @@ const getFeatureIcon = (feature: string) => {
     "Multi-SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "SCIM API Provisioning": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "SCIM API (Guest Provisioning)": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    Atlas: <Users className="h-5 w-5 text-[#36C5F0]" />,
+    "Atlas": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Custom User Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "IDP Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Session Duration - Desktop + Mobile": <Clock className="h-5 w-5 text-[#ECB22E]" />,
