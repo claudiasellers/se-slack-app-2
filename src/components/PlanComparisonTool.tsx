@@ -102,7 +102,7 @@ const getFeatureIcon = (feature: string) => {
     "Exports (Salesforce Channels)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Native Device Management: Block Jailbroken Devices": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
     "Native Device Management: Block Copy / Paste": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
-    "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />,
+    "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
