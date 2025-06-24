@@ -31,7 +31,7 @@ import mixpanel from "mixpanel-browser"
 // get feature icon
 const getFeatureIcon = (feature: string) => {
   const iconMap: Record<string, React.ReactNode> = {
-    Canvas: <FileText className="h-5 w-5 text-[#2EB67D]" />,
+    "Canvas": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Custom Canvas Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Sales Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Clips": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
