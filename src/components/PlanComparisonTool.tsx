@@ -622,7 +622,7 @@ export default function PlanComparisonTool() {
           })
           setExpandedCategories(initialExpandState)
 
-          // Get pain points if line of business is selected
+          // get pain points if LOB selected
           if (lineOfBusiness) {
             const lobPainPoints = getLOBPainPoints(highestPlanFeatures, lineOfBusiness)
             setPainPoints(lobPainPoints)
@@ -659,7 +659,7 @@ export default function PlanComparisonTool() {
     }, 800)
   }
 
-  // Reset form when switching tabs
+  //reset form when switching tabs
   const handleTabChange = (tab: "feature-list" | "comparison-table") => {
     setActiveTab(tab)
     setIsSubmitted(false)
