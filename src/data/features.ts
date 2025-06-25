@@ -13,7 +13,7 @@ export const featureData = {
     "Multi-Workspace Channels": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Channel Posting Permissions": {free: "(#general channel only)", pro: "(#general channel only)", plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Workflow Builder": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
-    "Message Activity": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
+    "Message Activity": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Slack Catch Up": { free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Out of Office Responder": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Lists": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
