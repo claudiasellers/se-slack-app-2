@@ -174,8 +174,8 @@ export const featureData = {
     "Salesforce workflow automation (Scheduled triggers)": "Allows you to create scheduled Slack notifications that can summarize specific records or out-of-date records in Salesforce.",
     "Catchup Summaries on Mobile": "Allows users to get AI-powered summaries of unread messages in their Slack catch-up cards",
     "AI Language Translations": "Allows users to translate messages into their language of choice, breaking down language barriers for global collaboration",
-    "EMM (Enterprise Mobility Management)": "Integrates with a companies existing EMM to enforce mobile security policies like blocking access from unmanaged devices and requiring use of a managed EMM app."
-
+    "EMM (Enterprise Mobility Management)": "Integrates with a companies existing EMM to enforce mobile security policies like blocking access from unmanaged devices and requiring use of a managed EMM app.",
+    "Guaranteed Uptime and Fast Customer Support": "See https://slack.com/terms/service-level-agreement for details."
   },
   featurePainPoints: {
     "Slack AI": {
