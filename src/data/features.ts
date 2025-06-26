@@ -176,7 +176,6 @@ export const featureData = {
     "AI Language Translations": "Allows users to translate messages into their language of choice, breaking down language barriers for global collaboration",
     "EMM (Enterprise Mobility Management)": "Integrates with a companies existing EMM to enforce mobile security policies like blocking access from unmanaged devices and requiring use of a managed EMM app.",
     "Guaranteed Uptime and Fast Customer Support": "See https://slack.com/terms/service-level-agreement for details."
-
   },
   featurePainPoints: {
     "Slack AI": {
@@ -599,6 +598,12 @@ export const featureData = {
     },
     "EMM (Enterprise Mobility Management)": {
       it: "Without EMM, IT can't prevent employees from accessing Slack on personal or jailbroken devices—making it easy for sensitive company data to be downloaded, screen-captured, or shared outside managed environments, increasing the risk of data leaks, compliance violations, and insider threats."
+    },
+    "Catchup Summaries on Mobile": {
+      it: "When an on-call engineer is paged for a major incident, they lose critical minutes manually scrolling through alerts and chat history to understand the problem, directly increasing the system's downtime (MTTR)."
+    },
+    "AI Language Translations": {
+      it: "The IT department's collective knowledge becomes siloed by geography; valuable documentation and internal expertise from one region are inaccessible to teams in another, forcing engineers to constantly reinvent the wheel and solve the same problems repeatedly."
     }
   }
 }
