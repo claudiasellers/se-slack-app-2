@@ -215,7 +215,7 @@ const categorizeFeatures = (features: string[]) => {
     "Other Features": [],
   }
 
-  // Create a map of categorized features
+  // create a map of categorized features
   const categorized: Record<string, string[]> = {}
 
   // add all features that match  predefined categories
@@ -829,7 +829,7 @@ export default function PlanComparisonTool() {
                     </div>
                   </>
                 ) : (
-                  // Comparison Table form
+                  // comparison Table form
                   <div className="mb-6">
                     <label htmlFor="planSelection" className="mb-1 block font-medium text-[#36C5F0]">
                       Select Plans to Compare
@@ -958,7 +958,7 @@ export default function PlanComparisonTool() {
                     </div>
                   </div>
                 ) : activeTab === "feature-list" ? (
-                  // Feature List Content (Original functionality)
+                  // feature list content (original functionality)
                   <>
                     <div className="mb-4 flex items-center">
                       <div className="flex items-center space-x-2">
@@ -1033,7 +1033,7 @@ export default function PlanComparisonTool() {
                     )}
                   </>
                 ) : (
-                  // Comparison Table Content
+                  // comparison table content
                   <>
                     <div className="mb-4 flex items-center justify-between">
                       <div className="flex items-center space-x-2">
@@ -1047,7 +1047,7 @@ export default function PlanComparisonTool() {
                         ))}
                       </div>
 
-                      {/* Download PDF Button */}
+                      {/* download PDF button */}
                       <button
                         onClick={() => {
                           downloadPDF()
@@ -1064,32 +1064,7 @@ export default function PlanComparisonTool() {
                       </button>
                     </div>
 
-                    {/* Side-by-side comparison table */}
-                    <div className="mb-8 overflow-x-auto">
-                      <table className="w-full min-w-full divide-y divide-gray-200 border">
-                        <thead className="bg-gray-50">
-                          <tr>
-                            <th
-                              scope="col"
-                              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                            >
-                              Feature
-                            </th>
-                            {selectedPlans.map((plan) => (
-                              <th
-                                key={plan}
-                                scope="col"
-                                className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                              >
-                                {planOptions.find((option) => option.value === plan)?.label}
-                              </th>
-                            ))}
-                          </tr>
-                        </thead>
-                      </table>
-                    </div>
-
-                    {/* Accordions for feature categories */}
+                    {/* accordions for feature categories */}
                     <div className="space-y-4">
                       {Object.entries(categorizedFeatures).map(([category, features]) => (
                         <div key={category} className="rounded-lg border border-gray-200">
@@ -1120,6 +1095,25 @@ export default function PlanComparisonTool() {
                             <div className="p-4">
                               <div className="overflow-x-auto">
                                 <table className="w-full min-w-full divide-y divide-gray-200">
+                                  <thead className="bg-gray-50">
+                                    <tr>
+                                      <th
+                                        scope="col"
+                                        className="w-2/5 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                      >
+                                        Feature
+                                      </th>
+                                      {selectedPlans.map((plan) => (
+                                        <th
+                                          key={plan}
+                                          scope="col"
+                                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                        >
+                                          {planOptions.find((option) => option.value === plan)?.label}
+                                        </th>
+                                      ))}
+                                    </tr>
+                                  </thead>
                                   <tbody className="divide-y divide-gray-200 bg-white">
                                     {features.map((feature) => (
                                       <tr
