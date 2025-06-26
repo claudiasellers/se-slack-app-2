@@ -101,7 +101,7 @@ const getFeatureIcon = (feature: string) => {
     "Sales Home": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Exports (Salesforce Channels)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Native Device Management: Block Jailbroken Devices": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
-    "Native Device Management: Block Copy / Paste": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
+    "Native Device Management: Block Copy / Paste (Mobile)": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
     "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />
   }
 
@@ -149,7 +149,7 @@ const categorizeFeatures = (features: string[]) => {
       "MAM (Mobile Application Management)",
       "EMM (Enterprise Mobility Management)",
       "Native Device Management: Block Jailbroken Devices",
-      "Native Device Management: Block Copy / Paste",
+      "Native Device Management: Block Copy / Paste (Mobile)",
       "EKM (Enterprise Key Management)",
       "Block File Downloads (Desktop + Mobile)",
       "Legal Holds",
