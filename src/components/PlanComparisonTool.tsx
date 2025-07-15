@@ -972,7 +972,11 @@ export default function PlanComparisonTool() {
                       </div>
                     </div>
 
-                    <h3 className="mb-4 text-xl font-semibold text-[#4A154B]">Features you'll gain by upgrading</h3>
+                    <h3 className="mb-4 text-xl font-semibold text-[#4A154B]">
+                      {upgradeFeatures.length > 0
+                        ? `${upgradeFeatures.length} Features you'll gain by upgrading:`
+                        : "Features you'll gain by upgrading"}
+                    </h3>
 
                     {upgradeFeatures.length === 0 ? (
                       <div className="rounded-lg bg-gray-50 p-4 text-center text-gray-500">
