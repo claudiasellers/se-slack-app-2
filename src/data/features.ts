@@ -73,6 +73,7 @@ export const featureData = {
     "Catchup Summaries on Mobile": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "AI Language Translations": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "AI Action Items": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "Conditional Workflows": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: true, grid_v2: true },
     "Salesforce Channels": {free: "Users See 90 Days Only", pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Record Unfurls":{free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Record Search": {free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
@@ -175,7 +176,8 @@ export const featureData = {
     "Catchup Summaries on Mobile": "Allows users to get AI-powered summaries of unread messages in their Slack catch-up cards",
     "AI Language Translations": "Allows users to translate messages into their language of choice, breaking down language barriers for global collaboration",
     "EMM (Enterprise Mobility Management)": "Integrates with a companies existing EMM to enforce mobile security policies like blocking access from unmanaged devices and requiring use of a managed EMM app.",
-    "Guaranteed Uptime and Fast Customer Support": "See https://slack.com/terms/service-level-agreement for details."
+    "Guaranteed Uptime and Fast Customer Support": "See https://slack.com/terms/service-level-agreement for details.",
+    "Conditional Workflows": "Create dynamic, responsive workflows that adapt to different situations. Use custom rules based on button selections, form answers, or other inputs to route information and automate complex processes without writing code.",
   },
   featurePainPoints: {
     "Slack AI": {
@@ -604,6 +606,14 @@ export const featureData = {
     },
     "AI Language Translations": {
       it: "The IT department's collective knowledge becomes siloed by geography; valuable documentation and internal expertise from one region are inaccessible to teams in another, forcing engineers to constantly reinvent the wheel and solve the same problems repeatedly."
+    },
+    "Conditional Workflows": {
+      it: "Manual, rigid workflows for IT requests (e.g., access grants, hardware requests) lack the flexibility to handle variations, leading to delays and manual intervention.",
+      engineering: "Automated CI/CD or incident response workflows are too rigid and cannot dynamically adapt based on the type of change, severity of the incident, or user input, requiring manual overrides.",
+      sales: "Sales approval processes (e.g., for discounts) are manual or follow a single rigid path, causing delays when exceptions or different routing rules are needed.",
+      customer_support: "Ticket routing is static, sending all issues through the same path regardless of priority, region, or product area, leading to inefficient assignments and slower response times.",
+      operations: "Business processes automated in Slack are not intelligent enough to adapt to different inputs, requiring people to manually manage exceptions and complex routing logic.",
+      hr: "Workflows for employee requests (e.g., leave, HR questions) are linear and cannot be dynamically routed based on department, seniority, or request type, creating administrative bottlenecks."
     }
   }
 }

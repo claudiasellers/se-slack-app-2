@@ -42,6 +42,7 @@ const getFeatureIcon = (feature: string) => {
     "Multi-Workspace Channels": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "Channel Posting Permissions": <Lock className="h-5 w-5 text-[#E01E5A]" />,
     "Workflow Builder": <Workflow className="h-5 w-5 text-[#ECB22E]" />,
+    "Conditional Workflows": <Workflow className="h-5 w-5 text-[#ECB22E]" />,
     "Message Activity": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
     "Slack Catch Up": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "Slack AI": <Bot className="h-5 w-5 text-[#4A154B]" />,
@@ -125,6 +126,7 @@ const categorizeFeatures = (features: string[]) => {
       "Lists",
       "Slack Channel Templates",
       "Workflow Builder",
+      "Conditional Workflows",
       "Channel Posting Permissions"
     ],
     "Administration & Analytics": [
