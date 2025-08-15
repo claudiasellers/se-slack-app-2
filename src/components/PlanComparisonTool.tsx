@@ -1,113 +1,28 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import {
   ChevronDown,
-  ChevronRight,
   ArrowRight,
   Loader2,
-  Users,
-  FileText,
-  MessageSquare,
-  Lock,
-  Settings,
-  Zap,
-  List,
-  BarChart,
-  Clock,
-  Bot,
-  Workflow,
-  Shield,
-  Database,
-  UserCheck,
-  Download,
-  Cloud,
-  Smartphone
+  Download
 } from "lucide-react"
 import { featureData } from "../data/features"
 import mixpanel from "mixpanel-browser"
+import { FeatureCard } from "./FeatureCard"
+import { SearchFilterBar } from "./SearchFilterBar"
+import { FeatureCategoryHeader } from "./FeatureCategoryHeader"
+import { CompactFeatureRow } from "./CompactFeatureRow"
+import { CollapseExpandAll } from "./CollapseExpandAll"
+import { getSectionColor } from "../utils/featureUtils"
+import { 
+  filterFeaturesBySearch, 
+  countFeaturesWithPainPoints, 
+  shouldExpandCategory 
+} from "../utils/textUtils"
 
-// get feature icon
-const getFeatureIcon = (feature: string) => {
-  const iconMap: Record<string, React.ReactNode> = {
-    "Canvas": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Custom Canvas Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Slack Sales Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Clips": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    "Guests": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "Slack Connect (Shared Channels)": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "Sponsored Connections - Slack Connect": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "Per-Org Customization - Slack Connect": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Multi-Workspace Channels": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    "Channel Posting Permissions": <Lock className="h-5 w-5 text-[#E01E5A]" />,
-    "Workflow Builder": <Workflow className="h-5 w-5 text-[#ECB22E]" />,
-    "Conditional Workflows": <Workflow className="h-5 w-5 text-[#ECB22E]" />,
-    "Message Activity": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
-    "Slack Catch Up": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    "Slack AI": <Bot className="h-5 w-5 text-[#4A154B]" />,
-    "Out of Office Responder": <Clock className="h-5 w-5 text-[#ECB22E]" />,
-    "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
-    "Slack Channel Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Granular Admin Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Central Channel Dashboard": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
-    "Admin API": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Analytics API (Members)": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
-    "Analytics API (Conversations)": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
-    "App Analytics": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
-    "Custom Retention Policies (Workspace)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Custom Retention Policies (Org-Wide)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Lock Guest Names": <Lock className="h-5 w-5 text-[#E01E5A]" />,
-    "Google OAuth 2.0": <UserCheck className="h-5 w-5 text-[#E01E5A]" />,
-    "SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "Multi-SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "SCIM API Provisioning": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "SCIM API (Guest Provisioning)": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Atlas": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "Custom User Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "IDP Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "Session Duration - Desktop + Mobile": <Clock className="h-5 w-5 text-[#ECB22E]" />,
-    "Session Management": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Domain Claiming (create workspace)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
-    "MDM (Mobile Device Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "MAM (Mobile Application Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "Native Mobile Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "EKM (Enterprise Key Management)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
-    "Block File Downloads (Desktop + Mobile)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
-    "Legal Holds": <Lock className="h-5 w-5 text-[#E01E5A]" />,
-    "Information Barriers": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "DLP (Data Loss Prevention)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "Native DLP": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "Audit Logs API": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Audit Logs (Native Dashboard)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Discovery/DLP API": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "Exports (Public Data)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Exports (Full Data)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Exports (Single User Exports)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Custom Terms of Service": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Approve Workspaces": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Data Residency (IDR)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    "99.99% Guaranteed Uptime SLA": <Zap className="h-5 w-5 text-[#ECB22E]" />,
-    "Integrations": <Zap className="h-5 w-5 text-[#ECB22E]" />,
-    "Salesforce Channels":  <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Record Unfurls":<Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Record Search": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Record View & Edit": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Related List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Connect multiple Salesforce orgs": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Salesforce standalone List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Salesforce workflow automation (Event triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Salesforce workflow automation (Scheduled triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Sales Home": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Exports (Salesforce Channels)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Native Device Management: Block Jailbroken Devices": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
-    "Native Device Management: Block Copy / Paste (Mobile)": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
-    "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />
-  }
 
-  return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
-}
 
 // categorize features
 const categorizeFeatures = (features: string[]) => {
@@ -246,21 +161,7 @@ const categorizeFeatures = (features: string[]) => {
   return categorized
 }
 
-// get section colors
-const getSectionColor = (category: string) => {
-  const colorMap: Record<string, string> = {
-    "Collaboration Tools": "#36C5F0", // slack blue
-    "Administration & Analytics": "#4A154B", // slack purple
-    "Security & Compliance": "#E01E5A", // slack red
-    "External Collaboration": "#2EB67D", // slack green
-    "User Management": "#ECB22E", // slack yellow
-    "Data & Exports": "#E01E5A", // slack red
-    "Support & Reliability": "#36C5F0", // slack blue
-    "Other Features": "#4A154B", // slack purple
-  }
 
-  return colorMap[category] || "#4A154B" // defaukt to slack purple
-}
 
 // include  new state variables
 export default function PlanComparisonTool() {
@@ -283,6 +184,76 @@ export default function PlanComparisonTool() {
   const [isLoading, setIsLoading] = useState(false)
   const [submittedLineOfBusiness, setSubmittedLineOfBusiness] = useState("")
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({})
+
+  // new UI enhancement states
+  const [expandedFeatures, setExpandedFeatures] = useState<Set<string>>(new Set())
+  const [viewMode, setViewMode] = useState<'names' | 'detailed'>('names')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [showOnlyPainPoints, setShowOnlyPainPoints] = useState(false)
+
+  // memoized computed values for performance
+  const filteredUpgradeFeatures = useMemo(() => {
+    let features = upgradeFeatures
+    
+    // Apply search filter
+    if (searchTerm.trim()) {
+      features = filterFeaturesBySearch(features, searchTerm, featureData.featureDescriptions)
+    }
+    
+    // Apply pain points filter
+    if (showOnlyPainPoints && submittedLineOfBusiness) {
+      features = features.filter(feature => painPoints[feature])
+    }
+    
+    return features
+  }, [upgradeFeatures, searchTerm, showOnlyPainPoints, submittedLineOfBusiness, painPoints])
+
+  const filteredCategorizedFeatures = useMemo(() => {
+    return categorizeFeatures(filteredUpgradeFeatures)
+  }, [filteredUpgradeFeatures])
+
+  const painPointCount = useMemo(() => {
+    return countFeaturesWithPainPoints(upgradeFeatures, painPoints)
+  }, [upgradeFeatures, painPoints])
+
+  // helper functions
+  const toggleFeatureExpansion = (feature: string) => {
+    setExpandedFeatures(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(feature)) {
+        newSet.delete(feature)
+      } else {
+        newSet.add(feature)
+      }
+      return newSet
+    })
+    
+    // Track analytics
+    mixpanel.track("Feature Expanded", { 
+      feature, 
+      action: expandedFeatures.has(feature) ? 'collapsed' : 'expanded',
+      tab: activeTab 
+    })
+  }
+
+  const handleViewModeChange = (mode: 'names' | 'detailed') => {
+    setViewMode(mode)
+    mixpanel.track("View Mode Changed", { 
+      from: viewMode, 
+      to: mode, 
+      tab: activeTab 
+    })
+  }
+
+  const handleSearchChange = (term: string) => {
+    setSearchTerm(term)
+    if (term.trim()) {
+      mixpanel.track("Search Used", { 
+        search_term: term, 
+        tab: activeTab 
+      })
+    }
+  }
 
   // get upgrade features (for Feature List tab)
   const getUpgradeFeatures = (current: string, future: string) => {
@@ -669,9 +640,44 @@ export default function PlanComparisonTool() {
     setExpandedCategories({})
     setPainPoints({})
     setSubmittedLineOfBusiness("")
+    
+    // reset new UI states
+    setExpandedFeatures(new Set())
+    setSearchTerm('')
+    setShowOnlyPainPoints(false)
+    setViewMode('names')
 
     // mp event tab change
     mixpanel.track("Tab Changed", { tab: tab })
+  }
+
+  // Collapse/Expand All functions
+  const handleCollapseAll = () => {
+    const allCategories = Object.keys(filteredCategorizedFeatures)
+    const collapsed: Record<string, boolean> = {}
+    allCategories.forEach(category => {
+      collapsed[category] = false
+    })
+    setExpandedCategories(collapsed)
+    
+    mixpanel.track("Collapse All Categories", { 
+      tab: activeTab,
+      total_categories: allCategories.length 
+    })
+  }
+
+  const handleExpandAll = () => {
+    const allCategories = Object.keys(filteredCategorizedFeatures)
+    const expanded: Record<string, boolean> = {}
+    allCategories.forEach(category => {
+      expanded[category] = true
+    })
+    setExpandedCategories(expanded)
+    
+    mixpanel.track("Expand All Categories", { 
+      tab: activeTab,
+      total_categories: allCategories.length 
+    })
   }
 
   type PlanOption = { value: string; label: string }
@@ -960,7 +966,7 @@ export default function PlanComparisonTool() {
                     </div>
                   </div>
                 ) : activeTab === "feature-list" ? (
-                  // feature list content (original functionality)
+                  // Enhanced feature list content with new components
                   <>
                     <div className="mb-4 flex items-center">
                       <div className="flex items-center space-x-2">
@@ -974,73 +980,115 @@ export default function PlanComparisonTool() {
                       </div>
                     </div>
 
-                    <h3 className="mb-4 text-xl font-semibold text-[#4A154B]">
-                      {upgradeFeatures.length > 0
-                        ? `${upgradeFeatures.length} Features you'll gain by upgrading:`
-                        : "Features you'll gain by upgrading"}
-                    </h3>
-
                     {upgradeFeatures.length === 0 ? (
                       <div className="rounded-lg bg-gray-50 p-4 text-center text-gray-500">
                         No additional features available in this upgrade path.
                       </div>
                     ) : (
-                      <div className="space-y-8">
-                        {Object.entries(categorizedFeatures).map(([category, features]) => (
-                          <div key={category}>
-                            <h4 className="mb-3 text-lg font-medium" style={{ color: getSectionColor(category) }}>
-                              {category}
-                            </h4>
-                            <div className="grid gap-4 sm:grid-cols-2">
-                              {features.map((feature) => {
-                                const hasPainPoint = submittedLineOfBusiness && painPoints[feature]
+                      <>
+                        {/* Search and Filter Bar */}
+                        <SearchFilterBar
+                          searchTerm={searchTerm}
+                          onSearchChange={handleSearchChange}
+                          showOnlyPainPoints={showOnlyPainPoints}
+                          onTogglePainPoints={setShowOnlyPainPoints}
+                          lobName={submittedLineOfBusiness ? lobOptions.find(option => option.value === submittedLineOfBusiness)?.label : undefined}
+                          viewMode={viewMode}
+                          onViewModeChange={handleViewModeChange}
+                          totalFeatures={upgradeFeatures.length}
+                          filteredFeatures={filteredUpgradeFeatures.length}
+                          painPointCount={painPointCount}
+                        />
 
-                                return (
-                                  <div
-                                    key={feature}
-                                    className={`group relative rounded-lg border bg-white p-4 shadow-sm transition-all hover:shadow-md ${
-                                      hasPainPoint ? "border-l-4 border-l-[#E01E5A] border-gray-200" : "border-gray-200"
-                                    }`}
-                                  >
-                                    <div className="mb-2 flex items-start">
-                                      <div className="mr-3 mt-0.5 flex-shrink-0">{getFeatureIcon(feature)}</div>
-                                      <div className="w-full">
-                                        <h4 className="font-semibold text-[#4A154B]">{feature}</h4>
-                                        <p className="mt-1 text-sm text-gray-600">
-                                          {featureData.featureDescriptions[
-                                            feature as keyof typeof featureData.featureDescriptions
-                                          ] || "No description available."}
-                                        </p>
+                        <CollapseExpandAll
+                          onCollapseAll={handleCollapseAll}
+                          onExpandAll={handleExpandAll}
+                          totalCategories={Object.keys(filteredCategorizedFeatures).length}
+                          expandedCategories={Object.values(expandedCategories).filter(Boolean).length}
+                        />
 
-                                        {hasPainPoint && (
-                                          <div className="mt-3 border-t border-dashed border-gray-200 pt-3">
-                                            <div className="flex items-center">
-                                              <div className="mr-2 h-2 w-2 rounded-full bg-[#E01E5A]"></div>
-                                              <h5 className="text-sm font-medium text-[#E01E5A]">
-                                                {
-                                                  lobOptions.find((option) => option.value === submittedLineOfBusiness)
-                                                    ?.label
-                                                }{" "}
-                                                Pain Point
-                                              </h5>
-                                            </div>
-                                            <p className="mt-1 text-sm text-gray-700">{painPoints[feature]}</p>
-                                          </div>
-                                        )}
+                        <h3 className="mb-6 text-xl font-semibold text-[#4A154B]">
+                          {filteredUpgradeFeatures.length > 0
+                            ? `${filteredUpgradeFeatures.length} Features you'll gain by upgrading:`
+                            : "Features you'll gain by upgrading"}
+                        </h3>
+
+                        {filteredUpgradeFeatures.length === 0 ? (
+                          <div className="rounded-lg bg-gray-50 p-4 text-center text-gray-500">
+                            {searchTerm || showOnlyPainPoints 
+                              ? "No features match your current filters. Try adjusting your search or filters."
+                              : "No additional features available in this upgrade path."
+                            }
+                          </div>
+                        ) : (
+                          <div className="space-y-6">
+                            {Object.entries(filteredCategorizedFeatures).map(([category, features]) => {
+                              const categoryPainPointCount = countFeaturesWithPainPoints(features, painPoints)
+                              
+                              return (
+                                <div key={category} className="rounded-lg border border-gray-200">
+                                  <FeatureCategoryHeader
+                                    category={category}
+                                    featureCount={features.length}
+                                    painPointCount={categoryPainPointCount}
+                                    isExpanded={expandedCategories[category] ?? shouldExpandCategory(features, painPoints)}
+                                    onToggle={() => toggleCategory(category)}
+                                    color={getSectionColor(category)}
+                                    showPainPointBadge={!!submittedLineOfBusiness}
+                                  />
+                                  
+                                  {(expandedCategories[category] ?? shouldExpandCategory(features, painPoints)) && (
+                                    <div className="p-4 border-t border-gray-200">
+                                      <div className={`grid gap-3 ${viewMode === 'names' ? 'sm:grid-cols-1' : 'sm:grid-cols-2'}`}>
+                                        {features.map((feature) => (
+                                          <FeatureCard
+                                            key={feature}
+                                            feature={feature}
+                                            description={featureData.featureDescriptions[feature as keyof typeof featureData.featureDescriptions] || "No description available."}
+                                            painPoint={painPoints[feature]}
+                                            lobName={submittedLineOfBusiness ? lobOptions.find(option => option.value === submittedLineOfBusiness)?.label : undefined}
+                                            isExpanded={expandedFeatures.has(feature)}
+                                            onToggleExpanded={toggleFeatureExpansion}
+                                            viewMode={viewMode}
+                                            searchTerm={searchTerm}
+                                            category={category}
+                                          />
+                                        ))}
                                       </div>
                                     </div>
-                                  </div>
-                                )
-                              })}
-                            </div>
+                                  )}
+                                </div>
+                              )
+                            })}
                           </div>
-                        ))}
-                      </div>
+                        )}
+                      </>
                     )}
                   </>
                 ) : (
-                  // comparison table content
+                  // Enhanced comparison table content
                   <>
+                    {/* Search and Filter Bar for Comparison Table */}
+                    <SearchFilterBar
+                      searchTerm={searchTerm}
+                      onSearchChange={handleSearchChange}
+                      showOnlyPainPoints={showOnlyPainPoints}
+                      onTogglePainPoints={setShowOnlyPainPoints}
+                      lobName={submittedLineOfBusiness ? lobOptions.find(option => option.value === submittedLineOfBusiness)?.label : undefined}
+                      viewMode={viewMode}
+                      onViewModeChange={handleViewModeChange}
+                      totalFeatures={Object.values(categorizedFeatures).flat().length}
+                      filteredFeatures={Object.values(filteredCategorizedFeatures).flat().length}
+                      painPointCount={painPointCount}
+                    />
+
+                    <CollapseExpandAll
+                      onCollapseAll={handleCollapseAll}
+                      onExpandAll={handleExpandAll}
+                      totalCategories={Object.keys(filteredCategorizedFeatures).length}
+                      expandedCategories={Object.values(expandedCategories).filter(Boolean).length}
+                    />
+
                     <div className="mb-4 flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         {selectedPlans.map((plan) => (
@@ -1070,152 +1118,100 @@ export default function PlanComparisonTool() {
                       </button>
                     </div>
 
-                    {/* accordions for feature categories */}
-                    <div className="space-y-4">
-                      {Object.entries(categorizedFeatures).map(([category, features]) => (
-                        <div key={category} className="rounded-lg border border-gray-200">
-                          <button
-                            onClick={() => {
-                              toggleCategory(category)
-                              mixpanel.track("Category Expanded", {
-                                category_name: category,
-                                action: expandedCategories[category] ? "collapsed" : "expanded",
-                                tab: activeTab,
-                              })
-                            }}
-                            className="flex w-full items-center justify-between rounded-t-lg bg-gray-50 px-4 py-3 text-left"
-                          >
-                            <h4 className="text-lg font-medium" style={{ color: getSectionColor(category) }}>
-                              {category}
-                            </h4>
-                            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white">
-                              {expandedCategories[category] ? (
-                                <ChevronDown className="h-4 w-4 text-gray-500" />
-                              ) : (
-                                <ChevronRight className="h-4 w-4 text-gray-500" />
+                    {Object.values(filteredCategorizedFeatures).flat().length === 0 ? (
+                      <div className="rounded-lg bg-gray-50 p-4 text-center text-gray-500">
+                        {searchTerm || showOnlyPainPoints 
+                          ? "No features match your current filters. Try adjusting your search or filters."
+                          : "No features available for comparison."
+                        }
+                      </div>
+                    ) : (
+                      /* Enhanced accordions for feature categories */
+                      <div className="space-y-4">
+                        {Object.entries(filteredCategorizedFeatures).map(([category, features]) => {
+                          const categoryPainPointCount = countFeaturesWithPainPoints(features, painPoints)
+                          
+                          return (
+                            <div key={category} className="rounded-lg border border-gray-200">
+                              <FeatureCategoryHeader
+                                category={category}
+                                featureCount={features.length}
+                                painPointCount={categoryPainPointCount}
+                                isExpanded={expandedCategories[category] ?? true}
+                                onToggle={() => toggleCategory(category)}
+                                color={getSectionColor(category)}
+                                showPainPointBadge={!!submittedLineOfBusiness}
+                              />
+
+                              {(expandedCategories[category] ?? true) && (
+                                <div className="border-t border-gray-200">
+                                  {/* Desktop Table */}
+                                  <div className="hidden md:block overflow-x-auto">
+                                    <table className="w-full min-w-full divide-y divide-gray-200">
+                                      <thead className="bg-gray-50">
+                                        <tr>
+                                          <th
+                                            scope="col"
+                                            className="w-2/5 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                          >
+                                            Feature
+                                          </th>
+                                          {selectedPlans.map((plan) => (
+                                            <th
+                                              key={plan}
+                                              scope="col"
+                                              className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                            >
+                                              {planOptions.find((option) => option.value === plan)?.label}
+                                            </th>
+                                          ))}
+                                        </tr>
+                                      </thead>
+                                      <tbody className="divide-y divide-gray-200 bg-white">
+                                        {features.map((feature) => (
+                                          <CompactFeatureRow
+                                            key={feature}
+                                            feature={feature}
+                                            description={featureData.featureDescriptions[feature as keyof typeof featureData.featureDescriptions] || "No description available."}
+                                            painPoint={painPoints[feature]}
+                                            lobName={submittedLineOfBusiness ? lobOptions.find(option => option.value === submittedLineOfBusiness)?.label : undefined}
+                                            selectedPlans={selectedPlans}
+                                            featureAvailability={featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability]}
+                                            planOptions={planOptions}
+                                            searchTerm={searchTerm}
+                                            viewMode={viewMode}
+                                            category={category}
+                                          />
+                                        ))}
+                                      </tbody>
+                                    </table>
+                                  </div>
+
+                                  {/* Mobile Card View */}
+                                  <div className="md:hidden p-4">
+                                    {features.map((feature) => (
+                                      <CompactFeatureRow
+                                        key={feature}
+                                        feature={feature}
+                                        description={featureData.featureDescriptions[feature as keyof typeof featureData.featureDescriptions] || "No description available."}
+                                        painPoint={painPoints[feature]}
+                                        lobName={submittedLineOfBusiness ? lobOptions.find(option => option.value === submittedLineOfBusiness)?.label : undefined}
+                                        selectedPlans={selectedPlans}
+                                        featureAvailability={featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability]}
+                                        planOptions={planOptions}
+                                        searchTerm={searchTerm}
+                                        viewMode={viewMode}
+                                        category={category}
+                                      />
+                                    ))}
+                                  </div>
+                                </div>
                               )}
                             </div>
-                          </button>
-
-                          {expandedCategories[category] && (
-                            <div className="p-4">
-                              <div className="overflow-x-auto">
-                                <table className="w-full min-w-full divide-y divide-gray-200">
-                                  <thead className="bg-gray-50">
-                                    <tr>
-                                      <th
-                                        scope="col"
-                                        className="w-2/5 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                                      >
-                                        Feature
-                                      </th>
-                                      {selectedPlans.map((plan) => (
-                                        <th
-                                          key={plan}
-                                          scope="col"
-                                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                                        >
-                                          {planOptions.find((option) => option.value === plan)?.label}
-                                        </th>
-                                      ))}
-                                    </tr>
-                                  </thead>
-                                  <tbody className="divide-y divide-gray-200 bg-white">
-                                    {features.map((feature) => (
-                                      <tr
-                                        key={feature}
-                                        className={submittedLineOfBusiness && painPoints[feature] ? "bg-red-50" : ""}
-                                      >
-                                        <td className="px-6 py-4">
-                                          <div className="flex items-start">
-                                            <div className="mr-3 mt-0.5 flex-shrink-0">{getFeatureIcon(feature)}</div>
-                                            <div>
-                                              <div className="font-medium text-gray-900">{feature}</div>
-                                              <div className="mt-1 text-sm text-gray-500 leading-tight">
-                                                {featureData.featureDescriptions[
-                                                  feature as keyof typeof featureData.featureDescriptions
-                                                ] || "No description available."}
-                                              </div>
-
-                                              {submittedLineOfBusiness && painPoints[feature] && (
-                                                <div className="mt-2 rounded-md bg-red-50 p-2">
-                                                  <div className="flex items-center">
-                                                    <div className="mr-2 h-2 w-2 rounded-full bg-[#E01E5A]"></div>
-                                                    <span className="text-sm font-medium text-[#E01E5A]">
-                                                      {
-                                                        lobOptions.find(
-                                                          (option) => option.value === submittedLineOfBusiness,
-                                                        )?.label
-                                                      }{" "}
-                                                      Pain Point
-                                                    </span>
-                                                  </div>
-                                                  <p className="mt-1 text-sm text-gray-700">{painPoints[feature]}</p>
-                                                </div>
-                                              )}
-                                            </div>
-                                          </div>
-                                        </td>
-
-                                        {selectedPlans.map((plan) => {
-                                          const hasFeature =
-                                            featureData.featureAvailability[
-                                              feature as keyof typeof featureData.featureAvailability
-                                            ][
-                                              plan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-                                            ]
-
-                                          return (
-                                            <td
-                                              key={`${feature}-${plan}`}
-                                              className="whitespace-nowrap px-6 py-4 text-sm align-top"
-                                            >
-                                              {hasFeature === true ? (
-                                                <div className="flex items-center text-green-600">
-                                                  <svg
-                                                    className="mr-1.5 h-5 w-5"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                  >
-                                                    <path
-                                                      fillRule="evenodd"
-                                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                      clipRule="evenodd"
-                                                    />
-                                                  </svg>
-                                                  <span>Yes</span>
-                                                </div>
-                                              ) : hasFeature === false ? (
-                                                <div className="flex items-center text-red-600">
-                                                  <svg
-                                                    className="mr-1.5 h-5 w-5"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                  >
-                                                    <path
-                                                      fillRule="evenodd"
-                                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                                                      clipRule="evenodd"
-                                                    />
-                                                  </svg>
-                                                  <span>No</span>
-                                                </div>
-                                              ) : (
-                                                <div className="text-gray-600">{hasFeature}</div>
-                                              )}
-                                            </td>
-                                          )
-                                        })}
-                                      </tr>
-                                    ))}
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
+                          )
+                        })}
+                      </div>
+                    )}
                   </>
                 )}
               </div>
