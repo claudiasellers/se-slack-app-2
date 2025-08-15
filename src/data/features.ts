@@ -50,7 +50,7 @@ export const featureData = {
     "DLP (Data Loss Prevention)": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Native DLP": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Audit Logs API": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
-    "Audit Logs (Native Dashboard)": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: true, grid_v2: true },
+    "Audit Logs (Native Dashboard)": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Discovery/DLP API": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Exports (Public Data)": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Exports (Full Data)": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
