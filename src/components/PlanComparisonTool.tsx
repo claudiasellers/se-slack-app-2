@@ -23,7 +23,8 @@ import {
   UserCheck,
   Download,
   Cloud,
-  Smartphone
+  Smartphone,
+  LineChart
 } from "lucide-react"
 import { featureData } from "../data/features"
 import mixpanel from "mixpanel-browser"
@@ -103,7 +104,10 @@ const getFeatureIcon = (feature: string) => {
     "Exports (Salesforce Channels)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Native Device Management: Block Jailbroken Devices": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
     "Native Device Management: Block Copy / Paste (Mobile)": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
-    "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />
+    "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />,
+    "AI Admin analytics dashboard": <LineChart className="h-5 w-5 text-[#ECB22E]" />,
+    "AI Explain": <Zap className="h-5 w-5 text-[#ECB22E]" />,
+    "Canvas AI": <FileText className="h-5 w-5 text-[#ECB22E]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -198,7 +202,10 @@ const categorizeFeatures = (features: string[]) => {
       "AI Steps in Workflow Builder",
       "AI Action Items",
       "Catchup Summaries on Mobile",
-      "AI Language Translations"
+      "AI Language Translations",
+      "AI Admin analytics dashboard",
+      "AI Explain",
+      "Canvas AI"
     ],
     "Salesforce Integration": [
       "Salesforce Channels",

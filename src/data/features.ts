@@ -84,7 +84,10 @@ export const featureData = {
     "Salesforce workflow automation (Event triggers)": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Salesforce workflow automation (Scheduled triggers)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Sales Home": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true }
+    "Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "AI Admin analytics dashboard": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
+    "AI Explain": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "Canvas AI": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true}
   },
   featureDescriptions: {
     Workspace: "",
@@ -178,6 +181,9 @@ export const featureData = {
     "EMM (Enterprise Mobility Management)": "Integrates with a companies existing EMM to enforce mobile security policies like blocking access from unmanaged devices and requiring use of a managed EMM app.",
     "Guaranteed Uptime and Fast Customer Support": "See https://slack.com/terms/service-level-agreement for details.",
     "Conditional Workflows": "Create dynamic, responsive workflows that adapt to different situations. Use custom rules based on button selections, form answers, or other inputs to route information and automate complex processes without writing code.",
+    "AI Admin analytics dashboard": "Admin analytics dashboard that helps customers who purchase Slack AI to understand adoption of Slack AI and overall usage and activity patterns (daily/weekly/monthly active users, feature adoption rates, etc.)",
+    "AI Explain": "Allows users to get AI-generated explanations of complex messages, technical jargon, acronyms, or dense language in Slack.",
+    "Canvas AI": "Canvas AI can create and edit content by drawing from conversations and files that users have access to in Slack, helping them turn Slack conversations into polished, structured documents in seconds."
   },
   featurePainPoints: {
     "Slack AI": {
@@ -614,6 +620,25 @@ export const featureData = {
       customer_support: "Ticket routing is static, sending all issues through the same path regardless of priority, region, or product area, leading to inefficient assignments and slower response times.",
       operations: "Business processes automated in Slack are not intelligent enough to adapt to different inputs, requiring people to manually manage exceptions and complex routing logic.",
       hr: "Workflows for employee requests (e.g., leave, HR questions) are linear and cannot be dynamically routed based on department, seniority, or request type, creating administrative bottlenecks."
-    }
+    },
+    "AI Admin analytics dashboard": {
+      it: "Customers who purchase Slack AI are not able to understand adoption of Slack AI and overall usage and activity patterns (daily/weekly/monthly active users, feature adoption rates, etc.)"
+    },
+    "AI Explain": {
+      it: "IT teams struggle to quickly understand and troubleshoot complex technical discussions, code snippets, or system alerts shared in channels, requiring time-consuming context switching to research unfamiliar terms or processes.",
+      engineering: "Engineers waste time deciphering dense technical conversations, error logs, or architectural discussions from other teams, especially when joining mid-conversation or dealing with unfamiliar systems or frameworks.",
+      sales: "Sales reps lose momentum when they encounter technical product discussions, competitor analyses, or industry jargon they don't understand, preventing them from effectively contributing to or learning from strategic conversations.",
+      customer_support: "Support agents struggle to quickly understand complex customer issues, technical error messages, or escalated conversations from engineering, leading to delays in providing accurate responses or routing tickets appropriately.",
+      operations: "Operations teams need immediate clarity on cross-functional discussions involving unfamiliar processes, business metrics, or technical implementations to make informed decisions without lengthy research or meetings.",
+      hr: "HR professionals have difficulty understanding technical team discussions, industry-specific terminology, or complex project updates when making workforce planning decisions or addressing employee concerns about technical projects."
+},
+  "Canvas AI": {
+    it: "IT teams manually create and update technical documentation, runbooks, and project specs in static formats that quickly become outdated, requiring hours of reformatting and reorganization when requirements change or new information emerges.",
+    engineering: "Engineers spend excessive time writing design docs, technical specs, and project proposals from scratch, struggling to structure complex technical concepts clearly while ensuring all stakeholders can understand the content regardless of their technical background.",
+    sales: "Sales teams manually compile prospect research, competitive battlecards, and proposal content by copying information from multiple sources, lacking an intelligent way to synthesize data into compelling, personalized presentations that address specific customer pain points.",
+    customer_support: "Support teams create knowledge base articles, troubleshooting guides, and escalation documentation manually, struggling to maintain consistent formatting and ensure complex technical solutions are explained clearly for both agents and customers.",
+    operations: "Operations teams spend hours creating process documentation, meeting summaries, and strategic planning documents by manually organizing scattered information from various conversations and sources into coherent, actionable formats.",
+    hr: "HR professionals manually draft policy documents, onboarding materials, and performance review summaries, struggling to synthesize feedback from multiple stakeholders into well-structured, comprehensive documents that address diverse employee needs and scenarios."
+}
   }
 }
