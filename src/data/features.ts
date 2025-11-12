@@ -72,7 +72,6 @@ export const featureData = {
     "AI Steps in Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Catchup Summaries on Mobile": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "AI Language Translations": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "AI Action Items": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Conditional Workflows": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: true, grid_v2: true },
     "Salesforce Channels": {free: "Users See 90 Days Only", pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Record Unfurls":{free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
@@ -173,7 +172,6 @@ export const featureData = {
     "Multiple Workspaces": "Allows a company to create and centrally manage a network of interconnected workspaces.",
     "Native Device Management: Block Jailbroken Devices": "Automatically blocks access from jailbroken (iOS) or rooted (Android) devices to protect corporate data.",
     "Native Device Management: Block Copy / Paste (Mobile)": "Prevents data leakage by disabling file downloads and restricting copy/paste from managed apps to personal ones.",
-    "AI Action Items":"Intelligent nudges that help you stay on top of your tasks by automatically identifying when someone expects you to take action.",
     "Salesforce Channel AI Summary Tab": "Provides an AI-generated summary of conversations from both the current Salesforce channel and its related Salesforce channels.",
     "Salesforce workflow automation (Scheduled triggers)": "Allows you to create scheduled Slack notifications that can summarize specific records or out-of-date records in Salesforce.",
     "Catchup Summaries on Mobile": "Allows users to get AI-powered summaries of unread messages in their Slack catch-up cards",
@@ -595,14 +593,6 @@ export const featureData = {
       sales:"When a deal closes, the rep has to manually notify finance, legal, and onboarding, which is repetitive and can delay kicking off the post-sale process.",
       customer_support: "When a high-priority case is logged for a key account, there is no automatic way to alert the account's sales rep, leading to a blind-sided response.",
       operations:"Key business processes that span multiple departments, like deal desk approval, are slowed down by manual handoffs between systems."
-    },
-    "AI Action Items": {
-      it: "Informal requests for help made in channels, like 'can someone look into this bug?', aren't formal tickets and often get scrolled past and forgotten.",
-      engineering: "Action items from incident post-mortems or design reviews that are mentioned in-channel are not formally tracked and can easily be forgotten, leading to repeat incidents or unresolved design debt.",
-      marketing: "During campaign brainstorms, verbal agreements such as 'can you send over the final copy?' are easily lost in the flow of conversation, leading to missed deadlines.",
-      sales:"Managers often assign tasks in DMs, like 'follow up with that lead,' but these requests aren't automatically tracked and can easily slip through the cracks.",
-      customer_support: "When collaborating on a ticket, one agent might ask another to 'check a customer's purchase history,' but this informal request can be missed if the second agent gets pulled into another issue.",
-      operations:"Critical requests made in project channels, like 'can you update the budget spreadsheet?', often get missed by busy project managers, leading to project delays."
     },
     "EMM (Enterprise Mobility Management)": {
       it: "Without EMM, IT can't prevent employees from accessing Slack on personal or jailbroken devices—making it easy for sensitive company data to be downloaded, screen-captured, or shared outside managed environments, increasing the risk of data leaks, compliance violations, and insider threats."

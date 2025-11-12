@@ -200,7 +200,6 @@ const categorizeFeatures = (features: string[]) => {
       "3rd Party Agent Apps",
       "AI Workflow Builder",
       "AI Steps in Workflow Builder",
-      "AI Action Items",
       "Catchup Summaries on Mobile",
       "AI Language Translations",
       "AI Admin analytics dashboard",
