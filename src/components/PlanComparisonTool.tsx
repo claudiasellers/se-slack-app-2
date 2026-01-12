@@ -277,6 +277,10 @@ export default function PlanComparisonTool() {
   const [currentPlan, setCurrentPlan] = useState("free")
   const [futurePlan, setFuturePlan] = useState("pro")
   const [upgradeFeatures, setUpgradeFeatures] = useState<string[]>([])
+  
+  // Legacy add-ons state
+  const [legacyAIAddon, setLegacyAIAddon] = useState(false)
+  const [legacySalesElevate, setLegacySalesElevate] = useState(false)
 
   // comparison table tab states (new functionality)
   const [selectedPlans, setSelectedPlans] = useState<string[]>(["free", "pro"])
@@ -289,6 +293,7 @@ export default function PlanComparisonTool() {
   const [isLoading, setIsLoading] = useState(false)
   const [submittedLineOfBusiness, setSubmittedLineOfBusiness] = useState("")
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({})
+  const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({})
 
   // get upgrade features (for Feature List tab)
   const getUpgradeFeatures = (current: string, future: string) => {
@@ -319,6 +324,20 @@ export default function PlanComparisonTool() {
       ...prev,
       [category]: !prev[category],
     }))
+  }
+
+  // toggle description expansion
+  const toggleDescription = (feature: string) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [feature]: !prev[feature],
+    }))
+  }
+
+  // truncate text helper
+  const truncateText = (text: string, maxLength: number = 80) => {
+    if (text.length <= maxLength) return { text, isTruncated: false }
+    return { text: text.slice(0, maxLength).trim() + "...", isTruncated: true }
   }
 
   // get LOB pain points
@@ -586,9 +605,19 @@ export default function PlanComparisonTool() {
           const features = getUpgradeFeatures(currentPlan, futurePlan)
           setUpgradeFeatures(features)
 
-          // categoriz features
+          // categorize features
           const categorized = categorizeFeatures(features)
           setCategorizedFeatures(categorized)
+
+          // initialize all categories as collapsed for compact view
+          const initialExpandState: Record<string, boolean> = {}
+          Object.keys(categorized).forEach((category) => {
+            initialExpandState[category] = false
+          })
+          setExpandedCategories(initialExpandState)
+
+          // reset expanded descriptions
+          setExpandedDescriptions({})
 
           // get pain points if line of business is selected
           if (lineOfBusiness) {
@@ -738,17 +767,24 @@ export default function PlanComparisonTool() {
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
-          <h2 className="text-2xl font-bold text-[#4A154B]">Find the right Slack plan for your team</h2>
-          <p className="mt-2 text-gray-600">Compare plans to see what features you'll gain by upgrading</p>
+          <h2 className="text-2xl font-bold text-[#4A154B]">
+            {activeTab === "feature-list" 
+              ? "Discover what's new when you upgrade" 
+              : "Compare Slack plans side-by-side"}
+          </h2>
+          <p className="mt-2 text-gray-600">
+            {activeTab === "feature-list"
+              ? "Select your current and future plans to see the net-new features you'll unlock. Add your line of business for industry-specific insights."
+              : "Select multiple plans to compare all features at a glance. Add your line of business for industry-specific insights."}
+          </p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-12">
           {/* Left Column - Form */}
           <div className="md:col-span-4">
-            <div className="rounded-lg bg-gray-50 p-6 shadow-sm">
-              <h3 className="mb-4 text-lg font-semibold text-[#36C5F0]">Select Options</h3>
-
-              <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
+              <div className="rounded-lg bg-gray-50 p-6 shadow-sm">
+                <h3 className="mb-4 text-lg font-semibold text-[#36C5F0]">Select Options</h3>
                 {activeTab === "feature-list" ? (
                   // Feature List form
                   <>
@@ -791,6 +827,55 @@ export default function PlanComparisonTool() {
                           })}
                         </select>
                         <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
+                      </div>
+                    </div>
+
+                    {/* Legacy Add-ons Section */}
+                    <div className="mb-4">
+                      <label className="mb-2 block font-medium text-[#36C5F0]">
+                        Legacy Add-ons
+                      </label>
+                      <div className="space-y-2">
+                        <div className="flex items-center">
+                          <input
+                            type="checkbox"
+                            id="legacyAIAddon"
+                            checked={legacyAIAddon}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                              setLegacyAIAddon(e.target.checked)
+                              mixpanel.track("Legacy Add-on Changed", {
+                                addon: "Legacy AI Add-on",
+                                enabled: e.target.checked,
+                                tab: activeTab,
+                              })
+                            }}
+                            className="h-4 w-4 rounded border-gray-300 text-[#36C5F0] focus:ring-[#36C5F0]"
+                            disabled={isLoading}
+                          />
+                          <label htmlFor="legacyAIAddon" className="ml-2 block text-sm text-gray-900">
+                            Legacy AI Add-on
+                          </label>
+                        </div>
+                        <div className="flex items-center">
+                          <input
+                            type="checkbox"
+                            id="legacySalesElevate"
+                            checked={legacySalesElevate}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                              setLegacySalesElevate(e.target.checked)
+                              mixpanel.track("Legacy Add-on Changed", {
+                                addon: "Legacy Sales Elevate",
+                                enabled: e.target.checked,
+                                tab: activeTab,
+                              })
+                            }}
+                            className="h-4 w-4 rounded border-gray-300 text-[#36C5F0] focus:ring-[#36C5F0]"
+                            disabled={isLoading}
+                          />
+                          <label htmlFor="legacySalesElevate" className="ml-2 block text-sm text-gray-900">
+                            Legacy Sales Elevate
+                          </label>
+                        </div>
                       </div>
                     </div>
 
@@ -871,12 +956,65 @@ export default function PlanComparisonTool() {
                     {selectedPlans.length < 2 && (
                       <p className="mt-1 text-sm text-red-500">Please select at least 2 plans to compare</p>
                     )}
+
+                    {/* Legacy Add-ons Section */}
+                    <div className="mt-4">
+                      <label className="mb-2 block font-medium text-[#36C5F0]">
+                        Legacy Add-ons
+                      </label>
+                      <div className="space-y-2">
+                        <div className="flex items-center">
+                          <input
+                            type="checkbox"
+                            id="legacyAIAddon-table"
+                            checked={legacyAIAddon}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                              setLegacyAIAddon(e.target.checked)
+                              mixpanel.track("Legacy Add-on Changed", {
+                                addon: "Legacy AI Add-on",
+                                enabled: e.target.checked,
+                                tab: activeTab,
+                              })
+                            }}
+                            className="h-4 w-4 rounded border-gray-300 text-[#36C5F0] focus:ring-[#36C5F0]"
+                            disabled={isLoading}
+                          />
+                          <label htmlFor="legacyAIAddon-table" className="ml-2 block text-sm text-gray-900">
+                            Legacy AI Add-on
+                          </label>
+                        </div>
+                        <div className="flex items-center">
+                          <input
+                            type="checkbox"
+                            id="legacySalesElevate-table"
+                            checked={legacySalesElevate}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                              setLegacySalesElevate(e.target.checked)
+                              mixpanel.track("Legacy Add-on Changed", {
+                                addon: "Legacy Sales Elevate",
+                                enabled: e.target.checked,
+                                tab: activeTab,
+                              })
+                            }}
+                            className="h-4 w-4 rounded border-gray-300 text-[#36C5F0] focus:ring-[#36C5F0]"
+                            disabled={isLoading}
+                          />
+                          <label htmlFor="legacySalesElevate-table" className="ml-2 block text-sm text-gray-900">
+                            Legacy Sales Elevate
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
 
-                <div className="mb-6">
+                {/* Divider */}
+                <div className="my-6 border-t border-gray-200"></div>
+
+                {/* Line of Business Section */}
+                <div>
                   <label htmlFor="lineOfBusiness" className="mb-1 block font-medium text-[#36C5F0]">
-                    Line of Business
+                    Optional: Line of Business
                   </label>
                   <div className="relative">
                     <select
@@ -900,9 +1038,10 @@ export default function PlanComparisonTool() {
                   </div>
                 </div>
 
+                {/* Compare Button */}
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-[#36C5F0] px-4 py-2 font-medium text-white shadow-sm transition-colors hover:bg-[#2EAAD3] focus:outline-none focus:ring-2 focus:ring-[#36C5F0]/50 focus:ring-offset-2 disabled:opacity-70"
+                  className="mt-6 w-full rounded-full bg-[#36C5F0] px-4 py-2 font-medium text-white shadow-sm transition-colors hover:bg-[#2EAAD3] focus:outline-none focus:ring-2 focus:ring-[#36C5F0]/50 focus:ring-offset-2 disabled:opacity-70"
                   disabled={isLoading || (activeTab === "comparison-table" && selectedPlans.length < 2)}
                 >
                   {isLoading ? (
@@ -916,8 +1055,8 @@ export default function PlanComparisonTool() {
                     "Compare Plans"
                   )}
                 </button>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
 
           {/* Right Column - Results */}
@@ -991,54 +1130,91 @@ export default function PlanComparisonTool() {
                         No additional features available in this upgrade path.
                       </div>
                     ) : (
-                      <div className="space-y-8">
+                      <div className="space-y-4">
                         {Object.entries(categorizedFeatures).map(([category, features]) => (
-                          <div key={category}>
-                            <h4 className="mb-3 text-lg font-medium" style={{ color: getSectionColor(category) }}>
-                              {category}
-                            </h4>
-                            <div className="grid gap-4 sm:grid-cols-2">
-                              {features.map((feature) => {
-                                const hasPainPoint = submittedLineOfBusiness && painPoints[feature]
+                          <div key={category} className="rounded-lg border border-gray-200 overflow-hidden">
+                            <button
+                              onClick={() => {
+                                toggleCategory(category)
+                                mixpanel.track("Category Expanded", {
+                                  category_name: category,
+                                  action: expandedCategories[category] ? "collapsed" : "expanded",
+                                  tab: activeTab,
+                                })
+                              }}
+                              className="flex w-full items-center justify-between px-4 py-3 text-left transition-colors hover:bg-gray-100"
+                              style={{ backgroundColor: `${getSectionColor(category)}15` }}
+                            >
+                              <h4 className="text-lg font-medium" style={{ color: getSectionColor(category) }}>
+                                {category} ({features.length})
+                              </h4>
+                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm">
+                                {expandedCategories[category] ? (
+                                  <ChevronDown className="h-4 w-4 text-gray-500" />
+                                ) : (
+                                  <ChevronRight className="h-4 w-4 text-gray-500" />
+                                )}
+                              </div>
+                            </button>
 
-                                return (
-                                  <div
-                                    key={feature}
-                                    className={`group relative rounded-lg border bg-white p-4 shadow-sm transition-all hover:shadow-md ${
-                                      hasPainPoint ? "border-l-4 border-l-[#E01E5A] border-gray-200" : "border-gray-200"
-                                    }`}
-                                  >
-                                    <div className="mb-2 flex items-start">
-                                      <div className="mr-3 mt-0.5 flex-shrink-0">{getFeatureIcon(feature)}</div>
-                                      <div className="w-full">
-                                        <h4 className="font-semibold text-[#4A154B]">{feature}</h4>
-                                        <p className="mt-1 text-sm text-gray-600">
-                                          {featureData.featureDescriptions[
-                                            feature as keyof typeof featureData.featureDescriptions
-                                          ] || "No description available."}
-                                        </p>
+                            {expandedCategories[category] && (
+                              <div className="p-4 bg-white">
+                                <div className="grid gap-4 sm:grid-cols-2">
+                                  {features.map((feature) => {
+                                    const hasPainPoint = submittedLineOfBusiness && painPoints[feature]
+                                    const fullDescription = featureData.featureDescriptions[
+                                      feature as keyof typeof featureData.featureDescriptions
+                                    ] || "No description available."
+                                    const { text: truncatedDescription, isTruncated } = truncateText(fullDescription)
+                                    const isExpanded = expandedDescriptions[feature]
 
-                                        {hasPainPoint && (
-                                          <div className="mt-3 border-t border-dashed border-gray-200 pt-3">
-                                            <div className="flex items-center">
-                                              <div className="mr-2 h-2 w-2 rounded-full bg-[#E01E5A]"></div>
-                                              <h5 className="text-sm font-medium text-[#E01E5A]">
-                                                {
-                                                  lobOptions.find((option) => option.value === submittedLineOfBusiness)
-                                                    ?.label
-                                                }{" "}
-                                                Pain Point
-                                              </h5>
-                                            </div>
-                                            <p className="mt-1 text-sm text-gray-700">{painPoints[feature]}</p>
+                                    return (
+                                      <div
+                                        key={feature}
+                                        className={`group relative rounded-lg border bg-white p-4 shadow-sm transition-all hover:shadow-md ${
+                                          hasPainPoint ? "border-l-4 border-l-[#E01E5A] border-gray-200" : "border-gray-200"
+                                        }`}
+                                      >
+                                        <div className="mb-2 flex items-start">
+                                          <div className="mr-3 mt-0.5 flex-shrink-0">{getFeatureIcon(feature)}</div>
+                                          <div className="w-full">
+                                            <h4 className="font-semibold text-[#4A154B]">{feature}</h4>
+                                            <p className="mt-1 text-sm text-gray-600">
+                                              {isExpanded || !isTruncated ? fullDescription : truncatedDescription}
+                                              {isTruncated && (
+                                                <button
+                                                  type="button"
+                                                  onClick={() => toggleDescription(feature)}
+                                                  className="ml-1 text-[#36C5F0] hover:text-[#2EAAD3] font-medium"
+                                                >
+                                                  {isExpanded ? "Show less" : "Show more"}
+                                                </button>
+                                              )}
+                                            </p>
+
+                                            {hasPainPoint && (
+                                              <div className="mt-3 border-t border-dashed border-gray-200 pt-3">
+                                                <div className="flex items-center">
+                                                  <div className="mr-2 h-2 w-2 rounded-full bg-[#E01E5A]"></div>
+                                                  <h5 className="text-sm font-medium text-[#E01E5A]">
+                                                    {
+                                                      lobOptions.find((option) => option.value === submittedLineOfBusiness)
+                                                        ?.label
+                                                    }{" "}
+                                                    Pain Point
+                                                  </h5>
+                                                </div>
+                                                <p className="mt-1 text-sm text-gray-700">{painPoints[feature]}</p>
+                                              </div>
+                                            )}
                                           </div>
-                                        )}
+                                        </div>
                                       </div>
-                                    </div>
-                                  </div>
-                                )
-                              })}
-                            </div>
+                                    )
+                                  })}
+                                </div>
+                              </div>
+                            )}
                           </div>
                         ))}
                       </div>
@@ -1233,20 +1409,6 @@ export default function PlanComparisonTool() {
       <footer className="bg-gray-50 py-8">
         <div className="container mx-auto px-4 text-center text-sm text-gray-500">
           <p>© {new Date().getFullYear()} Slack Technologies, LLC, a Salesforce company. All rights reserved.</p>
-          <div className="mt-2 flex justify-center space-x-4">
-            <a href="#" className="hover:text-[#1264A3] hover:underline">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-[#1264A3] hover:underline">
-              Terms
-            </a>
-            <a href="#" className="hover:text-[#1264A3] hover:underline">
-              Cookie Preferences
-            </a>
-            <a href="#" className="hover:text-[#1264A3] hover:underline">
-              Contact Us
-            </a>
-          </div>
         </div>
       </footer>
     </div>

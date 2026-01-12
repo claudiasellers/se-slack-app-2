@@ -89,7 +89,6 @@ export const featureData = {
     "Canvas AI": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true}
   },
   featureDescriptions: {
-    Workspace: "",
     "Integrations": "Apps/integrations, custom apps, App Directory apps.",
     "Huddles": "Real-time audio or video conversations within Slack channels or direct messages",
     "Canvas": "A collaborative doc, right inside Slack.",
