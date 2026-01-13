@@ -125,7 +125,8 @@ const getFeatureIcon = (feature: string) => {
     "Filtered & single user export": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot DLP": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "EKM compatibility": <Bot className="h-5 w-5 text-[#E01E5A]" />,
-    "Slackbot Audit logs": <Bot className="h-5 w-5 text-[#E01E5A]" />
+    "Slackbot Audit logs": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Channel Expert Agent": <Bot className="h-5 w-5 text-[#ECB22E]" />
     
   }
 
@@ -223,7 +224,8 @@ const categorizeFeatures = (features: string[]) => {
       "AI Language Translations",
       "AI Admin analytics dashboard",
       "AI Explain",
-      "Canvas AI"
+      "Canvas AI",
+      "Channel Expert Agent"
     ],
     "Slackbot": [
       "Limited Access: Message Limit",
