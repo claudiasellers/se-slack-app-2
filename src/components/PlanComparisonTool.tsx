@@ -99,6 +99,7 @@ const getFeatureIcon = (feature: string) => {
     "Connect multiple Salesforce orgs": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce standalone List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce workflow automation (Event triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Salesforce workflow automation (send to Salesforce app step)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce workflow automation (Scheduled triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Sales Home": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Exports (Salesforce Channels)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
@@ -216,10 +217,12 @@ const categorizeFeatures = (features: string[]) => {
       "Salesforce standalone List Views",
       "Salesforce workflow automation (Event triggers)",
       "Salesforce workflow automation (Scheduled triggers)",
+      "Salesforce workflow automation (send to Salesforce app step)",
       "Sales Home",
       "Slack Sales Templates",
       "Salesforce Channel AI Summary Tab"
     ],
+    "Slackbot": [],
     "Other Features": [],
   }
 

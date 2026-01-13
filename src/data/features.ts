@@ -86,7 +86,8 @@ export const featureData = {
     "Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "AI Admin analytics dashboard": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "AI Explain": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Canvas AI": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true}
+    "Canvas AI": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "Salesforce workflow automation (send to Salesforce app step)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
   },
   featureDescriptions: {
     Workspace: "",
@@ -181,7 +182,8 @@ export const featureData = {
     "Conditional Workflows": "Create dynamic, responsive workflows that adapt to different situations. Use custom rules based on button selections, form answers, or other inputs to route information and automate complex processes without writing code.",
     "AI Admin analytics dashboard": "Admin analytics dashboard that helps customers who purchase Slack AI to understand adoption of Slack AI and overall usage and activity patterns (daily/weekly/monthly active users, feature adoption rates, etc.)",
     "AI Explain": "Allows users to get AI-generated explanations of complex messages, technical jargon, acronyms, or dense language in Slack.",
-    "Canvas AI": "Canvas AI can create and edit content by drawing from conversations and files that users have access to in Slack, helping them turn Slack conversations into polished, structured documents in seconds."
+    "Canvas AI": "Canvas AI can create and edit content by drawing from conversations and files that users have access to in Slack, helping them turn Slack conversations into polished, structured documents in seconds.",
+    "Salesforce workflow automation (send to Salesforce app step)": "Send automated, Salesforce-triggered messages directly to a user’s private Salesforce app in Slack. By moving notifications out of noisy public channels and into a personal workspace, you transition from a 'public broadcast' that gets ignored to a 'personal task' that drives immediate action."
   },
   featurePainPoints: {
     "Slack AI": {
@@ -238,7 +240,7 @@ export const featureData = {
       sales:
         "Manual effort required to pull Salesforce data into account plans or deal reviews leads to errors and out-of-date information.",
     },
-    Clips: {
+    "Clips": {
       it: "Misunderstandings arise from text-only updates for complex IT issues; scheduling sync meetings for simple explanations is inefficient.",
       engineering: "Explaining complex code, walking through a PR, or demoing a feature asynchronously is difficult with just text, often forcing a synchronous meeting for a simple walkthrough.",
       sales:
@@ -249,7 +251,7 @@ export const featureData = {
       operations:
         "Providing status updates or feedback asynchronously across teams often requires scheduling meetings or writing lengthy text messages.",
     },
-    Guests: {
+    "Guests": {
       it: "Collaborating securely with external vendors, partners, or contractors requires provisioning full accounts or using less secure methods like email.",
       engineering: "Working with external contractors or open-source contributors on a project requires granting them broad access or relying on insecure communication channels outside of where the internal team collaborates.",
       marketing:
@@ -475,7 +477,7 @@ export const featureData = {
     "Customer Support Tier": {
       it: "Standard support response times may not be sufficient for resolving critical Slack issues impacting business operations.",
     },
-    Integrations: {
+    "Integrations": {
       it: "Inefficiencies and potential data inconsistencies due to lack of interoperability between critical business systems (e.g., ticketing, monitoring, code repos) and the collaboration platform.",
       engineering: "Engineers waste time switching contexts between Slack, Jira, GitHub, and CI/CD tools; notifications are scattered, and actions like updating a ticket or re-running a build require leaving the conversation.",
       sales:
@@ -629,6 +631,17 @@ export const featureData = {
     customer_support: "Support teams create knowledge base articles, troubleshooting guides, and escalation documentation manually, struggling to maintain consistent formatting and ensure complex technical solutions are explained clearly for both agents and customers.",
     operations: "Operations teams spend hours creating process documentation, meeting summaries, and strategic planning documents by manually organizing scattered information from various conversations and sources into coherent, actionable formats.",
     hr: "HR professionals manually draft policy documents, onboarding materials, and performance review summaries, struggling to synthesize feedback from multiple stakeholders into well-structured, comprehensive documents that address diverse employee needs and scenarios."
-}
+},
+"Salesforce workflow automation (send to Salesforce app step)": {
+    sales: "Sales reps struggle to keep up with 'CRM hygiene' and administrative follow-ups across dozens of active deals, leading to missed milestones like expiring contracts, stale close dates, or incomplete discovery data. Because these reminders are often buried in emails or generic channels, reps lose track of critical deal-progression tasks that directly impact their ability to hit quota.",
+    marketing: "Marketing teams often see high-quality leads 'die on the vine' because handoff notifications get buried in crowded Slack channels or ignored email inboxes. Without a direct, private nudge, the window for a timely follow-up closes before the rep even realizes a lead is ready.",
+    customer_support: "Account managers and CSMs often lack real-time visibility into critical account health changes, such as a sudden drop in usage or a high-priority ticket. Without personalized alerts, they remain reactive rather than proactive, often discovering account risks only during scheduled reviews.",
+    operations: "Sales Ops teams spend hours manually auditing pipelines and 'nagging' reps to fix data gaps to ensure forecast accuracy. They struggle with 'dirty data' because there is no automated, low-friction way to prompt reps for specific, missing information at the exact moment it's needed.",
+    it: "Salesforce Admins and IT teams are constantly tasked with building complex custom notifications that often fail to reach the right person at the right time. They face a backlog of requests for 'better visibility' but lack a simple way to deliver actionable, private alerts that don't require users to leave their primary communication tool."
+},
+"Salesforce Channel AI Summary Tab": {
+    sales: "Account Executives managing complex enterprise deals often lose track of critical conversations happening across multiple opportunity, product, and escalation channels. They waste 30+ minutes each morning manually catching up across 5-10 related channels to prepare for executive calls, often missing key objections or blockers that were surfaced in parallel threads, directly impacting their ability to address concerns and close deals on time.",
+    customer_support: "Support managers and escalation teams handling high-touch accounts lose valuable context when customer issues span multiple channels—primary account channel, case-specific threads, engineering escalation channels. Also, CSMs inheriting accounts or jumping into renewal conversations are completely blind to months of context spread across account channels, QBR channels, and product adoption discussions. They spend their first few weeks playing 'catch-up archaeology' instead of driving value, risking churn during critical transition periods because they can't quickly understand account history and sentiment."
   }
+}
 }
