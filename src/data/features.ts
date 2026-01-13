@@ -1,3 +1,14 @@
+// Define available legacy add-ons
+// Maps add-on key to its display label and which base plans it applies to
+export const legacyAddOns: Record<string, { label: string; applicablePlans: readonly string[]; planKeySuffix: string }> = {
+  slack_ai: {
+    label: "Slack AI Add-on",
+    applicablePlans: ["pro", "plus_v1", "grid_v1"], // Plans that could have purchased this add-on
+    planKeySuffix: "_ai" // When this add-on is selected, append this to the plan key (e.g., plus_v1 -> plus_v1_ai)
+  },
+  // Future: slack_elevate can be added here with its own suffix
+};
+
 // Feature data structure
 export const featureData = {
   featureAvailability: {
@@ -62,16 +73,16 @@ export const featureData = {
     "Guaranteed Uptime and Fast Customer Support": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Integrations": {free: "Only 10", pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Thread & Channel Summaries": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "File Summaries": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Recaps": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "File Summaries": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Recaps": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Huddles Notes":{free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "Slack AI Search": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Enterprise Search": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: false, grid_v2: true},
+    "Slack AI Search": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Enterprise Search": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "3rd Party Agent Apps" : {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "AI Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "AI Steps in Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Catchup Summaries on Mobile": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "AI Language Translations": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "AI Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "AI Steps in Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Catchup Summaries on Mobile": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "AI Language Translations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Conditional Workflows": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: true, grid_v2: true },
     "Salesforce Channels": {free: "Users See 90 Days Only", pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Record Unfurls":{free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
@@ -83,11 +94,30 @@ export const featureData = {
     "Salesforce workflow automation (Event triggers)": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Salesforce workflow automation (Scheduled triggers)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Sales Home": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "AI Admin analytics dashboard": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "AI Explain": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Canvas AI": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "AI Explain": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Canvas AI": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Salesforce workflow automation (send to Salesforce app step)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "Limited Access: Message Limit": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: false},
+    "Full Access: Unlimited Messages": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slack search (including canvases)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Multiple searches at once": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Desktop & mobile parity": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "File uploads & calendar entity read": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Create & update canvases": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "3P entity read (GDrive, OneDrive, Box, etc)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Full-org kill switch": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Custom group access": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Full Data Export": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Filtered & single user export": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot DLP": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "EKM compatibility": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Audit logs": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true}
+
+
+
   },
   featureDescriptions: {
     Workspace: "",

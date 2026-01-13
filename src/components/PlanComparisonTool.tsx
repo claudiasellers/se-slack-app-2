@@ -26,7 +26,7 @@ import {
   Smartphone,
   LineChart
 } from "lucide-react"
-import { featureData } from "../data/features"
+import { featureData, legacyAddOns } from "../data/features"
 import mixpanel from "mixpanel-browser"
 
 // get feature icon
@@ -108,7 +108,25 @@ const getFeatureIcon = (feature: string) => {
     "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />,
     "AI Admin analytics dashboard": <LineChart className="h-5 w-5 text-[#ECB22E]" />,
     "AI Explain": <Zap className="h-5 w-5 text-[#ECB22E]" />,
-    "Canvas AI": <FileText className="h-5 w-5 text-[#ECB22E]" />
+    "Canvas AI": <FileText className="h-5 w-5 text-[#ECB22E]" />,
+    "Limited Access: Message Limit": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Full Access: Unlimited Messages": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Multiple searches at once": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Desktop & mobile parity": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slack search (including canvases)": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "File uploads & calendar entity read": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Create & update canvases": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "3P entity read (GDrive, OneDrive, Box, etc)": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "International Data Residency": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Full-org kill switch": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Custom group access": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Full Data Export": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Filtered & single user export": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot DLP": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "EKM compatibility": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot Audit logs": <Bot className="h-5 w-5 text-[#E01E5A]" />
+    
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -207,6 +225,25 @@ const categorizeFeatures = (features: string[]) => {
       "AI Explain",
       "Canvas AI"
     ],
+    "Slackbot": [
+      "Limited Access: Message Limit",
+      "Full Access: Unlimited Messages",
+      "Slack search (including canvases)",
+      "Multiple searches at once",
+      "Desktop & mobile parity",
+      "File uploads & calendar entity read",
+      "Create & update canvases",
+      "3P entity read (GDrive, OneDrive, Box, etc)",
+      "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)",
+       "International Data Residency",
+       "Full-org kill switch",
+       "Custom group access",
+       "Full Data Export",
+       "Filtered & single user export",
+       "Slackbot DLP",
+       "EKM compatibility",
+       "Slackbot Audit logs"
+    ],
     "Salesforce Integration": [
       "Salesforce Channels",
       "Record Unfurls",
@@ -222,7 +259,6 @@ const categorizeFeatures = (features: string[]) => {
       "Slack Sales Templates",
       "Salesforce Channel AI Summary Tab"
     ],
-    "Slackbot": [],
     "Other Features": [],
   }
 
@@ -280,6 +316,7 @@ export default function PlanComparisonTool() {
   const [currentPlan, setCurrentPlan] = useState("free")
   const [futurePlan, setFuturePlan] = useState("pro")
   const [upgradeFeatures, setUpgradeFeatures] = useState<string[]>([])
+  const [currentPlanAddOns, setCurrentPlanAddOns] = useState<string[]>([])
 
   // comparison table tab states (new functionality)
   const [selectedPlans, setSelectedPlans] = useState<string[]>(["free", "pro"])
@@ -293,19 +330,34 @@ export default function PlanComparisonTool() {
   const [submittedLineOfBusiness, setSubmittedLineOfBusiness] = useState("")
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({})
 
+  // Get feature access for a plan, with add-on fallback
+  // If plus_v1_ai key exists, use it; otherwise fall back to plus_v1
+  const getFeatureAccess = (feature: string, plan: string, addOns: string[]): boolean | string => {
+    const featureAvail = featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability] as Record<string, boolean | string> | undefined
+    if (!featureAvail) return false
+
+    // Check if there's an add-on specific key for this feature
+    for (const addOnKey of addOns) {
+      const addOn = legacyAddOns[addOnKey]
+      if (addOn && addOn.applicablePlans.includes(plan)) {
+        const addOnPlanKey = `${plan}${addOn.planKeySuffix}`
+        if (addOnPlanKey in featureAvail) {
+          return featureAvail[addOnPlanKey]
+        }
+      }
+    }
+
+    // Fall back to base plan access
+    return featureAvail[plan] ?? false
+  }
+
   // get upgrade features (for Feature List tab)
-  const getUpgradeFeatures = (current: string, future: string) => {
+  const getUpgradeFeatures = (current: string, future: string, currentAddOns: string[] = []) => {
     const addedFeatures: string[] = []
 
     for (const feature in featureData.featureAvailability) {
-      const currentAccess =
-        featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][
-          current as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-        ] ?? false
-      const futureAccess =
-        featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][
-          future as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-        ] ?? false
+      const currentAccess = getFeatureAccess(feature, current, currentAddOns)
+      const futureAccess = getFeatureAccess(feature, future, []) // Future plan doesn't use legacy add-ons
 
       // Add feature if it's available in future plan but not in current plan
       if (currentAccess !== futureAccess && futureAccess) {
@@ -509,7 +561,7 @@ export default function PlanComparisonTool() {
         features.forEach((feature) => {
           const description =
             featureData.featureDescriptions[feature as keyof typeof featureData.featureDescriptions] ||
-            "No description available."
+            "Description coming soon."
           const hasPainPoint = submittedLineOfBusiness && painPoints[feature]
 
           htmlContent += `
@@ -586,7 +638,7 @@ export default function PlanComparisonTool() {
       try {
         if (activeTab === "feature-list") {
           // feature list logic
-          const features = getUpgradeFeatures(currentPlan, futurePlan)
+          const features = getUpgradeFeatures(currentPlan, futurePlan, currentPlanAddOns)
           setUpgradeFeatures(features)
 
           // categoriz features
@@ -701,7 +753,7 @@ export default function PlanComparisonTool() {
       label: "Enterprise",
       options: [
         { value: "grid_v1", label: "Grid V1" },
-        { value: "grid_v2", label: "Enterprise+ V2" },
+        { value: "grid_v2", label: "Enterprise+" },
       ],
     },
   ]
@@ -764,10 +816,17 @@ export default function PlanComparisonTool() {
                           id="currentPlan"
                           value={currentPlan}
                           onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                            setCurrentPlan(e.target.value)
+                            const newPlan = e.target.value
+                            setCurrentPlan(newPlan)
+                            // Clear add-ons that don't apply to the new plan
+                            setCurrentPlanAddOns(prev => 
+                              prev.filter(addOn => 
+                                legacyAddOns[addOn as keyof typeof legacyAddOns]?.applicablePlans.includes(newPlan)
+                              )
+                            )
                             mixpanel.track("Plan Selection Changed", {
                               plan_type: "current",
-                              selected_plan: e.target.value,
+                              selected_plan: newPlan,
                               tab: activeTab,
                             })
                           }}
@@ -796,6 +855,51 @@ export default function PlanComparisonTool() {
                         <ChevronDown className="pointer-events-none absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
                       </div>
                     </div>
+
+                    {/* Legacy Add-ons section - only show if current plan has applicable add-ons */}
+                    {Object.entries(legacyAddOns).some(([_, addOn]) => 
+                      addOn.applicablePlans.includes(currentPlan)
+                    ) && (
+                      <div className="mb-4 rounded-md border border-gray-200 bg-white p-3">
+                        <label className="mb-2 block text-sm font-medium text-gray-700">
+                          Legacy Add-ons
+                        </label>
+                        <p className="mb-2 text-xs text-gray-500">
+                          Select any add-ons the customer has purchased
+                        </p>
+                        <div className="space-y-2">
+                          {Object.entries(legacyAddOns).map(([addOnKey, addOn]) => {
+                            if (!addOn.applicablePlans.includes(currentPlan)) return null
+                            return (
+                              <div key={addOnKey} className="flex items-center">
+                                <input
+                                  type="checkbox"
+                                  id={`addon-${addOnKey}`}
+                                  checked={currentPlanAddOns.includes(addOnKey)}
+                                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                                    if (e.target.checked) {
+                                      setCurrentPlanAddOns(prev => [...prev, addOnKey])
+                                    } else {
+                                      setCurrentPlanAddOns(prev => prev.filter(a => a !== addOnKey))
+                                    }
+                                    mixpanel.track("Legacy Add-on Toggled", {
+                                      add_on: addOnKey,
+                                      enabled: e.target.checked,
+                                      current_plan: currentPlan,
+                                    })
+                                  }}
+                                  className="h-4 w-4 rounded border-gray-300 text-[#4A154B] focus:ring-[#4A154B]"
+                                  disabled={isLoading}
+                                />
+                                <label htmlFor={`addon-${addOnKey}`} className="ml-2 block text-sm text-gray-900">
+                                  {addOn.label}
+                                </label>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )}
 
                     <div className="mb-6">
                       <label htmlFor="futurePlan" className="mb-1 block font-medium text-[#36C5F0]">
@@ -1018,7 +1122,7 @@ export default function PlanComparisonTool() {
                                         <p className="mt-1 text-sm text-gray-600">
                                           {featureData.featureDescriptions[
                                             feature as keyof typeof featureData.featureDescriptions
-                                          ] || "No description available."}
+                                          ] || "Description coming soon."}
                                         </p>
 
                                         {hasPainPoint && (
