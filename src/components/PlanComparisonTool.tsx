@@ -1236,20 +1236,6 @@ export default function PlanComparisonTool() {
       <footer className="bg-gray-50 py-8">
         <div className="container mx-auto px-4 text-center text-sm text-gray-500">
           <p>© {new Date().getFullYear()} Slack Technologies, LLC, a Salesforce company. All rights reserved.</p>
-          <div className="mt-2 flex justify-center space-x-4">
-            <a href="#" className="hover:text-[#1264A3] hover:underline">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-[#1264A3] hover:underline">
-              Terms
-            </a>
-            <a href="#" className="hover:text-[#1264A3] hover:underline">
-              Cookie Preferences
-            </a>
-            <a href="#" className="hover:text-[#1264A3] hover:underline">
-              Contact Us
-            </a>
-          </div>
         </div>
       </footer>
     </div>
