@@ -1,3 +1,14 @@
+// Define available legacy add-ons
+// Maps add-on key to its display label and which base plans it applies to
+export const legacyAddOns: Record<string, { label: string; applicablePlans: readonly string[]; planKeySuffix: string }> = {
+  slack_ai: {
+    label: "Slack AI Add-on",
+    applicablePlans: ["pro", "plus_v1", "grid_v1"], // Plans that could have purchased this add-on
+    planKeySuffix: "_ai" // When this add-on is selected, append this to the plan key (e.g., plus_v1 -> plus_v1_ai)
+  },
+  // Future: slack_elevate can be added here with its own suffix
+};
+
 // Feature data structure
 export const featureData = {
   featureAvailability: {
@@ -50,7 +61,7 @@ export const featureData = {
     "DLP (Data Loss Prevention)": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Native DLP": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Audit Logs API": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
-    "Audit Logs (Native Dashboard)": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: true, grid_v2: true },
+    "Audit Logs (Native Dashboard)": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Discovery/DLP API": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Exports (Public Data)": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Exports (Full Data)": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
@@ -62,17 +73,16 @@ export const featureData = {
     "Guaranteed Uptime and Fast Customer Support": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Integrations": {free: "Only 10", pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Thread & Channel Summaries": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "File Summaries": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Recaps": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "File Summaries": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Recaps": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Huddles Notes":{free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "Slack AI Search": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Enterprise Search": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: false, grid_v2: true},
+    "Slack AI Search": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Enterprise Search": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "3rd Party Agent Apps" : {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "AI Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "AI Steps in Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Catchup Summaries on Mobile": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "AI Language Translations": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "AI Action Items": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "AI Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "AI Steps in Workflow Builder": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Catchup Summaries on Mobile": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "AI Language Translations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Conditional Workflows": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: true, grid_v2: true },
     "Salesforce Channels": {free: "Users See 90 Days Only", pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Record Unfurls":{free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
@@ -84,7 +94,31 @@ export const featureData = {
     "Salesforce workflow automation (Event triggers)": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Salesforce workflow automation (Scheduled triggers)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Sales Home": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
-    "Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true }
+    "Salesforce Channel AI Summary Tab": { free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "AI Admin analytics dashboard": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
+    "AI Explain": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Canvas AI": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Salesforce workflow automation (send to Salesforce app step)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
+    "Limited Access: Message Limit": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: false},
+    "Full Access: Unlimited Messages": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slack search (including canvases)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Multiple searches at once": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Desktop & mobile parity": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "File uploads & calendar entity read": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Create & update canvases": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "3P entity read (GDrive, OneDrive, Box, etc)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Full-org kill switch": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Custom group access": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Full Data Export": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Filtered & single user export": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot DLP": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "EKM compatibility": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Audit logs": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Channel Expert Agent": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true}
+
+
+
   },
   featureDescriptions: {
     Workspace: "",
@@ -170,7 +204,6 @@ export const featureData = {
     "Multiple Workspaces": "Allows a company to create and centrally manage a network of interconnected workspaces.",
     "Native Device Management: Block Jailbroken Devices": "Automatically blocks access from jailbroken (iOS) or rooted (Android) devices to protect corporate data.",
     "Native Device Management: Block Copy / Paste (Mobile)": "Prevents data leakage by disabling file downloads and restricting copy/paste from managed apps to personal ones.",
-    "AI Action Items":"Intelligent nudges that help you stay on top of your tasks by automatically identifying when someone expects you to take action.",
     "Salesforce Channel AI Summary Tab": "Provides an AI-generated summary of conversations from both the current Salesforce channel and its related Salesforce channels.",
     "Salesforce workflow automation (Scheduled triggers)": "Allows you to create scheduled Slack notifications that can summarize specific records or out-of-date records in Salesforce.",
     "Catchup Summaries on Mobile": "Allows users to get AI-powered summaries of unread messages in their Slack catch-up cards",
@@ -178,6 +211,10 @@ export const featureData = {
     "EMM (Enterprise Mobility Management)": "Integrates with a companies existing EMM to enforce mobile security policies like blocking access from unmanaged devices and requiring use of a managed EMM app.",
     "Guaranteed Uptime and Fast Customer Support": "See https://slack.com/terms/service-level-agreement for details.",
     "Conditional Workflows": "Create dynamic, responsive workflows that adapt to different situations. Use custom rules based on button selections, form answers, or other inputs to route information and automate complex processes without writing code.",
+    "AI Admin analytics dashboard": "Admin analytics dashboard that helps customers who purchase Slack AI to understand adoption of Slack AI and overall usage and activity patterns (daily/weekly/monthly active users, feature adoption rates, etc.)",
+    "AI Explain": "Allows users to get AI-generated explanations of complex messages, technical jargon, acronyms, or dense language in Slack.",
+    "Canvas AI": "Canvas AI can create and edit content by drawing from conversations and files that users have access to in Slack, helping them turn Slack conversations into polished, structured documents in seconds.",
+    "Salesforce workflow automation (send to Salesforce app step)": "Send automated, Salesforce-triggered messages directly to a user’s private Salesforce app in Slack. By moving notifications out of noisy public channels and into a personal workspace, you transition from a 'public broadcast' that gets ignored to a 'personal task' that drives immediate action."
   },
   featurePainPoints: {
     "Slack AI": {
@@ -234,7 +271,7 @@ export const featureData = {
       sales:
         "Manual effort required to pull Salesforce data into account plans or deal reviews leads to errors and out-of-date information.",
     },
-    Clips: {
+    "Clips": {
       it: "Misunderstandings arise from text-only updates for complex IT issues; scheduling sync meetings for simple explanations is inefficient.",
       engineering: "Explaining complex code, walking through a PR, or demoing a feature asynchronously is difficult with just text, often forcing a synchronous meeting for a simple walkthrough.",
       sales:
@@ -245,7 +282,7 @@ export const featureData = {
       operations:
         "Providing status updates or feedback asynchronously across teams often requires scheduling meetings or writing lengthy text messages.",
     },
-    Guests: {
+    "Guests": {
       it: "Collaborating securely with external vendors, partners, or contractors requires provisioning full accounts or using less secure methods like email.",
       engineering: "Working with external contractors or open-source contributors on a project requires granting them broad access or relying on insecure communication channels outside of where the internal team collaborates.",
       marketing:
@@ -471,7 +508,7 @@ export const featureData = {
     "Customer Support Tier": {
       it: "Standard support response times may not be sufficient for resolving critical Slack issues impacting business operations.",
     },
-    Integrations: {
+    "Integrations": {
       it: "Inefficiencies and potential data inconsistencies due to lack of interoperability between critical business systems (e.g., ticketing, monitoring, code repos) and the collaboration platform.",
       engineering: "Engineers waste time switching contexts between Slack, Jira, GitHub, and CI/CD tools; notifications are scattered, and actions like updating a ticket or re-running a build require leaving the conversation.",
       sales:
@@ -590,14 +627,6 @@ export const featureData = {
       customer_support: "When a high-priority case is logged for a key account, there is no automatic way to alert the account's sales rep, leading to a blind-sided response.",
       operations:"Key business processes that span multiple departments, like deal desk approval, are slowed down by manual handoffs between systems."
     },
-    "AI Action Items": {
-      it: "Informal requests for help made in channels, like 'can someone look into this bug?', aren't formal tickets and often get scrolled past and forgotten.",
-      engineering: "Action items from incident post-mortems or design reviews that are mentioned in-channel are not formally tracked and can easily be forgotten, leading to repeat incidents or unresolved design debt.",
-      marketing: "During campaign brainstorms, verbal agreements such as 'can you send over the final copy?' are easily lost in the flow of conversation, leading to missed deadlines.",
-      sales:"Managers often assign tasks in DMs, like 'follow up with that lead,' but these requests aren't automatically tracked and can easily slip through the cracks.",
-      customer_support: "When collaborating on a ticket, one agent might ask another to 'check a customer's purchase history,' but this informal request can be missed if the second agent gets pulled into another issue.",
-      operations:"Critical requests made in project channels, like 'can you update the budget spreadsheet?', often get missed by busy project managers, leading to project delays."
-    },
     "EMM (Enterprise Mobility Management)": {
       it: "Without EMM, IT can't prevent employees from accessing Slack on personal or jailbroken devices—making it easy for sensitive company data to be downloaded, screen-captured, or shared outside managed environments, increasing the risk of data leaks, compliance violations, and insider threats."
     },
@@ -614,6 +643,36 @@ export const featureData = {
       customer_support: "Ticket routing is static, sending all issues through the same path regardless of priority, region, or product area, leading to inefficient assignments and slower response times.",
       operations: "Business processes automated in Slack are not intelligent enough to adapt to different inputs, requiring people to manually manage exceptions and complex routing logic.",
       hr: "Workflows for employee requests (e.g., leave, HR questions) are linear and cannot be dynamically routed based on department, seniority, or request type, creating administrative bottlenecks."
-    }
+    },
+    "AI Admin analytics dashboard": {
+      it: "Customers who purchase Slack AI are not able to understand adoption of Slack AI and overall usage and activity patterns (daily/weekly/monthly active users, feature adoption rates, etc.)"
+    },
+    "AI Explain": {
+      it: "IT teams struggle to quickly understand and troubleshoot complex technical discussions, code snippets, or system alerts shared in channels, requiring time-consuming context switching to research unfamiliar terms or processes.",
+      engineering: "Engineers waste time deciphering dense technical conversations, error logs, or architectural discussions from other teams, especially when joining mid-conversation or dealing with unfamiliar systems or frameworks.",
+      sales: "Sales reps lose momentum when they encounter technical product discussions, competitor analyses, or industry jargon they don't understand, preventing them from effectively contributing to or learning from strategic conversations.",
+      customer_support: "Support agents struggle to quickly understand complex customer issues, technical error messages, or escalated conversations from engineering, leading to delays in providing accurate responses or routing tickets appropriately.",
+      operations: "Operations teams need immediate clarity on cross-functional discussions involving unfamiliar processes, business metrics, or technical implementations to make informed decisions without lengthy research or meetings.",
+      hr: "HR professionals have difficulty understanding technical team discussions, industry-specific terminology, or complex project updates when making workforce planning decisions or addressing employee concerns about technical projects."
+},
+  "Canvas AI": {
+    it: "IT teams manually create and update technical documentation, runbooks, and project specs in static formats that quickly become outdated, requiring hours of reformatting and reorganization when requirements change or new information emerges.",
+    engineering: "Engineers spend excessive time writing design docs, technical specs, and project proposals from scratch, struggling to structure complex technical concepts clearly while ensuring all stakeholders can understand the content regardless of their technical background.",
+    sales: "Sales teams manually compile prospect research, competitive battlecards, and proposal content by copying information from multiple sources, lacking an intelligent way to synthesize data into compelling, personalized presentations that address specific customer pain points.",
+    customer_support: "Support teams create knowledge base articles, troubleshooting guides, and escalation documentation manually, struggling to maintain consistent formatting and ensure complex technical solutions are explained clearly for both agents and customers.",
+    operations: "Operations teams spend hours creating process documentation, meeting summaries, and strategic planning documents by manually organizing scattered information from various conversations and sources into coherent, actionable formats.",
+    hr: "HR professionals manually draft policy documents, onboarding materials, and performance review summaries, struggling to synthesize feedback from multiple stakeholders into well-structured, comprehensive documents that address diverse employee needs and scenarios."
+},
+"Salesforce workflow automation (send to Salesforce app step)": {
+    sales: "Sales reps struggle to keep up with 'CRM hygiene' and administrative follow-ups across dozens of active deals, leading to missed milestones like expiring contracts, stale close dates, or incomplete discovery data. Because these reminders are often buried in emails or generic channels, reps lose track of critical deal-progression tasks that directly impact their ability to hit quota.",
+    marketing: "Marketing teams often see high-quality leads 'die on the vine' because handoff notifications get buried in crowded Slack channels or ignored email inboxes. Without a direct, private nudge, the window for a timely follow-up closes before the rep even realizes a lead is ready.",
+    customer_support: "Account managers and CSMs often lack real-time visibility into critical account health changes, such as a sudden drop in usage or a high-priority ticket. Without personalized alerts, they remain reactive rather than proactive, often discovering account risks only during scheduled reviews.",
+    operations: "Sales Ops teams spend hours manually auditing pipelines and 'nagging' reps to fix data gaps to ensure forecast accuracy. They struggle with 'dirty data' because there is no automated, low-friction way to prompt reps for specific, missing information at the exact moment it's needed.",
+    it: "Salesforce Admins and IT teams are constantly tasked with building complex custom notifications that often fail to reach the right person at the right time. They face a backlog of requests for 'better visibility' but lack a simple way to deliver actionable, private alerts that don't require users to leave their primary communication tool."
+},
+"Salesforce Channel AI Summary Tab": {
+    sales: "Account Executives managing complex enterprise deals often lose track of critical conversations happening across multiple opportunity, product, and escalation channels. They waste 30+ minutes each morning manually catching up across 5-10 related channels to prepare for executive calls, often missing key objections or blockers that were surfaced in parallel threads, directly impacting their ability to address concerns and close deals on time.",
+    customer_support: "Support managers and escalation teams handling high-touch accounts lose valuable context when customer issues span multiple channels—primary account channel, case-specific threads, engineering escalation channels. Also, CSMs inheriting accounts or jumping into renewal conversations are completely blind to months of context spread across account channels, QBR channels, and product adoption discussions. They spend their first few weeks playing 'catch-up archaeology' instead of driving value, risking churn during critical transition periods because they can't quickly understand account history and sentiment."
   }
+}
 }

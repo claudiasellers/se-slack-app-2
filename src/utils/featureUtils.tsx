@@ -15,7 +15,8 @@ import {
   Database,
   UserCheck,
   Cloud,
-  Smartphone
+  Smartphone,
+  LineChart
 } from "lucide-react"
 
 // Feature icon mapping - consistent colors per category
@@ -30,8 +31,9 @@ export const getFeatureIcon = (feature: string, category?: string): React.ReactN
       case "User Management": return "text-[#ECB22E]" // yellow
       case "Data & Exports": return "text-[#E01E5A]" // red
       case "Support & Reliability": return "text-[#36C5F0]" // blue
-      case "Slack AI": return "text-[#4A154B]" // purple
+      case "Slack AI": return "text-[#ECB22E]" // yellow
       case "Salesforce Integration": return "text-[#36C5F0]" // blue
+      case "Slackbot": return "text-[#E01E5A]" // red
       default: return "text-[#6B7280]" // neutral gray
     }
   }
@@ -133,7 +135,28 @@ export const getFeatureIcon = (feature: string, category?: string): React.ReactN
     // Other/Miscellaneous
     "Custom Terms of Service": <FileText className={`h-5 w-5 ${iconColor}`} />,
     "Native Device Management: Block Jailbroken Devices": <Smartphone className={`h-5 w-5 ${iconColor}`} />,
-    "Native Device Management: Block Copy / Paste (Mobile)": <Smartphone className={`h-5 w-5 ${iconColor}`} />
+    "Native Device Management: Block Copy / Paste (Mobile)": <Smartphone className={`h-5 w-5 ${iconColor}`} />,
+    "AI Admin analytics dashboard": <LineChart className="h-5 w-5 text-[#ECB22E]" />,
+    "AI Explain": <Zap className={`h-5 w-5 ${iconColor}`} />,
+    "Canvas AI": <FileText className={`h-5 w-5 ${iconColor}`}/>,
+    "Limited Access: Message Limit": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Full Access: Unlimited Messages": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Multiple searches at once": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Desktop & mobile parity": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Slack search (including canvases)": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "File uploads & calendar entity read": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Create & update canvases": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "3P entity read (GDrive, OneDrive, Box, etc)": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "International Data Residency": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Full-org kill switch": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Custom group access": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Full Data Export": <Bot className={`h-5 w-5 ${iconColor}`} />,
+    "Filtered & single user export": <Bot className={`h-5 w-5 ${iconColor}`}/>,
+    "Slackbot DLP": <Bot className={`h-5 w-5 ${iconColor}`}/>,
+    "EKM compatibility": <Bot className={`h-5 w-5 ${iconColor}`}/>,
+    "Slackbot Audit logs": <Bot className={`h-5 w-5 ${iconColor}`}/>,
+    "Channel Expert Agent": <Bot className={`h-5 w-5 ${iconColor}`} />
   }
 
   return iconMap[feature] || <Zap className={`h-5 w-5 ${iconColor}`} />
@@ -152,6 +175,7 @@ export const getSectionColor = (category: string): string => {
     "Slack AI": "#4A154B", // slack purple - premium/advanced
     "Salesforce Integration": "#36C5F0", // slack blue - integration
     "Other Features": "#6B7280", // neutral gray - miscellaneous
+    "Slackbot": "#E01E5A" // slack red - slackbot
   }
 
   return colorMap[category] || "#6B7280" // default to neutral gray
