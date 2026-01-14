@@ -100,7 +100,7 @@ export const featureData = {
     "Canvas AI": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Salesforce workflow automation (send to Salesforce app step)": {free: false, pro: false, plus_v1: false, plus_v2: true, grid_v1: false, grid_v2: true},
     "Limited Access: Message Limit": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: false},
-    "Full Access: Unlimited Messages": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Full Access: Unlimited Messages": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Limited Access: Message Limit", plus_v2: "Limited Access: Message Limit", grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slack search (including canvases)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Multiple searches at once": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Desktop & mobile parity": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
@@ -108,9 +108,9 @@ export const featureData = {
     "Create & update canvases": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "3P entity read (GDrive, OneDrive, Box, etc)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Full-org kill switch": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Custom group access": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Full Data Export": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Full-org kill switch": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Custom group access": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Full Data Export": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Filtered & single user export": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot DLP": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "EKM compatibility": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
@@ -214,7 +214,8 @@ export const featureData = {
     "AI Admin analytics dashboard": "Admin analytics dashboard that helps customers who purchase Slack AI to understand adoption of Slack AI and overall usage and activity patterns (daily/weekly/monthly active users, feature adoption rates, etc.)",
     "AI Explain": "Allows users to get AI-generated explanations of complex messages, technical jargon, acronyms, or dense language in Slack.",
     "Canvas AI": "Canvas AI can create and edit content by drawing from conversations and files that users have access to in Slack, helping them turn Slack conversations into polished, structured documents in seconds.",
-    "Salesforce workflow automation (send to Salesforce app step)": "Send automated, Salesforce-triggered messages directly to a user’s private Salesforce app in Slack. By moving notifications out of noisy public channels and into a personal workspace, you transition from a 'public broadcast' that gets ignored to a 'personal task' that drives immediate action."
+    "Salesforce workflow automation (send to Salesforce app step)": "Send automated, Salesforce-triggered messages directly to a user’s private Salesforce app in Slack. By moving notifications out of noisy public channels and into a personal workspace, you transition from a 'public broadcast' that gets ignored to a 'personal task' that drives immediate action.",
+
   },
   featurePainPoints: {
     "Slack AI": {
