@@ -215,6 +215,23 @@ export const featureData = {
     "AI Explain": "Allows users to get AI-generated explanations of complex messages, technical jargon, acronyms, or dense language in Slack.",
     "Canvas AI": "Canvas AI can create and edit content by drawing from conversations and files that users have access to in Slack, helping them turn Slack conversations into polished, structured documents in seconds.",
     "Salesforce workflow automation (send to Salesforce app step)": "Send automated, Salesforce-triggered messages directly to a user’s private Salesforce app in Slack. By moving notifications out of noisy public channels and into a personal workspace, you transition from a 'public broadcast' that gets ignored to a 'personal task' that drives immediate action.",
+    "Limited Access: Message Limit": "Users can access Slackbot, but are limited to a specific # of messages per week that they can send. If they hit the limit, they have to wait until the next week to send more messages.",
+    "Full Access: Unlimited Messages": "Users can send unlimited messages to Slackbot with no restrictions.",
+    "Slack search (including canvases)": "Slackbot can search through all your Slack messages, files, and canvases to find relevant information when answering questions.",
+    "Multiple searches at once": "Slackbot can run several parallel searches simultaneously to gather comprehensive information quickly rather than searching sequentially.",
+    "Desktop & mobile parity": "Slackbot offers the same full functionality and experience across both desktop and mobile Slack apps.",
+    "File uploads & calendar entity read": "Slackbot can read content from uploaded files (PDFs, images, documents) and access calendar event details (Google Calendar and Outlook) to provide context-aware answers.",
+    "Create & update canvases": "Slackbot can generate new canvases or modify existing ones to organize information, create documentation, or save conversation summaries.",
+    "3P entity read (GDrive, OneDrive, Box, etc)": "Slackbot can read and extract content from third-party files shared in Slack (like Google Docs, OneDrive documents, Box files) when you share a direct link with it.",
+    "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": "Slackbot can search across connected third-party Enterprise Search connectors to find information that lives outside Slack.",
+    "Full-org kill switch": "Admins can instantly disable Slackbot for the entire organization if needed for security or compliance reasons.",
+    "Custom group access": "Admins can control which specific user groups or individuals have access to Slackbot rather than enabling it org-wide.",
+    "Full Data Export": "All Slackbot conversations (treated as DM conversations) can be included in Slack's full data export functionality for compliance and archival purposes.",
+    "Filtered & single user export": "Enables data exports for specific users or filtered criteria rather than requiring a full organization export.",    
+    "Slackbot DLP": "DLP policies can be applied to Slackbot. All user prompts are scanned before inference, blocked/tombstoned prompts generate user-visible explanations, and all DLP actions are tracked in the DLP Admin and Audit Log dashboards.",
+    "EKM compatibility": "Slackbot works with EKM. Slackbot conversations are treated as DM conversations for EKM purposes and are encrypted with the customer key. All canvases created by Slackbot are owned by the user and encrypted with the customer key.",
+    "Slackbot Audit logs": "Detailed audit logs track all Slackbot usage, including prompts, responses, what data was accessed, timestamps, user attribution, and metadata. Slackbot fully integrated with Audit Log API and Discovery API for security and compliance."
+
 
   },
   featurePainPoints: {
