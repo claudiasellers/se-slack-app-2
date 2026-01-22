@@ -637,15 +637,21 @@ export default function PlanComparisonTool() {
     setIsLoading(true)
 
     setTimeout(() => {
+      // Declare variables for tracking that span both branches
+      let featuresForTracking: string[] = []
+      let categorizedForTracking: Record<string, string[]> = {}
+      
       try {
         if (activeTab === "feature-list") {
           // feature list logic
           const features = getUpgradeFeatures(currentPlan, futurePlan, currentPlanAddOns)
           setUpgradeFeatures(features)
+          featuresForTracking = features
 
           // categoriz features
           const categorized = categorizeFeatures(features)
           setCategorizedFeatures(categorized)
+          categorizedForTracking = categorized
 
           // get pain points if line of business is selected
           if (lineOfBusiness) {
@@ -675,10 +681,12 @@ export default function PlanComparisonTool() {
               highestPlanFeatures.push(feature)
             }
           }
+          featuresForTracking = highestPlanFeatures
 
           // categorize features from highest plan
           const categorized = categorizeFeatures(highestPlanFeatures)
           setCategorizedFeatures(categorized)
+          categorizedForTracking = categorized
 
           // default all categories expanded
           const initialExpandState: Record<string, boolean> = {}
@@ -700,24 +708,55 @@ export default function PlanComparisonTool() {
 
         setIsSubmitted(true)
 
-        // mp event
+        // Calculate enriched properties for tracking
+        const totalFeaturesCount = Object.values(categorizedForTracking).flat().length
+        const categoriesCount = Object.keys(categorizedForTracking).length
+        const relevantPainPoints = lineOfBusiness ? getLOBPainPoints(featuresForTracking, lineOfBusiness) : {}
+        const painPointsCount = Object.keys(relevantPainPoints).length
+
+        // mp event with enriched properties
         mixpanel.track("Plan Comparison Submitted", {
           tab: activeTab,
           currentPlan,
           futurePlan,
           selectedPlans,
           lineOfBusiness,
+          // Enriched properties
+          features_count: totalFeaturesCount,
+          categories_count: categoriesCount,
+          has_pain_points: painPointsCount > 0,
+          pain_points_count: painPointsCount,
+          current_plan_add_ons: activeTab === "feature-list" ? currentPlanAddOns : [],
+          comparison_type: activeTab === "feature-list" ? "upgrade" : "side_by_side",
         })
 
-        // mp user profile
+        // mp user profile with enhanced properties
         mixpanel.people.increment("Total Comparisons")
         mixpanel.people.set({
           "Line of Business": lineOfBusiness,
           "Last Comparison Date": new Date().toISOString(),
           "Last Used Tab": activeTab,
         })
+        
+        // Track all plans the user has compared over time
+        if (activeTab === "feature-list") {
+          mixpanel.people.union("All Plans Compared", [currentPlan, futurePlan])
+        } else {
+          mixpanel.people.union("All Plans Compared", selectedPlans)
+        }
+        
+        // Track all LOBs the user has selected over time
+        if (lineOfBusiness) {
+          mixpanel.people.union("All LOBs Selected", [lineOfBusiness])
+        }
       } catch (error) {
         console.error("Error during plan comparison:", error)
+        // Track comparison errors
+        mixpanel.track("Comparison Error", {
+          tab: activeTab,
+          error_type: error instanceof Error ? error.name : "Unknown",
+          error_message: error instanceof Error ? error.message : String(error),
+        })
       } finally {
         setIsLoading(false)
       }
@@ -1172,10 +1211,20 @@ export default function PlanComparisonTool() {
                       <button
                         onClick={() => {
                           downloadPDF()
+                          // Calculate enriched properties for PDF download tracking
+                          const totalFeaturesCount = Object.values(categorizedFeatures).flat().length
+                          const categoriesCount = Object.keys(categorizedFeatures).length
+                          const painPointsCount = Object.keys(painPoints).length
+                          
                           mixpanel.track("PDF Downloaded", {
                             compared_plans: selectedPlans,
                             line_of_business: submittedLineOfBusiness,
                             tab: activeTab,
+                            // Enriched properties
+                            features_count: totalFeaturesCount,
+                            categories_count: categoriesCount,
+                            has_pain_points: painPointsCount > 0,
+                            pain_points_count: painPointsCount,
                           })
                         }}
                         className="flex items-center space-x-2 rounded-md bg-[#4A154B] px-4 py-2 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#3A1240] focus:outline-none focus:ring-2 focus:ring-[#4A154B]/50 focus:ring-offset-2"
@@ -1196,6 +1245,8 @@ export default function PlanComparisonTool() {
                                 category_name: category,
                                 action: expandedCategories[category] ? "collapsed" : "expanded",
                                 tab: activeTab,
+                                // Enriched property
+                                features_count: features.length,
                               })
                             }}
                             className="flex w-full items-center justify-between rounded-t-lg bg-gray-50 px-4 py-3 text-left"
