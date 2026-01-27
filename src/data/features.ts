@@ -230,7 +230,8 @@ export const featureData = {
     "Filtered & single user export": "Enables data exports for specific users or filtered criteria rather than requiring a full organization export.",    
     "Slackbot DLP": "DLP policies can be applied to Slackbot. All user prompts are scanned before inference, blocked/tombstoned prompts generate user-visible explanations, and all DLP actions are tracked in the DLP Admin and Audit Log dashboards.",
     "EKM compatibility": "Slackbot works with EKM. Slackbot conversations are treated as DM conversations for EKM purposes and are encrypted with the customer key. All canvases created by Slackbot are owned by the user and encrypted with the customer key.",
-    "Slackbot Audit logs": "Detailed audit logs track all Slackbot usage, including prompts, responses, what data was accessed, timestamps, user attribution, and metadata. Slackbot fully integrated with Audit Log API and Discovery API for security and compliance."
+    "Slackbot Audit logs": "Detailed audit logs track all Slackbot usage, including prompts, responses, what data was accessed, timestamps, user attribution, and metadata. Slackbot fully integrated with Audit Log API and Discovery API for security and compliance.",
+    "Channel Expert Agent": "Channel Expert Agent is an AI-powered agent for Slack channels that helps answer frequently asked questions and provides instant, intelligent support directly within Slack channels [1]. It's Slack's first out-of-the-box Agentforce agent designed specifically for help and FAQ-style Slack channels."
 
 
   },
