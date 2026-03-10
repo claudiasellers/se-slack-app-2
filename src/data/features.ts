@@ -115,7 +115,8 @@ export const featureData = {
     "Slackbot DLP": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "EKM compatibility": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Audit logs": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Channel Expert Agent": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true}
+    "Channel Expert Agent": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
+    "Real-Time Search API": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true}
 
 
 
@@ -231,7 +232,8 @@ export const featureData = {
     "Slackbot DLP": "DLP policies can be applied to Slackbot. All user prompts are scanned before inference, blocked/tombstoned prompts generate user-visible explanations, and all DLP actions are tracked in the DLP Admin and Audit Log dashboards.",
     "EKM compatibility": "Slackbot works with EKM. Slackbot conversations are treated as DM conversations for EKM purposes and are encrypted with the customer key. All canvases created by Slackbot are owned by the user and encrypted with the customer key.",
     "Slackbot Audit logs": "Detailed audit logs track all Slackbot usage, including prompts, responses, what data was accessed, timestamps, user attribution, and metadata. Slackbot fully integrated with Audit Log API and Discovery API for security and compliance.",
-    "Channel Expert Agent": "Channel Expert Agent is an AI-powered agent for Slack channels that helps answer frequently asked questions and provides instant, intelligent support directly within Slack channels [1]. It's Slack's first out-of-the-box Agentforce agent designed specifically for help and FAQ-style Slack channels."
+    "Channel Expert Agent": "Channel Expert Agent is an AI-powered agent for Slack channels that helps answer frequently asked questions and provides instant, intelligent support directly within Slack channels [1]. It's Slack's first out-of-the-box Agentforce agent designed specifically for help and FAQ-style Slack channels.",
+    "Real-Time Search API": "Lets external AI apps securely search Slack content on-demand without storing data outside of Slack."
 
 
   },
@@ -693,5 +695,11 @@ export const featureData = {
     sales: "Account Executives managing complex enterprise deals often lose track of critical conversations happening across multiple opportunity, product, and escalation channels. They waste 30+ minutes each morning manually catching up across 5-10 related channels to prepare for executive calls, often missing key objections or blockers that were surfaced in parallel threads, directly impacting their ability to address concerns and close deals on time.",
     customer_support: "Support managers and escalation teams handling high-touch accounts lose valuable context when customer issues span multiple channels—primary account channel, case-specific threads, engineering escalation channels. Also, CSMs inheriting accounts or jumping into renewal conversations are completely blind to months of context spread across account channels, QBR channels, and product adoption discussions. They spend their first few weeks playing 'catch-up archaeology' instead of driving value, risking churn during critical transition periods because they can't quickly understand account history and sentiment."
   }
+},
+"Real-Time Search API": {
+  engineering: "Developers must build and maintain costly custom search infrastructure or rely on stale indexed data, slowing down AI agent and app development with inaccurate or outdated results.",
+  sales: "AI-powered sales tools lack real-time access to the latest deal context, customer conversations, and pipeline updates living in Slack, leading to incomplete insights and missed signals.",
+  customer_support: "Third-party support platforms and AI agents can't surface the most current case context, escalation threads, or resolution history from Slack, resulting in slower response times and poor customer experiences.",
+  operations: "Automated workflows and third-party AI tools are unable to query live Slack data for real-time status updates or cross-functional decisions, forcing manual lookups and creating bottlenecks.",
 }
 }

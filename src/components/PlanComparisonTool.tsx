@@ -126,7 +126,8 @@ const getFeatureIcon = (feature: string) => {
     "Slackbot DLP": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "EKM compatibility": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Audit logs": <Bot className="h-5 w-5 text-[#E01E5A]" />,
-    "Channel Expert Agent": <Bot className="h-5 w-5 text-[#ECB22E]" />
+    "Channel Expert Agent": <Bot className="h-5 w-5 text-[#ECB22E]" />,
+    "Real-Time Search API": <Bot className="h-5 w-5 text-[#ECB22E]" />,
     
   }
 
@@ -186,7 +187,8 @@ const categorizeFeatures = (features: string[]) => {
       "Audit Logs (Native Dashboard)",
       "Discovery/DLP API",
       "Data Residency (IDR)",
-      "Custom Terms of Service"
+      "Custom Terms of Service",
+      "Real-Time Search API"
     ],
     "External Collaboration": [
       "Guests",
