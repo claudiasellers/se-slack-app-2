@@ -1,7 +1,15 @@
 // src/App.tsx
+import { useState } from 'react';
 import mixpanel from 'mixpanel-browser';
 import PlanComparisonTool from './components/PlanComparisonTool';
 import ChatBot from './components/ChatBot';
+
+export type PitchDocRequest = {
+  currentPlan: string
+  targetPlan: string
+  lob?: string
+  dealNotes?: string
+}
 
 // Helper to get or create a persistent distinct ID
 const getOrCreateDistinctId = (): string => {
@@ -73,11 +81,15 @@ mixpanel.track('App Loaded', {
 });
 
 function App() {
-    
+  const [pitchDocRequest, setPitchDocRequest] = useState<PitchDocRequest | null>(null);
+
   return (
     <>
-      <PlanComparisonTool />
-      <ChatBot />
+      <PlanComparisonTool onRequestPitchDoc={setPitchDocRequest} />
+      <ChatBot
+        pitchDocRequest={pitchDocRequest}
+        onPitchDocConsumed={() => setPitchDocRequest(null)}
+      />
     </>
   );
 }

@@ -312,7 +312,9 @@ const getSectionColor = (category: string) => {
 }
 
 // include  new state variables
-export default function PlanComparisonTool() {
+import type { PitchDocRequest } from "../App"
+
+export default function PlanComparisonTool({ onRequestPitchDoc }: { onRequestPitchDoc: (req: PitchDocRequest) => void }) {
   // tab state
   const [activeTab, setActiveTab] = useState<"feature-list" | "comparison-table">("feature-list")
 
@@ -333,6 +335,7 @@ export default function PlanComparisonTool() {
   const [isLoading, setIsLoading] = useState(false)
   const [submittedLineOfBusiness, setSubmittedLineOfBusiness] = useState("")
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({})
+  const [dealNotes, setDealNotes] = useState("")
 
   // Get feature access for a plan, with add-on fallback
   // If plus_v1_ai key exists, use it; otherwise fall back to plus_v1
@@ -1131,6 +1134,48 @@ export default function PlanComparisonTool() {
                       </div>
                     </div>
 
+                    {/* Prepare Your Pitch card */}
+                    <div className="mb-6 rounded-xl border border-purple-200 bg-gradient-to-r from-[#4A154B]/5 to-purple-50 p-4">
+                      <div className="mb-2 flex items-center gap-2">
+                        <Bot className="h-5 w-5 text-[#4A154B]" />
+                        <h4 className="font-semibold text-[#4A154B]">Prepare Your Pitch</h4>
+                      </div>
+                      <p className="mb-3 text-sm text-gray-600">
+                        Generate a tailored pitch doc with demo talking points powered by AI.
+                      </p>
+                      <textarea
+                        value={dealNotes}
+                        onChange={(e) => setDealNotes(e.target.value)}
+                        placeholder="Paste deal notes, account context, or specific challenges... (optional)"
+                        className="mb-3 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 outline-none focus:border-[#4A154B] focus:ring-1 focus:ring-[#4A154B]/30"
+                        rows={3}
+                      />
+                      <button
+                        onClick={() => {
+                          const currentLabel = planOptions.find((o) => o.value === currentPlan)?.label || currentPlan
+                          const futureLabel = planOptions.find((o) => o.value === futurePlan)?.label || futurePlan
+                          const lobLabel = lobOptions.find((o) => o.value === submittedLineOfBusiness)?.label
+                          onRequestPitchDoc({
+                            currentPlan: currentLabel,
+                            targetPlan: futureLabel,
+                            lob: lobLabel && submittedLineOfBusiness ? lobLabel : undefined,
+                            dealNotes: dealNotes.trim() || undefined,
+                          })
+                          mixpanel.track("Pitch Doc Requested", {
+                            current_plan: currentPlan,
+                            target_plan: futurePlan,
+                            line_of_business: submittedLineOfBusiness || undefined,
+                            has_deal_notes: dealNotes.trim().length > 0,
+                            tab: activeTab,
+                          })
+                        }}
+                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#4A154B] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#611f64]"
+                      >
+                        <Bot className="h-4 w-4" />
+                        Generate Pitch Doc
+                      </button>
+                    </div>
+
                     <h3 className="mb-4 text-xl font-semibold text-[#4A154B]">
                       {upgradeFeatures.length > 0
                         ? `${upgradeFeatures.length} Features you'll gain by upgrading:`
@@ -1236,6 +1281,48 @@ export default function PlanComparisonTool() {
                       >
                         <Download className="h-4 w-4" />
                         <span>Download PDF</span>
+                      </button>
+                    </div>
+
+                    {/* Prepare Your Pitch card */}
+                    <div className="mb-4 rounded-xl border border-purple-200 bg-gradient-to-r from-[#4A154B]/5 to-purple-50 p-4">
+                      <div className="mb-2 flex items-center gap-2">
+                        <Bot className="h-5 w-5 text-[#4A154B]" />
+                        <h4 className="font-semibold text-[#4A154B]">Prepare Your Pitch</h4>
+                      </div>
+                      <p className="mb-3 text-sm text-gray-600">
+                        Generate a tailored pitch doc with demo talking points powered by AI.
+                      </p>
+                      <textarea
+                        value={dealNotes}
+                        onChange={(e) => setDealNotes(e.target.value)}
+                        placeholder="Paste deal notes, account context, or specific challenges... (optional)"
+                        className="mb-3 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 outline-none focus:border-[#4A154B] focus:ring-1 focus:ring-[#4A154B]/30"
+                        rows={3}
+                      />
+                      <button
+                        onClick={() => {
+                          const planLabels = selectedPlans.map(
+                            (p) => planOptions.find((o) => o.value === p)?.label || p
+                          )
+                          const lobLabel = lobOptions.find((o) => o.value === submittedLineOfBusiness)?.label
+                          onRequestPitchDoc({
+                            currentPlan: planLabels[0],
+                            targetPlan: planLabels[planLabels.length - 1],
+                            lob: lobLabel && submittedLineOfBusiness ? lobLabel : undefined,
+                            dealNotes: dealNotes.trim() || undefined,
+                          })
+                          mixpanel.track("Pitch Doc Requested", {
+                            compared_plans: selectedPlans,
+                            line_of_business: submittedLineOfBusiness || undefined,
+                            has_deal_notes: dealNotes.trim().length > 0,
+                            tab: activeTab,
+                          })
+                        }}
+                        className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#4A154B] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-[#611f64]"
+                      >
+                        <Bot className="h-4 w-4" />
+                        Generate Pitch Doc
                       </button>
                     </div>
 

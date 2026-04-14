@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from "react"
-import { MessageSquare, X, Send, Bot, Settings } from "lucide-react"
+import { MessageSquare, X, Send, Bot, Settings, Copy, Check } from "lucide-react"
 import { featureData } from "../data/features"
+import type { PitchDocRequest } from "../App"
 import mixpanel from "mixpanel-browser"
+
+type ChatBotProps = {
+  pitchDocRequest?: PitchDocRequest | null
+  onPitchDocConsumed?: () => void
+}
 
 type Message = {
   role: "user" | "assistant"
@@ -24,7 +30,7 @@ function buildSystemPrompt(): string {
   let prompt = `You are a helpful Slack Plan Assistant embedded in a Slack plan comparison tool. Help users understand Slack's plans, features, and find the right fit for their team.
 
 ## Guidelines
-- Be concise and conversational. Keep responses under 250 words unless the user asks for detail.
+- Be concise and conversational. Keep responses under 250 words unless the user asks for detail or a document.
 - Use **bold** for feature names and plan names.
 - Use bullet points for lists.
 - When comparing plans, focus on the meaningful differences.
@@ -32,6 +38,27 @@ function buildSystemPrompt(): string {
 - When asked about use cases, reference the pain points data for the relevant department.
 - Only reference features and plans from the data below — don't invent anything.
 - If unsure, say so honestly.
+
+## Upgrade Pitch Document Generation
+When a user provides deal context (account notes, deal notes, current plan, target plan, and optionally a line of business or department), generate a structured upgrade pitch document. The document should include:
+
+1. **Upgrade Summary** — A brief overview: "[Account] is currently on [current plan]. Upgrading to [target plan] unlocks X new features."
+
+2. **New Features Gained** — List every feature they gain by upgrading. For each feature include:
+   - The feature name (bolded)
+   - A one-line description from the feature descriptions data
+   - Whether it's a net-new feature or an enhancement over what they have
+
+3. **Tailored Value Propositions** — If a LOB/department is specified, for each relevant feature:
+   - Reference the specific pain point from the pain points data for that department
+   - Write a 1-2 sentence pitch angle explaining how this feature solves that pain point for their team
+   - Suggest a demo talking point or scenario
+
+4. **Deal-Specific Recommendations** — If the user provided account/deal notes, connect specific features to the customer's stated needs or challenges.
+
+5. **Suggested Demo Flow** — A recommended order to demo the top 3-5 most impactful features for this customer, with a brief rationale for why each matters to them.
+
+When generating this document, ignore the 250-word limit — be thorough. Format it cleanly with headers and sections so it can be copied and shared.
 
 ## Slack Plans (lowest to highest tier)
 - **Free** — Basic plan with limited features
@@ -80,7 +107,7 @@ const WELCOME_MESSAGE: Message = {
   content: "Hi! I'm your Slack Plan Assistant, powered by Claude. I can help you understand Slack's plans, compare features, and find the right fit for your team. What would you like to know?",
 }
 
-export default function ChatBot() {
+export default function ChatBot({ pitchDocRequest, onPitchDocConsumed }: ChatBotProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE])
   const [input, setInput] = useState("")
@@ -94,6 +121,7 @@ export default function ChatBot() {
   const inputRef = useRef<HTMLInputElement>(null)
   const abortRef = useRef<AbortController | null>(null)
   const sessionStartRef = useRef<number | null>(null)
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -102,6 +130,29 @@ export default function ChatBot() {
   useEffect(() => {
     if (isOpen && !showSettings) inputRef.current?.focus()
   }, [isOpen, showSettings])
+
+  // Process pitch doc requests from PlanComparisonTool
+  useEffect(() => {
+    if (!pitchDocRequest) return
+    setIsOpen(true)
+    if (!sessionStartRef.current) sessionStartRef.current = Date.now()
+
+    const prompt = [
+      "Generate an upgrade pitch document:",
+      `- Current Plan: ${pitchDocRequest.currentPlan}`,
+      `- Target Plan: ${pitchDocRequest.targetPlan}`,
+      `- Line of Business: ${pitchDocRequest.lob || "Not specified"}`,
+      `- Deal Notes: ${pitchDocRequest.dealNotes || "None provided"}`,
+      "",
+      "Please create a comprehensive pitch doc with upgrade summary, new features gained, tailored value propositions, deal-specific recommendations, and a suggested demo flow.",
+    ].join("\n")
+
+    // Small delay to ensure the chat is open and rendered before sending
+    setTimeout(() => {
+      sendMessage(prompt, "pitch_doc")
+      onPitchDocConsumed?.()
+    }, 100)
+  }, [pitchDocRequest])
 
   // Detect topic from user message for analytics
   const detectTopics = (text: string): string[] => {
@@ -123,7 +174,7 @@ export default function ChatBot() {
     return topics.length > 0 ? topics : ["general"]
   }
 
-  const sendMessage = async (userText: string, inputMethod: "typed" | "quick_action" = "typed") => {
+  const sendMessage = async (userText: string, inputMethod: "typed" | "quick_action" | "pitch_doc" = "typed") => {
     if (isStreaming) return
 
     if (!apiKey) {
@@ -167,7 +218,7 @@ export default function ChatBot() {
         },
         body: JSON.stringify({
           model: "claude-sonnet-4-6",
-          max_tokens: 1024,
+          max_tokens: inputMethod === "pitch_doc" ? 4096 : 1024,
           system: [
             {
               type: "text",
@@ -481,16 +532,39 @@ export default function ChatBot() {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
             {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+              <div key={i} className={`group flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                 {msg.content && (
-                  <div
-                    className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
-                      msg.role === "user"
-                        ? "bg-[#4A154B] text-white rounded-br-md"
-                        : "bg-gray-100 text-gray-800 rounded-bl-md"
-                    }`}
-                  >
-                    {renderContent(msg.content)}
+                  <div className="relative max-w-[85%]">
+                    <div
+                      className={`rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                        msg.role === "user"
+                          ? "bg-[#4A154B] text-white rounded-br-md"
+                          : "bg-gray-100 text-gray-800 rounded-bl-md"
+                      }`}
+                    >
+                      {renderContent(msg.content)}
+                    </div>
+                    {msg.role === "assistant" && i > 0 && !isStreaming && (
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(msg.content)
+                          setCopiedIndex(i)
+                          setTimeout(() => setCopiedIndex(null), 2000)
+                          mixpanel.track("Chatbot Response Copied", {
+                            response_length: msg.content.length,
+                            message_number: Math.ceil(i / 2),
+                          })
+                        }}
+                        className="absolute -bottom-1 right-1 flex items-center gap-1 rounded-md bg-white px-1.5 py-0.5 text-[10px] text-gray-400 opacity-0 shadow-sm transition-opacity hover:text-gray-600 group-hover:opacity-100"
+                        title="Copy to clipboard"
+                      >
+                        {copiedIndex === i ? (
+                          <><Check className="h-3 w-3 text-green-500" /> Copied</>
+                        ) : (
+                          <><Copy className="h-3 w-3" /> Copy</>
+                        )}
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
