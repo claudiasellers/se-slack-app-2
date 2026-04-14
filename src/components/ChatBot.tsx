@@ -93,6 +93,7 @@ export default function ChatBot() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const abortRef = useRef<AbortController | null>(null)
+  const sessionStartRef = useRef<number | null>(null)
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -102,7 +103,27 @@ export default function ChatBot() {
     if (isOpen && !showSettings) inputRef.current?.focus()
   }, [isOpen, showSettings])
 
-  const sendMessage = async (userText: string) => {
+  // Detect topic from user message for analytics
+  const detectTopics = (text: string): string[] => {
+    const lower = text.toLowerCase()
+    const topics: string[] = []
+    if (/slack ai|ai feature|artificial intelligence/i.test(lower)) topics.push("slack_ai")
+    if (/security|compliance|sso|saml|dlp|ekm|audit|encryption/i.test(lower)) topics.push("security")
+    if (/salesforce|sfdc|crm/i.test(lower)) topics.push("salesforce")
+    if (/enterprise|grid/i.test(lower)) topics.push("enterprise")
+    if (/business\+|biz\+|plus/i.test(lower)) topics.push("business_plus")
+    if (/\bpro\b/i.test(lower)) topics.push("pro_plan")
+    if (/\bfree\b/i.test(lower)) topics.push("free_plan")
+    if (/compare|difference|vs|versus/i.test(lower)) topics.push("comparison")
+    if (/workflow|automat/i.test(lower)) topics.push("workflows")
+    if (/price|cost|pricing/i.test(lower)) topics.push("pricing")
+    if (/upgrade|migration|switch/i.test(lower)) topics.push("upgrade")
+    if (/canvas|lists|clips|huddle/i.test(lower)) topics.push("productivity")
+    if (/connect|guest|external/i.test(lower)) topics.push("external_collab")
+    return topics.length > 0 ? topics : ["general"]
+  }
+
+  const sendMessage = async (userText: string, inputMethod: "typed" | "quick_action" = "typed") => {
     if (isStreaming) return
 
     if (!apiKey) {
@@ -120,17 +141,20 @@ export default function ChatBot() {
     setInput("")
     setIsStreaming(true)
 
-    mixpanel.track("Chatbot Message Sent", { message_length: userText.length })
+    const userMessageCount = messages.filter((m) => m.role === "user").length + 1
+    const topics = detectTopics(userText)
 
-    // Build API messages — skip the UI-only welcome message
-    const currentMessages = [...messages.slice(1), userMessage]
-    const apiMessages = currentMessages.map((m) => ({ role: m.role, content: m.content }))
+    // Build API messages — skip the UI-only welcome message, keep last 20 messages max
+    const MAX_HISTORY = 20
+    const allMessages = [...messages.slice(1), userMessage]
+    const apiMessages = allMessages.slice(-MAX_HISTORY).map((m) => ({ role: m.role, content: m.content }))
 
     // Add an empty assistant message to stream into
     setMessages((prev) => [...prev, { role: "assistant", content: "" }])
 
     try {
       abortRef.current = new AbortController()
+      const streamStart = Date.now()
 
       const res = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
@@ -139,11 +163,18 @@ export default function ChatBot() {
           "x-api-key": apiKey,
           "anthropic-version": "2023-06-01",
           "anthropic-dangerous-direct-browser-access": "true",
+          "anthropic-beta": "prompt-caching-2024-07-31",
         },
         body: JSON.stringify({
           model: "claude-sonnet-4-6",
           max_tokens: 1024,
-          system: systemPrompt,
+          system: [
+            {
+              type: "text",
+              text: systemPrompt,
+              cache_control: { type: "ephemeral" },
+            },
+          ],
           messages: apiMessages,
           stream: true,
         }),
@@ -153,6 +184,14 @@ export default function ChatBot() {
       if (!res.ok) {
         const body = await res.text().catch(() => "")
         console.error("[ChatBot] API error:", res.status, body)
+        mixpanel.track("Chatbot Conversation", {
+          status: "error",
+          error_type: res.status === 401 ? "auth" : res.status === 429 ? "rate_limit" : "api_error",
+          status_code: res.status,
+          message_number: userMessageCount,
+          topics,
+          input_method: inputMethod,
+        })
         let errorMsg = "Something went wrong."
         if (res.status === 401) {
           errorMsg = "Invalid API key. Click the gear icon to update it."
@@ -178,6 +217,7 @@ export default function ChatBot() {
       const decoder = new TextDecoder()
       let accumulated = ""
       let buffer = ""
+      let cacheReadTokens = 0
       while (true) {
         const { done, value } = await reader.read()
         if (done) break
@@ -202,11 +242,25 @@ export default function ChatBot() {
                 return updated
               })
             }
+            // Capture cache metrics from message_delta
+            if (parsed.type === "message_delta" && parsed.usage) {
+              cacheReadTokens = parsed.usage.cache_read_input_tokens || 0
+            }
           } catch {
             // skip unparseable chunks
           }
         }
       }
+
+      // Single consolidated event per exchange
+      mixpanel.track("Chatbot Conversation", {
+        status: "success",
+        message_number: userMessageCount,
+        topics,
+        input_method: inputMethod,
+        response_time_ms: Date.now() - streamStart,
+        cache_hit: cacheReadTokens > 0,
+      })
     } catch (err: unknown) {
       if (err instanceof Error && err.name === "AbortError") return
       console.error("[ChatBot] Fetch error:", err)
@@ -243,7 +297,20 @@ export default function ChatBot() {
   const toggleChat = () => {
     const opening = !isOpen
     setIsOpen(opening)
-    if (opening) mixpanel.track("Chatbot Opened")
+    if (opening) {
+      sessionStartRef.current = Date.now()
+      mixpanel.track("Chatbot Opened")
+    } else {
+      const userMsgCount = messages.filter((m) => m.role === "user").length
+      mixpanel.track("Chatbot Closed", {
+        session_duration_sec: sessionStartRef.current
+          ? Math.round((Date.now() - sessionStartRef.current) / 1000)
+          : 0,
+        messages_sent: userMsgCount,
+        conversation_depth: userMsgCount,
+      })
+      sessionStartRef.current = null
+    }
   }
 
   const saveApiKey = () => {
@@ -253,25 +320,99 @@ export default function ChatBot() {
     localStorage.setItem("anthropic_api_key", trimmed)
     setShowSettings(false)
     setKeyInput("")
+    mixpanel.track("Chatbot API Key Saved")
   }
 
-  // Render bold markdown and line breaks
+  // Render inline markdown: **bold** and *italic*
+  const renderInline = (text: string, keyPrefix: string) => {
+    const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g)
+    return parts.map((part, j) => {
+      if (part.startsWith("**") && part.endsWith("**")) {
+        return <strong key={`${keyPrefix}-${j}`}>{part.slice(2, -2)}</strong>
+      }
+      if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
+        return <em key={`${keyPrefix}-${j}`}>{part.slice(1, -1)}</em>
+      }
+      return <span key={`${keyPrefix}-${j}`}>{part}</span>
+    })
+  }
+
+  // Render markdown: headers, bold, italic, bullet lists, line breaks
   const renderContent = (text: string) => {
     const lines = text.split("\n")
-    return lines.map((line, i) => {
-      const parts = line.split(/(\*\*[^*]+\*\*)/g)
-      return (
-        <span key={i}>
-          {parts.map((part, j) => {
-            if (part.startsWith("**") && part.endsWith("**")) {
-              return <strong key={j}>{part.slice(2, -2)}</strong>
-            }
-            return <span key={j}>{part}</span>
-          })}
-          {i < lines.length - 1 && <br />}
-        </span>
-      )
+    const elements: React.ReactNode[] = []
+    let listItems: React.ReactNode[] = []
+    let listKey = 0
+
+    const flushList = () => {
+      if (listItems.length > 0) {
+        elements.push(
+          <ul key={`list-${listKey++}`} className="my-1 ml-4 list-disc space-y-0.5">
+            {listItems}
+          </ul>
+        )
+        listItems = []
+      }
+    }
+
+    lines.forEach((line, i) => {
+      const trimmed = line.trimStart()
+
+      // Headers
+      if (trimmed.startsWith("### ")) {
+        flushList()
+        elements.push(
+          <div key={i} className="mt-2 mb-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            {renderInline(trimmed.slice(4), `h3-${i}`)}
+          </div>
+        )
+        return
+      }
+      if (trimmed.startsWith("## ")) {
+        flushList()
+        elements.push(
+          <div key={i} className="mt-2 mb-1 font-semibold">
+            {renderInline(trimmed.slice(3), `h2-${i}`)}
+          </div>
+        )
+        return
+      }
+
+      // Bullet list items (- or *)
+      const bulletMatch = trimmed.match(/^[-*]\s+(.+)/)
+      if (bulletMatch) {
+        listItems.push(
+          <li key={i}>{renderInline(bulletMatch[1], `li-${i}`)}</li>
+        )
+        return
+      }
+
+      // Numbered list items
+      const numberedMatch = trimmed.match(/^\d+\.\s+(.+)/)
+      if (numberedMatch) {
+        // Flush bullet list if switching to numbered
+        flushList()
+        listItems.push(
+          <li key={i}>{renderInline(numberedMatch[1], `oli-${i}`)}</li>
+        )
+        return
+      }
+
+      // Regular line
+      flushList()
+      if (trimmed === "") {
+        if (i > 0 && i < lines.length - 1) {
+          elements.push(<div key={i} className="h-2" />)
+        }
+      } else {
+        elements.push(
+          <div key={i}>{renderInline(line, `p-${i}`)}</div>
+        )
+      }
     })
+
+    flushList()
+    return <>{elements}</>
   }
 
   return (
@@ -380,7 +521,7 @@ export default function ChatBot() {
                 ].map((q) => (
                   <button
                     key={q}
-                    onClick={() => sendMessage(q)}
+                    onClick={() => sendMessage(q, "quick_action")}
                     disabled={isStreaming}
                     className="rounded-full border border-[#4A154B]/20 bg-white px-3 py-1.5 text-xs text-[#4A154B] transition-colors hover:bg-[#4A154B]/5 disabled:opacity-50"
                   >

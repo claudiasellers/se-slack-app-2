@@ -32,12 +32,20 @@ const getBrowserName = (): string => {
   return 'Unknown';
 };
 
-// Initialize Mixpanel with page view tracking enabled
+// Initialize Mixpanel with page view tracking and session replay
+// Session replay options are newer than @types/mixpanel-browser, so we extend the config
 mixpanel.init("279095a5ea069a0f5f5ee40971a60101", {
   debug: false,
-  track_pageview: true,  // Enable automatic page view tracking
+  track_pageview: true,
   persistence: 'localStorage',
-});
+  // Session Replay
+  record_sessions_percent: 100,   // record all sessions (internal tool)
+  record_mask_all_text: false,     // plan data is public, no PII to mask
+  record_mask_all_inputs: false,   // unmask inputs (API key field is type="password", always masked by Mixpanel)
+  record_console: true,            // capture console for debugging
+  record_heatmap_data: true,       // track clicks, rage clicks, dead clicks
+  record_idle_timeout_ms: 1800000, // end replay after 30 min idle
+} as Parameters<typeof mixpanel.init>[1]);
 
 // Identify user synchronously to avoid race condition
 mixpanel.identify(getOrCreateDistinctId());
