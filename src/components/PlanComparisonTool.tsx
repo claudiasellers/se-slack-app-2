@@ -63,7 +63,7 @@ const getFeatureIcon = (feature: string) => {
     "SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Multi-SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "SCIM API Provisioning": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "SCIM API (Guest Provisioning)": <Settings className="h-5 w-5 text-[#4A154B]" />,
+    "SCIM API Provisioning (Guest Provisioning)": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Atlas": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Custom User Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "IDP Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
@@ -374,7 +374,7 @@ export default function PlanComparisonTool() {
 
   // toggle category expansion
   const toggleCategory = (category: string) => {
-    setExpandedCategories((prev) => ({
+    setExpandedCategories((prev: Record<string, boolean>) => ({
       ...prev,
       [category]: !prev[category],
     }))
@@ -534,7 +534,7 @@ export default function PlanComparisonTool() {
           <div class="plans-header">
             <strong>Comparing Plans:</strong>
             ${selectedPlans
-              .map((plan) => {
+              .map((plan: string) => {
                 const planLabel = planOptions.find((option) => option.value === plan)?.label || plan
                 return `<span class="plan-pill">${planLabel}</span>`
               })
@@ -544,6 +544,7 @@ export default function PlanComparisonTool() {
 
       // add each category and its features
       Object.entries(categorizedFeatures).forEach(([category, features]) => {
+        const featureList = features as string[]
         htmlContent += `
           <div class="category">
             <div class="category-title">${category}</div>
@@ -552,7 +553,7 @@ export default function PlanComparisonTool() {
                 <tr>
                   <th style="width: 40%;">Feature</th>
                   ${selectedPlans
-                    .map((plan) => {
+                    .map((plan: string) => {
                       const planLabel = planOptions.find((option) => option.value === plan)?.label || plan
                       return `<th style="width: ${60 / selectedPlans.length}%;">${planLabel}</th>`
                     })
@@ -562,7 +563,7 @@ export default function PlanComparisonTool() {
               <tbody>
         `
 
-        features.forEach((feature) => {
+        featureList.forEach((feature) => {
           const description =
             featureData.featureDescriptions[feature as keyof typeof featureData.featureDescriptions] ||
             "Description coming soon."
@@ -585,7 +586,7 @@ export default function PlanComparisonTool() {
                 }
               </td>
               ${selectedPlans
-                .map((plan) => {
+                .map((plan: string) => {
                   const hasFeature =
                     featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][
                       plan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
@@ -765,7 +766,7 @@ export default function PlanComparisonTool() {
     }, 800)
   }
 
-  //reset form when switching tabs
+      //reset form when switching tabs
   const handleTabChange = (tab: "feature-list" | "comparison-table") => {
     setActiveTab(tab)
     setIsSubmitted(false)
@@ -862,8 +863,8 @@ export default function PlanComparisonTool() {
                             const newPlan = e.target.value
                             setCurrentPlan(newPlan)
                             // Clear add-ons that don't apply to the new plan
-                            setCurrentPlanAddOns(prev => 
-                              prev.filter(addOn => 
+                            setCurrentPlanAddOns((prev: string[]) =>
+                              prev.filter((addOn: string) =>
                                 legacyAddOns[addOn as keyof typeof legacyAddOns]?.applicablePlans.includes(newPlan)
                               )
                             )
@@ -921,9 +922,9 @@ export default function PlanComparisonTool() {
                                   checked={currentPlanAddOns.includes(addOnKey)}
                                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                                     if (e.target.checked) {
-                                      setCurrentPlanAddOns(prev => [...prev, addOnKey])
+                                      setCurrentPlanAddOns((prev: string[]) => [...prev, addOnKey])
                                     } else {
-                                      setCurrentPlanAddOns(prev => prev.filter(a => a !== addOnKey))
+                                      setCurrentPlanAddOns((prev: string[]) => prev.filter((a: string) => a !== addOnKey))
                                     }
                                     mixpanel.track("Legacy Add-on Toggled", {
                                       add_on: addOnKey,
@@ -1003,9 +1004,9 @@ export default function PlanComparisonTool() {
                               const plan = option.value
                               const action = e.target.checked ? "selected" : "deselected"
                               if (e.target.checked) {
-                                setSelectedPlans((prev) => [...prev, option.value])
+                                setSelectedPlans((prev: string[]) => [...prev, option.value])
                               } else {
-                                setSelectedPlans((prev) => prev.filter((p) => p !== option.value))
+                                setSelectedPlans((prev: string[]) => prev.filter((p: string) => p !== option.value))
                               }
                               mixpanel.track("Compared Plans Selected", { plan, action, tab: activeTab })
                             }}
@@ -1142,13 +1143,15 @@ export default function PlanComparisonTool() {
                       </div>
                     ) : (
                       <div className="space-y-8">
-                        {Object.entries(categorizedFeatures).map(([category, features]) => (
+                        {Object.entries(categorizedFeatures).map(([category, features]) => {
+                          const featureList = features as string[]
+                          return (
                           <div key={category}>
                             <h4 className="mb-3 text-lg font-medium" style={{ color: getSectionColor(category) }}>
                               {category}
                             </h4>
                             <div className="grid gap-4 sm:grid-cols-2">
-                              {features.map((feature) => {
+                              {featureList.map((feature) => {
                                 const hasPainPoint = submittedLineOfBusiness && painPoints[feature]
 
                                 return (
@@ -1190,7 +1193,7 @@ export default function PlanComparisonTool() {
                               })}
                             </div>
                           </div>
-                        ))}
+                        )})}
                       </div>
                     )}
                   </>
@@ -1199,7 +1202,7 @@ export default function PlanComparisonTool() {
                   <>
                     <div className="mb-4 flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        {selectedPlans.map((plan) => (
+                        {selectedPlans.map((plan: string) => (
                           <div
                             key={plan}
                             className="rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800"
@@ -1238,7 +1241,9 @@ export default function PlanComparisonTool() {
 
                     {/* accordions for feature categories */}
                     <div className="space-y-4">
-                      {Object.entries(categorizedFeatures).map(([category, features]) => (
+                      {Object.entries(categorizedFeatures).map(([category, features]) => {
+                        const featureList = features as string[]
+                        return (
                         <div key={category} className="rounded-lg border border-gray-200">
                           <button
                             onClick={() => {
@@ -1248,7 +1253,7 @@ export default function PlanComparisonTool() {
                                 action: expandedCategories[category] ? "collapsed" : "expanded",
                                 tab: activeTab,
                                 // Enriched property
-                                features_count: features.length,
+                                features_count: featureList.length,
                               })
                             }}
                             className="flex w-full items-center justify-between rounded-t-lg bg-gray-50 px-4 py-3 text-left"
@@ -1277,7 +1282,7 @@ export default function PlanComparisonTool() {
                                       >
                                         Feature
                                       </th>
-                                      {selectedPlans.map((plan) => (
+                                      {selectedPlans.map((plan: string) => (
                                         <th
                                           key={plan}
                                           scope="col"
@@ -1289,7 +1294,7 @@ export default function PlanComparisonTool() {
                                     </tr>
                                   </thead>
                                   <tbody className="divide-y divide-gray-200 bg-white">
-                                    {features.map((feature) => (
+                                    {featureList.map((feature) => (
                                       <tr
                                         key={feature}
                                         className={submittedLineOfBusiness && painPoints[feature] ? "bg-red-50" : ""}
@@ -1325,7 +1330,7 @@ export default function PlanComparisonTool() {
                                           </div>
                                         </td>
 
-                                        {selectedPlans.map((plan) => {
+                                        {selectedPlans.map((plan: string) => {
                                           const hasFeature =
                                             featureData.featureAvailability[
                                               feature as keyof typeof featureData.featureAvailability
@@ -1382,7 +1387,7 @@ export default function PlanComparisonTool() {
                             </div>
                           )}
                         </div>
-                      ))}
+                      )})}
                     </div>
                   </>
                 )}

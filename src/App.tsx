@@ -1,6 +1,7 @@
 // src/App.tsx
 import mixpanel from 'mixpanel-browser';
 import PlanComparisonTool from './components/PlanComparisonTool';
+import ChatBot from './components/ChatBot';
 
 // Helper to get or create a persistent distinct ID
 const getOrCreateDistinctId = (): string => {
@@ -66,7 +67,10 @@ mixpanel.track('App Loaded', {
 function App() {
     
   return (
-    <PlanComparisonTool />
+    <>
+      <PlanComparisonTool />
+      <ChatBot />
+    </>
   );
 }
 
