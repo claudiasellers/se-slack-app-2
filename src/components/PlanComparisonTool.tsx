@@ -34,42 +34,43 @@ const getFeatureIcon = (feature: string) => {
   const iconMap: Record<string, React.ReactNode> = {
     "Canvas": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Custom Canvas Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Slack Sales Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Clips": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
+    "Slack Sales Templates": <FileText className="h-5 w-5 text-[#36C5F0]" />,
+    "Clips": <MessageSquare className="h-5 w-5 text-[#2EB67D]" />,
     "Guests": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Slack Connect (Shared Channels)": <Users className="h-5 w-5 text-[#36C5F0]" />,
     "Sponsored Connections - Slack Connect": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "Per-Org Customization - Slack Connect": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Multi-Workspace Channels": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    "Channel Posting Permissions": <Lock className="h-5 w-5 text-[#E01E5A]" />,
-    "Workflow Builder": <Workflow className="h-5 w-5 text-[#ECB22E]" />,
-    "Conditional Workflows": <Workflow className="h-5 w-5 text-[#ECB22E]" />,
-    "Message Activity": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
+    "Per-Org Customization - Slack Connect": <Settings className="h-5 w-5 text-[#36C5F0]" />,
+    "Multi-Workspace Channels": <MessageSquare className="h-5 w-5 text-[#2EB67D]" />,
+    "Multiple Workspaces": <Users className="h-5 w-5 text-[#2EB67D]" />,
+    "Channel Posting Permissions": <Lock className="h-5 w-5 text-[#2EB67D]" />,
+    "Workflow Builder": <Workflow className="h-5 w-5 text-[#2EB67D]" />,
+    "Conditional Workflows": <Workflow className="h-5 w-5 text-[#2EB67D]" />,
+    "Message Activity": <BarChart className="h-5 w-5 text-[#4A154B]" />,
     "Slack Catch Up": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
     "Slack AI": <Bot className="h-5 w-5 text-[#4A154B]" />,
     "Out of Office Responder": <Clock className="h-5 w-5 text-[#ECB22E]" />,
     "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Channel Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Granular Admin Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Central Channel Dashboard": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
+    "Central Channel Dashboard": <BarChart className="h-5 w-5 text-[#4A154B]" />,
     "Admin API": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Analytics API (Members)": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
-    "Analytics API (Conversations)": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
-    "App Analytics": <BarChart className="h-5 w-5 text-[#36C5F0]" />,
+    "Analytics API (Members)": <BarChart className="h-5 w-5 text-[#4A154B]" />,
+    "Analytics API (Conversations)": <BarChart className="h-5 w-5 text-[#4A154B]" />,
+    "App Analytics": <BarChart className="h-5 w-5 text-[#4A154B]" />,
     "Custom Retention Policies (Workspace)": <Database className="h-5 w-5 text-[#E01E5A]" />,
     "Custom Retention Policies (Org-Wide)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Lock Guest Names": <Lock className="h-5 w-5 text-[#E01E5A]" />,
-    "Google OAuth 2.0": <UserCheck className="h-5 w-5 text-[#E01E5A]" />,
+    "Lock Guest Names": <Lock className="h-5 w-5 text-[#36C5F0]" />,
+    "Google OAuth 2.0": <UserCheck className="h-5 w-5 text-[#ECB22E]" />,
     "SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Multi-SAML SSO": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "SCIM API Provisioning": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "SCIM API (Guest Provisioning)": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Atlas": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "Custom User Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "IDP Groups": <Users className="h-5 w-5 text-[#36C5F0]" />,
-    "Session Duration - Desktop + Mobile": <Clock className="h-5 w-5 text-[#ECB22E]" />,
-    "Session Management": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Domain Claiming (create workspace)": <Lock className="h-5 w-5 text-[#E01E5A]" />,
+    "SCIM API Provisioning": <Settings className="h-5 w-5 text-[#ECB22E]" />,
+    "SCIM API Provisioning (Guest Provisioning)": <Settings className="h-5 w-5 text-[#ECB22E]" />,
+    "Atlas": <Users className="h-5 w-5 text-[#ECB22E]" />,
+    "Custom User Groups": <Users className="h-5 w-5 text-[#ECB22E]" />,
+    "IDP Groups": <Users className="h-5 w-5 text-[#ECB22E]" />,
+    "Session Duration - Desktop + Mobile": <Clock className="h-5 w-5 text-[#E01E5A]" />,
+    "Session Management": <Settings className="h-5 w-5 text-[#E01E5A]" />,
+    "Domain Claiming (create workspace)": <Lock className="h-5 w-5 text-[#ECB22E]" />,
     "MDM (Mobile Device Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "MAM (Mobile Application Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Native Mobile Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
@@ -85,11 +86,12 @@ const getFeatureIcon = (feature: string) => {
     "Exports (Public Data)": <Database className="h-5 w-5 text-[#E01E5A]" />,
     "Exports (Full Data)": <Database className="h-5 w-5 text-[#E01E5A]" />,
     "Exports (Single User Exports)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Custom Terms of Service": <FileText className="h-5 w-5 text-[#2EB67D]" />,
+    "Custom Terms of Service": <FileText className="h-5 w-5 text-[#E01E5A]" />,
     "Approve Workspaces": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Data Residency (IDR)": <Database className="h-5 w-5 text-[#E01E5A]" />,
-    "Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
-    "99.99% Guaranteed Uptime SLA": <Zap className="h-5 w-5 text-[#ECB22E]" />,
+    "Customer Support Tier": <MessageSquare className="h-5 w-5 text-[#2EB67D]" />,
+    "99.99% Guaranteed Uptime SLA": <Zap className="h-5 w-5 text-[#2EB67D]" />,
+    "Guaranteed Uptime and Fast Customer Support": <Zap className="h-5 w-5 text-[#2EB67D]" />,
     "Integrations": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "Salesforce Channels":  <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Record Unfurls":<Cloud className="h-5 w-5 text-[#36C5F0]" />,
@@ -103,13 +105,14 @@ const getFeatureIcon = (feature: string) => {
     "Salesforce workflow automation (Scheduled triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Sales Home": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Exports (Salesforce Channels)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
-    "Native Device Management: Block Jailbroken Devices": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
-    "Native Device Management: Block Copy / Paste (Mobile)": <Smartphone className="h-5 w-5 text-[#4A154B]" />,
+    "Native Device Management: Block Jailbroken Devices": <Smartphone className="h-5 w-5 text-[#E01E5A]" />,
+    "Native Device Management: Block Copy / Paste (Mobile)": <Smartphone className="h-5 w-5 text-[#E01E5A]" />,
+    "EMM (Enterprise Mobility Management)": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Salesforce Channel AI Summary Tab": <Zap className="h-5 w-5 text-[#36C5F0]" />,
     "AI Admin analytics dashboard": <LineChart className="h-5 w-5 text-[#ECB22E]" />,
     "AI Explain": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "Canvas AI": <FileText className="h-5 w-5 text-[#ECB22E]" />,
-    "Limited Access: Message Limit": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Message Limit": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Full Access: Unlimited Messages": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Multiple searches at once": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Desktop & mobile parity": <Bot className="h-5 w-5 text-[#E01E5A]" />,
@@ -145,7 +148,6 @@ const categorizeFeatures = (features: string[]) => {
       "Canvas",
       "Custom Canvas Templates",
       "Clips",
-      "Slack Connect (Shared Channels)",
       "Multiple Workspaces",
       "Multi-Workspace Channels",
       "Lists",
@@ -188,10 +190,10 @@ const categorizeFeatures = (features: string[]) => {
       "Discovery/DLP API",
       "Data Residency (IDR)",
       "Custom Terms of Service",
-      "Real-Time Search API"
     ],
     "External Collaboration": [
       "Guests",
+      "Slack Connect (Shared Channels)",
       "Sponsored Connections - Slack Connect",
       "Per-Org Customization - Slack Connect",
       "Lock Guest Names"
@@ -229,16 +231,18 @@ const categorizeFeatures = (features: string[]) => {
       "Canvas AI",
       "Channel Expert Agent"
     ],
-    "Slackbot": [
-      "Limited Access: Message Limit",
+    "Slackbot Functionality": [
+      "Message Limit",
       "Full Access: Unlimited Messages",
       "Slack search (including canvases)",
       "Multiple searches at once",
       "Desktop & mobile parity",
       "File uploads & calendar entity read",
       "Create & update canvases",
-      "3P entity read (GDrive, OneDrive, Box, etc)",
       "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)",
+    ],
+    "Slackbot Trust & Security": [
+      "3P entity read (GDrive, OneDrive, Box, etc)",
        "International Data Residency",
        "Full-org kill switch",
        "Custom group access",
@@ -298,13 +302,13 @@ const categorizeFeatures = (features: string[]) => {
 // get section colors
 const getSectionColor = (category: string) => {
   const colorMap: Record<string, string> = {
-    "Collaboration Tools": "#36C5F0", // slack blue
+    "Collaboration Tools": "#2EB67D", // slack green
     "Administration & Analytics": "#4A154B", // slack purple
     "Security & Compliance": "#E01E5A", // slack red
-    "External Collaboration": "#2EB67D", // slack green
+    "External Collaboration": "#36C5F0", // slack blue
     "User Management": "#ECB22E", // slack yellow
     "Data & Exports": "#E01E5A", // slack red
-    "Support & Reliability": "#36C5F0", // slack blue
+    "Support & Reliability": "#2EB67D", // slack green
     "Other Features": "#4A154B", // slack purple
   }
 
