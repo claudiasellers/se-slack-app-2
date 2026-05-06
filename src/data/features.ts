@@ -233,7 +233,7 @@ export const featureData = {
     "EKM compatibility": "Slackbot works with EKM. Slackbot conversations are treated as DM conversations for EKM purposes and are encrypted with the customer key. All canvases created by Slackbot are owned by the user and encrypted with the customer key.",
     "Slackbot Audit logs": "Detailed audit logs track all Slackbot usage, including prompts, responses, what data was accessed, timestamps, user attribution, and metadata. Slackbot fully integrated with Audit Log API and Discovery API for security and compliance.",
     "Channel Expert Agent": "Channel Expert Agent is an AI-powered agent for Slack channels that helps answer frequently asked questions and provides instant, intelligent support directly within Slack channels [1]. It's Slack's first out-of-the-box Agentforce agent designed specifically for help and FAQ-style Slack channels.",
-    "Real-Time Search API": "Lets external AI apps securely search Slack content on-demand without storing data outside of Slack."
+    "Real-Time Search API": "If the customer is building an external app, this API lets external apps securely search Slack content on-demand without storing data outside of Slack."
 
 
   },
