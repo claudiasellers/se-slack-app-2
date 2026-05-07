@@ -5,6 +5,8 @@ import { useState } from "react"
 import {
   ChevronDown,
   ChevronRight,
+  ChevronsDown,
+  ChevronsUp,
   ArrowRight,
   Loader2,
   Users,
@@ -332,16 +334,6 @@ const getSectionTextColor = (category: string) => {
   return textColorMap[category] || getSectionColor(category)
 }
 
-// per-section background alpha (hex). default is "0D" (~5%); yellow sections get a lighter wash.
-const getSectionBgAlpha = (category: string) => {
-  const alphaMap: Record<string, string> = {
-    "Slackbot Functionality": "08",
-    "User Management": "08",
-  }
-
-  return alphaMap[category] || "0D"
-}
-
 // include  new state variables
 export default function PlanComparisonTool() {
   // tab state
@@ -409,6 +401,22 @@ export default function PlanComparisonTool() {
       ...prev,
       [category]: !prev[category],
     }))
+  }
+
+  const anyCategoryExpanded = Object.values(expandedCategories).some(Boolean)
+
+  const toggleAllCategories = () => {
+    const targetState = !anyCategoryExpanded
+    const next: Record<string, boolean> = {}
+    Object.keys(categorizedFeatures).forEach((category) => {
+      next[category] = targetState
+    })
+    setExpandedCategories(next)
+    mixpanel.track("Categories Toggled All", {
+      action: targetState ? "expanded" : "collapsed",
+      tab: activeTab,
+      categories_count: Object.keys(categorizedFeatures).length,
+    })
   }
 
   // get LOB pain points
@@ -1173,11 +1181,31 @@ export default function PlanComparisonTool() {
                       </div>
                     </div>
 
-                    <h3 className="mb-4 text-xl font-semibold text-[#4A154B]">
-                      {upgradeFeatures.length > 0
-                        ? `${upgradeFeatures.length} Features you'll gain by upgrading:`
-                        : "Features you'll gain by upgrading"}
-                    </h3>
+                    <div className="mb-4 flex items-center justify-between gap-4">
+                      <h3 className="text-xl font-semibold text-[#4A154B]">
+                        {upgradeFeatures.length > 0
+                          ? `${upgradeFeatures.length} Features you'll gain by upgrading:`
+                          : "Features you'll gain by upgrading"}
+                      </h3>
+                      {upgradeFeatures.length > 0 && (
+                        <button
+                          onClick={toggleAllCategories}
+                          className="flex flex-shrink-0 items-center gap-1 text-sm font-medium text-[#4A154B] hover:underline"
+                        >
+                          {anyCategoryExpanded ? (
+                            <>
+                              <ChevronsUp className="h-4 w-4" />
+                              <span>Collapse all</span>
+                            </>
+                          ) : (
+                            <>
+                              <ChevronsDown className="h-4 w-4" />
+                              <span>Expand all</span>
+                            </>
+                          )}
+                        </button>
+                      )}
+                    </div>
 
                     {upgradeFeatures.length === 0 ? (
                       <div className="rounded-lg bg-gray-50 p-4 text-center text-gray-500">
@@ -1188,8 +1216,7 @@ export default function PlanComparisonTool() {
                         {Object.entries(categorizedFeatures).map(([category, features]) => (
                           <div
                             key={category}
-                            className="overflow-hidden rounded-xl shadow-md"
-                            style={{ backgroundColor: `${getSectionColor(category)}${getSectionBgAlpha(category)}` }}
+                            className="overflow-hidden rounded-lg bg-white"
                           >
                             <button
                               onClick={() => {
@@ -1201,10 +1228,21 @@ export default function PlanComparisonTool() {
                                   features_count: features.length,
                                 })
                               }}
-                              className="flex w-full items-center justify-between px-5 py-4 text-left"
+                              className="flex w-full items-center gap-2 px-5 py-4 text-left"
                             >
+                              {expandedCategories[category] ? (
+                                <ChevronDown
+                                  className="h-5 w-5 flex-shrink-0"
+                                  style={{ color: getSectionColor(category) }}
+                                />
+                              ) : (
+                                <ChevronRight
+                                  className="h-5 w-5 flex-shrink-0"
+                                  style={{ color: getSectionColor(category) }}
+                                />
+                              )}
                               <h4
-                                className="flex items-center gap-2 text-lg font-medium"
+                                className="flex items-center gap-2 text-xl font-semibold"
                                 style={{ color: getSectionTextColor(category) }}
                               >
                                 <span>{category}</span>
@@ -1212,13 +1250,6 @@ export default function PlanComparisonTool() {
                                   ({features.length} {features.length === 1 ? "feature" : "features"})
                                 </span>
                               </h4>
-                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white">
-                                {expandedCategories[category] ? (
-                                  <ChevronDown className="h-4 w-4 text-gray-500" />
-                                ) : (
-                                  <ChevronRight className="h-4 w-4 text-gray-500" />
-                                )}
-                              </div>
                             </button>
 
                             {expandedCategories[category] && (
@@ -1229,7 +1260,7 @@ export default function PlanComparisonTool() {
                                 return (
                                   <div
                                     key={feature}
-                                    className={`group relative rounded-lg border bg-white p-4 shadow-sm transition-all hover:shadow-md ${
+                                    className={`group relative rounded-lg border bg-white p-4 shadow-md ${
                                       hasPainPoint ? "border-l-4 border-l-[#E01E5A] border-gray-200" : "border-gray-200"
                                     }`}
                                   >
@@ -1285,6 +1316,24 @@ export default function PlanComparisonTool() {
                         ))}
                       </div>
 
+                      <div className="flex items-center gap-4">
+                        <button
+                          onClick={toggleAllCategories}
+                          className="flex items-center gap-1 text-sm font-medium text-[#4A154B] hover:underline"
+                        >
+                          {anyCategoryExpanded ? (
+                            <>
+                              <ChevronsUp className="h-4 w-4" />
+                              <span>Collapse all</span>
+                            </>
+                          ) : (
+                            <>
+                              <ChevronsDown className="h-4 w-4" />
+                              <span>Expand all</span>
+                            </>
+                          )}
+                        </button>
+
                       {/* download PDF button */}
                       <button
                         onClick={() => {
@@ -1310,6 +1359,7 @@ export default function PlanComparisonTool() {
                         <Download className="h-4 w-4" />
                         <span>Download PDF</span>
                       </button>
+                      </div>
                     </div>
 
                     {/* accordions for feature categories */}
@@ -1333,7 +1383,7 @@ export default function PlanComparisonTool() {
                             className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-gray-50"
                           >
                             <h4
-                              className="flex items-center gap-2 text-lg font-medium"
+                              className="flex items-center gap-2 text-xl font-semibold"
                               style={{ color: getSectionTextColor(category) }}
                             >
                               <span>{category}</span>
