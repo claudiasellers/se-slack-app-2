@@ -1013,8 +1013,13 @@ export default function PlanComparisonTool() {
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                               const plan = option.value
                               const action = e.target.checked ? "selected" : "deselected"
+                              const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
                               if (e.target.checked) {
-                                setSelectedPlans((prev) => [...prev, option.value])
+                                setSelectedPlans((prev) =>
+                                  [...prev, option.value].sort(
+                                    (a, b) => planHierarchy.indexOf(a) - planHierarchy.indexOf(b),
+                                  ),
+                                )
                               } else {
                                 setSelectedPlans((prev) => prev.filter((p) => p !== option.value))
                               }
