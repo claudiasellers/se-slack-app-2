@@ -1317,8 +1317,7 @@ export default function PlanComparisonTool() {
                       {Object.entries(categorizedFeatures).map(([category, features]) => (
                         <div
                           key={category}
-                          className="overflow-hidden rounded-xl shadow-md"
-                          style={{ backgroundColor: `${getSectionColor(category)}${getSectionBgAlpha(category)}` }}
+                          className="overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-sm"
                         >
                           <button
                             onClick={() => {
@@ -1331,7 +1330,7 @@ export default function PlanComparisonTool() {
                                 features_count: features.length,
                               })
                             }}
-                            className="flex w-full items-center justify-between px-5 py-4 text-left"
+                            className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-gray-50"
                           >
                             <h4
                               className="flex items-center gap-2 text-lg font-medium"
@@ -1352,7 +1351,7 @@ export default function PlanComparisonTool() {
                           </button>
 
                           {expandedCategories[category] && (
-                            <div className="p-4">
+                            <div className="border-t border-gray-100 p-4">
                               <div className="overflow-x-auto">
                                 <table className="w-full min-w-full divide-y divide-gray-200">
                                   <thead className="bg-gray-50">
