@@ -25,7 +25,7 @@ export const featureData = {
     "Channel Posting Permissions": {free: "(#general channel only)", pro: "(#general channel only)", plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Workflow Builder": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Message Activity": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
-    "Slack Catch Up": { free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
+    "Slack Mobile Catch Up": { free: true, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Out of Office Responder": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Lists": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Slack Channel Templates": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
@@ -141,7 +141,7 @@ export const featureData = {
     "Channel Posting Permissions": "Limit who can post in channels (e.g., lock down a channel to create an 'announcement channel').",
     "Workflow Builder": "No code/low code tool to automate common processes.",
     "Message Activity": "View the engagement stats of individual messages.",
-    "Slack Catch Up": "Swipe through unread conversations on Mobile.",
+    "Slack Mobile Catch Up": "Swipe through unread conversations on Mobile.",
     "Out of Office Responder": "Automatically send an out-of-office response when someone messages you.",
     "Lists": "Track structured information in a table format.",
     "Slack Channel Templates": "Slack Solutions—a full channel-based solution with lists, canvases, and workflows.",
@@ -370,7 +370,7 @@ export const featureData = {
       it: "Lack of visibility into whether important IT announcements or security updates posted in Slack have been seen by relevant employees.",
       engineering: "Difficult to know if engineers have seen a critical update about a service outage or a required security patch, leading to uncertainty and follow-up.",
     },
-    "Slack Catch Up": {
+    "Slack Mobile Catch Up": {
       it: "Employees miss important updates when catching up on mobile due to overwhelming unread messages, potentially impacting response times for IT requests.",
       engineering: "On-call engineers may miss critical alerts on mobile because they are mixed in with dozens of other unread messages from other channels.",
     },

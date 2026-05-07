@@ -46,7 +46,7 @@ const getFeatureIcon = (feature: string) => {
     "Workflow Builder": <Workflow className="h-5 w-5 text-[#2EB67D]" />,
     "Conditional Workflows": <Workflow className="h-5 w-5 text-[#2EB67D]" />,
     "Message Activity": <BarChart className="h-5 w-5 text-[#4A154B]" />,
-    "Slack Catch Up": <MessageSquare className="h-5 w-5 text-[#36C5F0]" />,
+    "Slack Mobile Catch Up": <MessageSquare className="h-5 w-5 text-[#ECB22E]" />,
     "Slack AI": <Bot className="h-5 w-5 text-[#4A154B]" />,
     "Out of Office Responder": <Clock className="h-5 w-5 text-[#ECB22E]" />,
     "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
