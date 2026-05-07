@@ -131,7 +131,7 @@ const getFeatureIcon = (feature: string) => {
     "Slackbot Audit logs": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Channel Expert Agent": <Bot className="h-5 w-5 text-[#ECB22E]" />,
     "Real-Time Search API": <Bot className="h-5 w-5 text-[#ECB22E]" />,
-    
+    "Slackbot Scheduled Automations": <Bot className="h-5 w-5 text-[#E01E5A]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -239,10 +239,11 @@ const categorizeFeatures = (features: string[]) => {
       "Desktop & mobile parity",
       "File uploads & calendar entity read",
       "Create & update canvases",
+      "3P entity read (GDrive, OneDrive, Box, etc)",
       "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)",
+      "Slackbot Scheduled Automations"
     ],
     "Slackbot Trust & Security": [
-      "3P entity read (GDrive, OneDrive, Box, etc)",
        "International Data Residency",
        "Full-org kill switch",
        "Custom group access",
