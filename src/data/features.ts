@@ -117,7 +117,9 @@ export const featureData = {
     "Slackbot Audit logs": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Channel Expert Agent": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Real-Time Search API": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "Slackbot Scheduled Automations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true}
+    "Slackbot Skills": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Scheduled Automations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Emails - search, draft, and send": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true}
 
 
 
@@ -197,7 +199,7 @@ export const featureData = {
     "Salesforce Channels": "Dedicated Slack channel that syncs with a specific Salesforce record (e.g. Account or Opportunity).",
     "Record Unfurls":"Rich previews of Salesforce records that automatically display when a record is shared or linked in Slack channels, showing key record information like the record name, object type, and additional fields based on admin configuration ",
     "Record Search": "Allows users to search for and find Salesforce records directly within Slack.  By default, users can search across six standard Salesforce objects: Account, Case, Contact, Lead, Opportunity, and Task. (Custom objects may be configurable by a Salesforce System Administrator). ",
-    "Record View & Edit": "Users can view and update Salesforce records directly within Slack without switching platforms [1 · Help Center]. Users can edit records if they have the appropriate permissions in Salesforce - their Slack access mirrors their Salesforce permissions",
+    "Record View & Edit": "Users can view and update Salesforce records directly within Slack without switching platforms. Users can edit records if they have the appropriate permissions in Salesforce - their Slack access mirrors their Salesforce permissions",
     "Related List Views": "Displays related Salesforce records (e.g., opportunities linked to an account) as tabs directly within Slack channels.", 
     "Connect multiple Salesforce orgs": "The ability to link more than one Salesforce organization to a single Slack workspace.",
     "Salesforce standalone List Views": "Allows users to access their personal Salesforce list views (e.g., 'My Opportunities') and edit data directly within Slack. Data is bi-directionally synced.",
@@ -233,10 +235,13 @@ export const featureData = {
     "Slackbot DLP": "DLP policies can be applied to Slackbot. All user prompts are scanned before inference, blocked/tombstoned prompts generate user-visible explanations, and all DLP actions are tracked in the DLP Admin and Audit Log dashboards.",
     "EKM compatibility": "Slackbot works with EKM. Slackbot conversations are treated as DM conversations for EKM purposes and are encrypted with the customer key. All canvases created by Slackbot are owned by the user and encrypted with the customer key.",
     "Slackbot Audit logs": "Detailed audit logs track all Slackbot usage, including prompts, responses, what data was accessed, timestamps, user attribution, and metadata. Slackbot fully integrated with Audit Log API and Discovery API for security and compliance.",
-    "Channel Expert Agent": "Channel Expert Agent is an AI-powered agent for Slack channels that helps answer frequently asked questions and provides instant, intelligent support directly within Slack channels [1]. It's Slack's first out-of-the-box Agentforce agent designed specifically for help and FAQ-style Slack channels.",
+    "Channel Expert Agent": "Channel Expert Agent is an AI-powered agent for Slack channels that helps answer frequently asked questions and provides instant, intelligent support directly within Slack channels. It's Slack's first out-of-the-box Agentforce agent designed specifically for help and FAQ-style Slack channels.",
     "Real-Time Search API": "If the customer is building an external app, this API lets external apps securely search Slack content on-demand without storing data outside of Slack.",
     "Exports (Salesforce Channels)": "All Salesforce channels can be included in Slack's full data export functionality for compliance and archival purposes.",
-    "Slackbot Scheduled Automations": "Automated actions Slackbot can run on a recurring or one-time schedule. triggered by time, event-based tasks (i.e. when a reaction is added or a message is posted), or webhook triggers for external systems."
+    "Slackbot Scheduled Automations": "Automated actions Slackbot can run on a recurring or one-time schedule. triggered by time, event-based tasks (i.e. when a reaction is added or a message is posted), or webhook triggers for external systems.",
+    "Slackbot Skills": "User-defined AI playbooks that combine instructions and tools into a single command. Instead of giving Slackbot one-off prompts, you trigger a skill to have Slackbot execute a saved playbook.",
+    "Slackbot Salesforce Search": "Allows Slackbot to search and retrieve data directly from Salesforce records. Instead of switching apps, you can query opportunities, accounts, or contacts using natural language and get the specific details surfaced immediately in your chat.",
+    "Emails - search, draft, and send": "Search, draft, and send emails directly within Slack using your Gmail or Outlook account. Use Slackbot to summarize your inbox, generate drafts based on channel discussions, and send them instantly without switching apps."
 
 
   },
@@ -267,7 +272,7 @@ export const featureData = {
       finance:
         "Manual processes for approvals (e.g., expense reports, purchase orders) are slow and lack easy tracking within the primary communication tool.",
     },
-    Canvas: {
+    "Canvas": {
       it: "Reliance on external document tools for shared knowledge creates information silos and adds tool complexity for IT documentation.",
       engineering: "Technical designs, project plans, and incident post-mortems are stored in various external docs, disconnected from the real-time conversations and code repositories where the work happens.",
       hr: "Employee handbooks, policies, and guides stored externally are hard to find and maintain, leading to outdated information.",
@@ -321,8 +326,7 @@ export const featureData = {
     "Slack Connect (Shared Channels)": {
       it: "Collaboration with external organizations via email is slow, insecure, and lacks transparency, increasing IT overhead for communication governance.",
       engineering: "Coordinating with a 3rd party vendor on an API integration or a security audit over email is slow, and important technical details get lost in long threads.",
-      sales:
-        "Communicating and collaborating with external partners, prospects, or customers relies on slow, siloed email threads.",
+      sales:"Communicating and collaborating with external partners, prospects, or customers relies on slow, siloed email threads.",
       hr: "Coordinating with external recruiters, benefits providers, or consultants involves fragmented email communication.",
       marketing:
         "Managing campaigns with external agencies or partners through email leads to delays and lost context.",
@@ -374,6 +378,8 @@ export const featureData = {
       hr: "Employees returning from leave face a backlog of messages, and colleagues lack visibility into absences, causing communication delays.",
       it: "Communication delays and frustration due to colleagues being unaware of a user's absence and not knowing when to expect a response.",
       engineering: "Code reviews get blocked and deployments are delayed because a required reviewer is on vacation, and the team was unaware of their absence.",
+      sales: "Prospects and customers experience 'radio silence' during critical deal stages when a rep is away, leading to frustration and potential deal slippage because colleagues don't realize they need to step in.",
+      operations: "Cross-functional project momentum stalls when key stakeholders go OOO without a visible notification, leaving teams to wait on decisions that could have been delegated."
     },
     "Lists": {
       it: "Tracking IT assets, project tasks, or compliance items within Slack relies on unstructured messages or external spreadsheets.",
@@ -548,6 +554,8 @@ export const featureData = {
     "Multiple Workspaces": {
       it: "Difficulty managing security, compliance, information silos, and potential sprawl across multiple, disconnected Slack workspaces within the organization.",
       engineering: "Managing different Slack workspaces for development, production, and corporate creates information silos and makes cross-workspace collaboration on incidents difficult.",
+      sales: "Enterprise sales teams lack a professional, white-labeled environment for high-touch prospects; without a dedicated customer workspace, collaborating with external stakeholders feels 'cluttered' alongside internal channels and risks the accidental sharing of sensitive internal intel."
+
     },
     "Thread & Channel Summaries": {
       it: "On-call engineers joining a critical incident mid-stream waste valuable time reading the entire channel history to get context.",
@@ -598,7 +606,10 @@ export const featureData = {
       operations:"Creating a project status report means manually pulling documents from SharePoint, task updates from Asana, and team discussions from Slack."
     },
     "3rd Party Agent Apps": {
-      engineering: "Without access to third-party AI assistants, engineers have to build or manage internal bots manually—slowing down adoption of helpful AI tools and creating friction when teams want to experiment with new assistants for support, ticketing, or workflow augmentation."
+      engineering: "Without access to third-party AI assistants, engineers have to build or manage internal bots manually—slowing down adoption of helpful AI tools and creating friction when teams want to experiment with new assistants for support, ticketing, or workflow augmentation.",
+      sales: "Sales teams often need specialized tools (like Gong, Clari, or custom research agents) to qualify leads, but switching between multiple browser tabs and Slack causes them to miss critical real-time signals.",
+      customer_support: "Support agents often need specialized tools (like Zendesk, Jira, or custom support agents) to resolve complex issues, but switching between multiple browser tabs and Slack causes them to miss critical real-time signals.",
+      marketing: "Marketing teams struggle to keep up with campaign performance data across multiple platforms; having specialized agents in Slack would allow them to query data without leaving their collaboration hub."
       },
     "AI Workflow Builder": {
       it: "Simple automation requests from other departments get backlogged because they require an IT developer to build them in a complex tool.",
@@ -609,7 +620,12 @@ export const featureData = {
       operations:"Team leads who want to automate simple processes, like a weekly project update request, can't do so without help from a technical team."
     },
     "AI Steps in Workflow Builder": {
-      engineering: "Engineers might want to automatically summarize bug threads, incident chatter, or release updates from public channels as part of a Slack workflow—but can't without Slack AI being a step in workflow builder."
+      engineering: "Engineers might want to automatically summarize bug threads, incident chatter, or release updates from public channels as part of a Slack workflow—but can't without Slack AI being a step in workflow builder.",
+      sales: "Sales leaders and AEs lose visibility into deal progress because manually writing 'recap' messages after every meeting or milestone is a chore that reps often skip to stay focused on selling.",
+      it: "IT teams struggle to keep stakeholders informed on long-running technical projects because providing regular, manual status summaries is time-consuming and often falls to the bottom of the priority list.",
+      customer_support: "Escalating complex issues to engineering is delayed because support agents have to manually synthesize hours of troubleshooting chatter into a concise summary for the technical team.",
+      operations: "Cross-functional projects suffer from 'information debt' where new stakeholders joining a project can't quickly get a high-level summary of the work completed to date."
+
     },
     "Salesforce Channels": {
       marketing: "Marketing provides support for major deals, but lacks a single place to coordinate with the sales team on account-specific messaging and assets.",
@@ -655,10 +671,15 @@ export const featureData = {
       it: "Without EMM, IT can't prevent employees from accessing Slack on personal or jailbroken devices—making it easy for sensitive company data to be downloaded, screen-captured, or shared outside managed environments, increasing the risk of data leaks, compliance violations, and insider threats."
     },
     "Catchup Summaries on Mobile": {
-      it: "When an on-call engineer is paged for a major incident, they lose critical minutes manually scrolling through alerts and chat history to understand the problem, directly increasing the system's downtime (MTTR)."
+      it: "When an on-call engineer is paged for a major incident, they lose critical minutes manually scrolling through alerts and chat history to understand the problem, directly increasing the system's downtime (MTTR).",
+      sales: "Account Executives arriving at a client site often go in 'blind' because they didn't have time to scroll through 50+ messages on their phone to see the latest internal pivot or risk signal.",
+      operations: "Decision-making is delayed when leaders traveling or in meetings can't quickly get the 'gist' of a conversation, forcing teams to wait hours for an approval or a simple 'yes/no'."
     },
     "AI Language Translations": {
-      it: "The IT department's collective knowledge becomes siloed by geography; valuable documentation and internal expertise from one region are inaccessible to teams in another, forcing engineers to constantly reinvent the wheel and solve the same problems repeatedly."
+      it: "The IT department's collective knowledge becomes siloed by geography; valuable documentation and internal expertise from one region are inaccessible to teams in another, forcing engineers to constantly reinvent the wheel and solve the same problems repeatedly.",
+      sales: "Global sales teams struggle to collaborate on multinational deals when internal communication or customer feedback is shared in a language they don't speak fluently.",
+      customer_support: "Providing consistent support to a global customer base is difficult when regional experts can't easily understand or contribute to tickets in different languages.",
+      hr: "Communicating company-wide policy changes to a global workforce is prone to misunderstanding without instant, accurate translation of channel discussions."
     },
     "Conditional Workflows": {
       it: "Manual, rigid workflows for IT requests (e.g., access grants, hardware requests) lack the flexibility to handle variations, leading to delays and manual intervention.",
@@ -669,7 +690,8 @@ export const featureData = {
       hr: "Workflows for employee requests (e.g., leave, HR questions) are linear and cannot be dynamically routed based on department, seniority, or request type, creating administrative bottlenecks."
     },
     "AI Admin analytics dashboard": {
-      it: "Customers who purchase Slack AI are not able to understand adoption of Slack AI and overall usage and activity patterns (daily/weekly/monthly active users, feature adoption rates, etc.)"
+      it: "Customers who purchase Slack AI are not able to understand adoption of Slack AI and overall usage and activity patterns (daily/weekly/monthly active users, feature adoption rates, etc.)",
+      operations: "Without data on usage patterns, operations leaders can't determine which automated workflows are actually saving the most time across the organization."
     },
     "AI Explain": {
       it: "IT teams struggle to quickly understand and troubleshoot complex technical discussions, code snippets, or system alerts shared in channels, requiring time-consuming context switching to research unfamiliar terms or processes.",
@@ -695,14 +717,130 @@ export const featureData = {
     it: "Salesforce Admins and IT teams are constantly tasked with building complex custom notifications that often fail to reach the right person at the right time. They face a backlog of requests for 'better visibility' but lack a simple way to deliver actionable, private alerts that don't require users to leave their primary communication tool."
 },
 "Salesforce Channel AI Summary Tab": {
-    sales: "Account Executives managing complex enterprise deals often lose track of critical conversations happening across multiple opportunity, product, and escalation channels. They waste 30+ minutes each morning manually catching up across 5-10 related channels to prepare for executive calls, often missing key objections or blockers that were surfaced in parallel threads, directly impacting their ability to address concerns and close deals on time.",
-    customer_support: "Support managers and escalation teams handling high-touch accounts lose valuable context when customer issues span multiple channels—primary account channel, case-specific threads, engineering escalation channels. Also, CSMs inheriting accounts or jumping into renewal conversations are completely blind to months of context spread across account channels, QBR channels, and product adoption discussions. They spend their first few weeks playing 'catch-up archaeology' instead of driving value, risking churn during critical transition periods because they can't quickly understand account history and sentiment."
-  }
-},
+    sales: "Account Executives managing complex enterprise deals often lose track of critical conversations happening across multiple opportunity, product, and escalation channels. They waste 30+ minutes each morning manually catching up across 5-10 related channels to prepare for executive calls, often missing key objections or blockers that were surfaced in parallel threads, directly impacting their ability to address concerns and close deals on time. Sales leaders and account executives joining a mature deal channel also struggle to catch up on weeks of cross-functional history, leading to redundant questions and delayed decision-making.",
+    operations: "Managers overseeing multiple regional sales channels find it impossible to stay informed on every deal's progress without spending hours reading through thousands of messages.",
+    customer_support: "Support managers and escalation teams handling high-touch accounts lose valuable context when customer issues span multiple channels—primary account channel, case-specific threads, engineering escalation channels. Also, CSMs inheriting accounts or jumping into renewal conversations are completely blind to months of context spread across account channels, QBR channels, and product adoption discussions. They spend their first few weeks playing 'catch-up archaeology' instead of driving value, risking churn during critical transition periods because they can't quickly understand account history and sentiment. When a high-priority account has multiple active support cases across different channels, it's difficult for leadership to get a synthesized view of the overall account health."
+  },
 "Real-Time Search API": {
   engineering: "Developers must build and maintain costly custom search infrastructure or rely on stale indexed data, slowing down AI agent and app development with inaccurate or outdated results.",
   sales: "AI-powered sales tools lack real-time access to the latest deal context, customer conversations, and pipeline updates living in Slack, leading to incomplete insights and missed signals.",
   customer_support: "Third-party support platforms and AI agents can't surface the most current case context, escalation threads, or resolution history from Slack, resulting in slower response times and poor customer experiences.",
   operations: "Automated workflows and third-party AI tools are unable to query live Slack data for real-time status updates or cross-functional decisions, forcing manual lookups and creating bottlenecks.",
-}
+}, 
+"3P entity read (GDrive, OneDrive, Box, etc)": {
+    it: "Information remains siloed in cloud storage tools, forcing IT to manage fragmented knowledge bases that are difficult for employees to search globally.",
+    engineering: "Technical specs and architecture diagrams in cloud drives are disconnected from daily chat, leading to outdated implementations.",
+    sales: "Critical deal documents (contracts, pitch decks) live in separate folders, making it hard to find the latest versions during active negotiations.",
+    marketing: "Brand guidelines and campaign assets are buried in deep folder structures, causing delays in asset retrieval for cross-functional launches.",
+    finance: "Audit trails and expense policies are buried in cloud docs, leading to non-compliance because employees find it too hard to locate the correct procedures."
+  },
+  "Create & update canvases": {
+    engineering: "Post-mortem summaries and incident timelines are tedious to compile manually from hundreds of thread messages, delaying the learning process.",
+    operations: "Meeting notes and action items are often lost in the scroll of a channel, leading to poor follow-through on cross-functional initiatives.",
+    customer_support: "Handoffs between support shifts are disorganized, as reps have to manually summarize complex ticket histories for the next person.",
+    sales: "Account plans and deal room summaries are static or non-existent because reps don't have the time to manually synthesize channel noise into a structured document.",
+    marketing: "Creative briefs get lost in long threads, leading to 'brief creep' and misalignment between stakeholders and the production team.",
+    finance: "Monthly close checklists or budget review notes are buried in messages, making it hard to track status and ownership across the team."
+  },
+  "Custom group access": {
+    it: "Inability to roll out AI tools selectively to vetted teams creates security concerns and prevents a controlled pilot phase.",
+    operations: "Lack of granular control over tool access leads to unpredictable costs and potential misuse by departments that don't require the feature."
+  },
+  "Desktop & mobile parity": {
+    sales: "Field reps on the go lose access to powerful automation tools when switching to mobile, hindering their ability to update deals between meetings.",
+    operations: "On-site managers can't trigger the same workflows or access the same summaries as the office-based team, creating information gaps.",
+    it: "Support for mobile users becomes difficult when the feature set is 'lite,' leading to increased tickets from frustrated remote employees.",
+    customer_support: "On-call support leads can't properly manage escalations from their phone if they lack the full search and summary features available on desktop."
+  },
+  "EKM compatibility": {
+    it: "Organizations with strict data sovereignty requirements cannot use AI features without the ability to manage their own encryption keys.",
+    finance: "Regulated industries face compliance roadblocks when AI-generated content isn't covered by the same security standard as standard messages."
+  },
+  "Emails - search, draft, and send": {
+    sales: "Constant context switching between Slack and email clients causes reps to lose focus and miss critical follow-up windows with prospects.",
+    customer_support: "Communicating with external vendors who aren't in Slack requires leaving the collaboration environment, breaking the flow of work.",
+    hr: "Drafting repetitive recruiting emails is time-consuming when you can't leverage the context of internal channel discussions.",
+    marketing: "Coordinating with external agencies over email is disjointed; teams struggle to keep the internal Slack strategy aligned with the external email execution."
+  },
+  "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": {
+    it: "Employees struggle with 'information sprawl,' leading to increased support tickets asking where specific resources are located.",
+    sales: "Reps lose momentum in deals because they have to jump between multiple tabs to find a contract in Box and a lead in Salesforce.",
+    engineering: "Searching for technical context is inefficient when bug reports are in Jira, docs are in GDrive, and the fix was discussed in Slack.",
+    marketing: "Creative teams waste time searching across three different storage platforms just to find the latest version of a high-res asset.",
+    finance: "Finance leads struggle to pull together a full picture of a vendor's history when contracts, invoices, and discussions are scattered across different apps."
+  },
+  "File uploads & calendar entity read": {
+    sales: "Reps spend too much time manually checking calendars or digging through PDFs for specific contract terms instead of selling.",
+    it: "Answering basic 'how-to' questions often requires IT to manually read through lengthy PDF manuals for employees.",
+    hr: "Employees constantly ping HR for details found in PDF benefit guides because they cannot easily query the document for a specific answer.",
+    customer_support: "Support agents waste time manually reading technical manuals or customer-provided PDFs to find a single troubleshooting step."
+  },
+  "Filtered & single user export": {
+    it: "Legal discovery or internal investigations require massive, resource-heavy exports of the entire organization just to find data on one individual.",
+    hr: "Handling sensitive personnel issues or compliance audits is difficult when data cannot be surgically exported for specific users."
+  },
+  "Full Access: Unlimited Messages": {
+    it: "Artificial usage caps on productivity tools frustrate power users and lead to 'shadow AI' where employees use unapproved personal tools to get work done.",
+    engineering: "Engineers working on complex problems hit message limits during critical troubleshooting sessions, halting their progress.",
+    sales: "High-volume sales teams hit limits during peak end-of-quarter deal cycles, forcing them back into manual, slow-moving workflows.",
+    customer_support: "Support agents dealing with high ticket volumes are penalized by caps, slowing down their ability to resolve customer issues at scale."
+  },
+  "Full Data Export": {
+    it: "Compliance gaps occur when AI-driven conversations are excluded from the primary archival and data retention workflows.",
+    finance: "During audits, it is difficult to reconstruct the full context of a decision if Slackbot DMs are siloed from the rest of the export data.",
+    legal: "Corporate counsel cannot guarantee a full 'chain of custody' for evidence during litigation if AI interactions aren't included in global exports."
+  },
+  "Full-org kill switch": {
+    it: "IT lacks the 'emergency brake' needed to instantly stop AI usage across the company if a security vulnerability or compliance issue is identified.",
+    operations: "Risk management is difficult without a centralized way to immediately disable features org-wide during an active security incident."
+  },
+  "Message Limit": {
+    it: "Low message caps prevent employees from actually integrating AI into their daily habits, resulting in low ROI on the software investment.",
+    sales: "Reps who hit their limit mid-week are forced to return to manual data entry, slowing down their sales cycle."
+  },
+  "Multiple searches at once": {
+    engineering: "Sequential searching for technical dependencies across various platforms is too slow during a production outage.",
+    operations: "Leaders need to pull context from multiple cross-functional projects simultaneously; slow, one-by-one searching hinders rapid decision-making.",
+    sales: "Prepping for a call requires pulling info from Salesforce, GDrive, and Slack; doing this one-by-one makes call prep a 20-minute chore instead of a 2-minute check."
+  },
+  "Slack search (including canvases)": {
+    it: "Valuable troubleshooting data in canvases is often 'dark data' that isn't searchable, leading to duplicated efforts across the IT team.",
+    engineering: "Critical architectural decisions made in a canvas are lost if they don't appear in standard global search results.",
+    sales: "Important deal notes or account strategy stored in a canvas are useless if they don't surface when a rep searches for that account name.",
+    marketing: "Campaign briefs stored in canvases are hard to find, leading to teams accidentally working off outdated versions of a strategy."
+  },
+  "Slackbot Audit logs": {
+    it: "IT cannot monitor for potential data misuse or 'prompt injection' attempts without a detailed, attributable record of all AI interactions.",
+    finance: "Compliance officers cannot verify that AI usage meets internal governance standards without timestamps and user attribution data."
+  },
+  "Slackbot DLP": {
+    it: "The risk of employees inadvertently sharing PII or trade secrets with an AI model prevents the organization from adopting modern productivity tools.",
+    hr: "Sensitive employee data could be entered into prompts, creating a privacy liability if it isn't automatically scanned and blocked."
+  },
+  "Slackbot Scheduled Automations": {
+    operations: "Manual tracking of recurring project updates is inconsistent; teams need event-based triggers to ensure data flows without human intervention.",
+    it: "System status checks and maintenance reminders are manually posted, taking time away from more complex infrastructure tasks.",
+    sales: "Weekly pipeline roll-ups or 'stale deal' alerts are handled manually, leading to poor data hygiene and inaccurate end-of-month reporting.",
+    marketing: "Campaign launch countdowns or recurring creative reviews require manual pings, which are easily forgotten during busy launch weeks."
+  },
+  "Slackbot Skills": {
+    engineering: "Engineers have to repeatedly type complex instructions for recurring tasks like 'summarize this incident' instead of using a one-click playbook.",
+    hr: "Standardized processes like 'Onboard new hire' are executed inconsistently when they rely on manual prompts rather than a saved skill.",
+    sales: "Reps waste time writing the same prompts for 'prepare me for this meeting' or 'summarize this thread for the CRM' every day.",
+    customer_support: "Agents have to remember specific instructions for 'format this for Jira' or 'summarize for shift handoff' instead of clicking a single skill."
+  },
+  "Channel Expert Agent": {
+    sales: "Sales reps spend hours waiting for responses in 'Ask-Product' or 'Ask-Legal' channels to get quick answers on technical specs or contract terms, causing deal momentum to stall while they wait for a human expert to become available.",
+    it: "IT help desk staff are bogged down by 'how-to' questions that are already answered in pinned posts or documentation, leading to longer resolution times for critical issues.",
+    customer_support: "High-volume 'help' channels are flooded with repetitive questions, causing support staff to burn out on basic queries instead of handling complex escalations.",
+    hr: "HR teams spend excessive time answering the same questions about benefits, payroll, and holidays, especially during peak periods like open enrollment.",
+    engineering: "Platform and DevOps teams are constantly interrupted in 'ask-eng' channels with basic setup questions that have been answered dozens of times before."
+  },
+  "Salesforce workflow automation (Scheduled triggers)": {
+    sales: "Pipeline hygiene suffers because manual 'stale opportunity' checks are inconsistent, leading to inaccurate forecasting and reps pursuing deals that should have been closed or advanced weeks ago.",
+    operations: "Sales leaders lack a consistent, high-level view of account health because they have to manually pull reports to see which key records haven't been updated, rather than receiving proactive summaries in-channel.",
+    finance: "Billing and revenue teams face delays when sales reps forget to update critical contract fields in Salesforce, creating a manual follow-up burden to ensure month-end data is accurate.",
+    marketing: "Lead conversion rates drop when 'mql' records sit unaddressed in Salesforce; without scheduled nudges in Slack, reps may overlook new leads during busy selling periods."
+  }
+  }
 }
