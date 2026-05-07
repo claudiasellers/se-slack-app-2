@@ -325,6 +325,23 @@ const getSectionColor = (category: string) => {
   return colorMap[category] || "#4A154B" // defaukt to slack purple
 }
 
+// optional override for the title text color when it should differ from the section bg color
+const getSectionTextColor = (category: string) => {
+  const textColorMap: Record<string, string> = {}
+
+  return textColorMap[category] || getSectionColor(category)
+}
+
+// per-section background alpha (hex). default is "0D" (~5%); yellow sections get a lighter wash.
+const getSectionBgAlpha = (category: string) => {
+  const alphaMap: Record<string, string> = {
+    "Slackbot Functionality": "08",
+    "User Management": "08",
+  }
+
+  return alphaMap[category] || "0D"
+}
+
 // include  new state variables
 export default function PlanComparisonTool() {
   // tab state
@@ -668,6 +685,13 @@ export default function PlanComparisonTool() {
           const categorized = categorizeFeatures(features)
           setCategorizedFeatures(categorized)
           categorizedForTracking = categorized
+
+          // default all categories expanded
+          const initialExpandState: Record<string, boolean> = {}
+          Object.keys(categorized).forEach((category) => {
+            initialExpandState[category] = true
+          })
+          setExpandedCategories(initialExpandState)
 
           // get pain points if line of business is selected
           if (lineOfBusiness) {
@@ -1160,13 +1184,45 @@ export default function PlanComparisonTool() {
                         No additional features available in this upgrade path.
                       </div>
                     ) : (
-                      <div className="space-y-8">
+                      <div className="space-y-4">
                         {Object.entries(categorizedFeatures).map(([category, features]) => (
-                          <div key={category}>
-                            <h4 className="mb-3 text-lg font-medium" style={{ color: getSectionColor(category) }}>
-                              {category}
-                            </h4>
-                            <div className="grid gap-4 sm:grid-cols-2">
+                          <div
+                            key={category}
+                            className="overflow-hidden rounded-xl shadow-md"
+                            style={{ backgroundColor: `${getSectionColor(category)}${getSectionBgAlpha(category)}` }}
+                          >
+                            <button
+                              onClick={() => {
+                                toggleCategory(category)
+                                mixpanel.track("Category Expanded", {
+                                  category_name: category,
+                                  action: expandedCategories[category] ? "collapsed" : "expanded",
+                                  tab: activeTab,
+                                  features_count: features.length,
+                                })
+                              }}
+                              className="flex w-full items-center justify-between px-5 py-4 text-left"
+                            >
+                              <h4
+                                className="flex items-center gap-2 text-lg font-medium"
+                                style={{ color: getSectionTextColor(category) }}
+                              >
+                                <span>{category}</span>
+                                <span className="text-sm font-normal opacity-80">
+                                  ({features.length} {features.length === 1 ? "feature" : "features"})
+                                </span>
+                              </h4>
+                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white">
+                                {expandedCategories[category] ? (
+                                  <ChevronDown className="h-4 w-4 text-gray-500" />
+                                ) : (
+                                  <ChevronRight className="h-4 w-4 text-gray-500" />
+                                )}
+                              </div>
+                            </button>
+
+                            {expandedCategories[category] && (
+                            <div className="grid gap-4 px-5 pb-5 sm:grid-cols-2">
                               {features.map((feature) => {
                                 const hasPainPoint = submittedLineOfBusiness && painPoints[feature]
 
@@ -1208,6 +1264,7 @@ export default function PlanComparisonTool() {
                                 )
                               })}
                             </div>
+                            )}
                           </div>
                         ))}
                       </div>
@@ -1258,7 +1315,11 @@ export default function PlanComparisonTool() {
                     {/* accordions for feature categories */}
                     <div className="space-y-4">
                       {Object.entries(categorizedFeatures).map(([category, features]) => (
-                        <div key={category} className="rounded-lg border border-gray-200">
+                        <div
+                          key={category}
+                          className="overflow-hidden rounded-xl shadow-md"
+                          style={{ backgroundColor: `${getSectionColor(category)}${getSectionBgAlpha(category)}` }}
+                        >
                           <button
                             onClick={() => {
                               toggleCategory(category)
@@ -1270,10 +1331,16 @@ export default function PlanComparisonTool() {
                                 features_count: features.length,
                               })
                             }}
-                            className="flex w-full items-center justify-between rounded-t-lg bg-gray-50 px-4 py-3 text-left"
+                            className="flex w-full items-center justify-between px-5 py-4 text-left"
                           >
-                            <h4 className="text-lg font-medium" style={{ color: getSectionColor(category) }}>
-                              {category}
+                            <h4
+                              className="flex items-center gap-2 text-lg font-medium"
+                              style={{ color: getSectionTextColor(category) }}
+                            >
+                              <span>{category}</span>
+                              <span className="text-sm font-normal opacity-80">
+                                ({features.length} {features.length === 1 ? "feature" : "features"})
+                              </span>
                             </h4>
                             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white">
                               {expandedCategories[category] ? (
