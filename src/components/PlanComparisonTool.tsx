@@ -121,6 +121,7 @@ const getFeatureIcon = (feature: string) => {
     "Create & update canvases": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "3P entity read (GDrive, OneDrive, Box, etc)": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot Skills": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "International Data Residency": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Full-org kill switch": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Custom group access": <Bot className="h-5 w-5 text-[#E01E5A]" />,
@@ -131,7 +132,9 @@ const getFeatureIcon = (feature: string) => {
     "Slackbot Audit logs": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Channel Expert Agent": <Bot className="h-5 w-5 text-[#ECB22E]" />,
     "Real-Time Search API": <Bot className="h-5 w-5 text-[#ECB22E]" />,
-    "Slackbot Scheduled Automations": <Bot className="h-5 w-5 text-[#E01E5A]" />
+    "Slackbot Scheduled Automations": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot Salesforce Search": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Emails - search, draft, and send": <Bot className="h-5 w-5 text-[#E01E5A]" />,
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -241,7 +244,10 @@ const categorizeFeatures = (features: string[]) => {
       "Create & update canvases",
       "3P entity read (GDrive, OneDrive, Box, etc)",
       "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)",
-      "Slackbot Scheduled Automations"
+      "Slackbot Scheduled Automations",
+      "Slackbot Skills",
+      "Slackbot Salesforce Search",
+      "Emails - search, draft, and send"
     ],
     "Slackbot Trust & Security": [
        "International Data Residency",
