@@ -1352,7 +1352,7 @@ export default function PlanComparisonTool() {
                                           return (
                                             <td
                                               key={`${feature}-${plan}`}
-                                              className="whitespace-nowrap px-6 py-4 text-sm align-top"
+                                              className="px-6 py-4 text-sm align-top whitespace-normal break-words"
                                             >
                                               {hasFeature === true ? (
                                                 <div className="flex items-center text-green-600">
