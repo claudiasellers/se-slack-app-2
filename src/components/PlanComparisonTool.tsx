@@ -317,6 +317,9 @@ const getSectionColor = (category: string) => {
     "Data & Exports": "#E01E5A", // slack red
     "Support & Reliability": "#2EB67D", // slack green
     "Other Features": "#4A154B", // slack purple
+    "Salesforce Integration": "#36C5F0", // slack blue
+    "Slack AI": "#4A154B", // slack purple
+    "Slackbot Functionality": "#E01E5A", // slack pink/red
   }
 
   return colorMap[category] || "#4A154B" // defaukt to slack purple
