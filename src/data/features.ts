@@ -456,6 +456,7 @@ export const featureData = {
     },
     "Custom User Groups": {
       it: "Manually adding relevant users to channels or mentioning large teams is inefficient and prone to missing people.",
+      sales: "Sales leaders struggle to ensure that every Account Executive is in the right regional, pod, or territory channel, leading to 'information gaps' where reps miss critical deal updates or competitive intel simply because they weren't manually added to a new channel."
     },
     "IDP Groups": {
       it: "Keeping Slack channel memberships and workspace access synchronized with dynamic groups defined in the corporate identity provider (IDP) requires manual effort.",
@@ -673,13 +674,15 @@ export const featureData = {
     "Catchup Summaries on Mobile": {
       it: "When an on-call engineer is paged for a major incident, they lose critical minutes manually scrolling through alerts and chat history to understand the problem, directly increasing the system's downtime (MTTR).",
       sales: "Account Executives arriving at a client site often go in 'blind' because they didn't have time to scroll through 50+ messages on their phone to see the latest internal pivot or risk signal.",
-      operations: "Decision-making is delayed when leaders traveling or in meetings can't quickly get the 'gist' of a conversation, forcing teams to wait hours for an approval or a simple 'yes/no'."
+      operations: "Decision-making is delayed when leaders traveling or in meetings can't quickly get the 'gist' of a conversation, forcing teams to wait hours for an approval or a simple 'yes/no'.",
+      engineering: "On-call engineers are often overwhelmed by a flood of incident alerts and discussion threads on mobile; without a quick summary, they struggle to distinguish between a 'false alarm' and a critical system failure while away from their desks."
     },
     "AI Language Translations": {
       it: "The IT department's collective knowledge becomes siloed by geography; valuable documentation and internal expertise from one region are inaccessible to teams in another, forcing engineers to constantly reinvent the wheel and solve the same problems repeatedly.",
       sales: "Global sales teams struggle to collaborate on multinational deals when internal communication or customer feedback is shared in a language they don't speak fluently.",
       customer_support: "Providing consistent support to a global customer base is difficult when regional experts can't easily understand or contribute to tickets in different languages.",
-      hr: "Communicating company-wide policy changes to a global workforce is prone to misunderstanding without instant, accurate translation of channel discussions."
+      hr: "Communicating company-wide policy changes to a global workforce is prone to misunderstanding without instant, accurate translation of channel discussions.",
+      engineering: "Global engineering teams lose speed and accuracy when technical documentation, PR comments, or incident updates are shared in a colleague's native language, leading to 'lost-in-translation' bugs or deployment errors.",
     },
     "Conditional Workflows": {
       it: "Manual, rigid workflows for IT requests (e.g., access grants, hardware requests) lack the flexibility to handle variations, leading to delays and manual intervention.",
@@ -760,7 +763,8 @@ export const featureData = {
     sales: "Constant context switching between Slack and email clients causes reps to lose focus and miss critical follow-up windows with prospects.",
     customer_support: "Communicating with external vendors who aren't in Slack requires leaving the collaboration environment, breaking the flow of work.",
     hr: "Drafting repetitive recruiting emails is time-consuming when you can't leverage the context of internal channel discussions.",
-    marketing: "Coordinating with external agencies over email is disjointed; teams struggle to keep the internal Slack strategy aligned with the external email execution."
+    marketing: "Coordinating with external agencies over email is disjointed; teams struggle to keep the internal Slack strategy aligned with the external email execution.",
+    engineering: "Technical leads lose focus when they have to leave Slack to hunt through their inbox for a specific vendor's API documentation or to draft a technical update for an external partner, breaking their deep-work state."
   },
   "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": {
     it: "Employees struggle with 'information sprawl,' leading to increased support tickets asking where specific resources are located.",
@@ -773,7 +777,8 @@ export const featureData = {
     sales: "Reps spend too much time manually checking calendars or digging through PDFs for specific contract terms instead of selling.",
     it: "Answering basic 'how-to' questions often requires IT to manually read through lengthy PDF manuals for employees.",
     hr: "Employees constantly ping HR for details found in PDF benefit guides because they cannot easily query the document for a specific answer.",
-    customer_support: "Support agents waste time manually reading technical manuals or customer-provided PDFs to find a single troubleshooting step."
+    customer_support: "Support agents waste time manually reading technical manuals or customer-provided PDFs to find a single troubleshooting step.",
+    engineering: "Engineers waste time manually cross-referencing their sprint calendars and architecture PDFs just to answer basic questions about project timelines or system specs that the AI could answer instantly with the right context."
   },
   "Filtered & single user export": {
     it: "Legal discovery or internal investigations require massive, resource-heavy exports of the entire organization just to find data on one individual.",
@@ -821,7 +826,8 @@ export const featureData = {
     operations: "Manual tracking of recurring project updates is inconsistent; teams need event-based triggers to ensure data flows without human intervention.",
     it: "System status checks and maintenance reminders are manually posted, taking time away from more complex infrastructure tasks.",
     sales: "Weekly pipeline roll-ups or 'stale deal' alerts are handled manually, leading to poor data hygiene and inaccurate end-of-month reporting.",
-    marketing: "Campaign launch countdowns or recurring creative reviews require manual pings, which are easily forgotten during busy launch weeks."
+    marketing: "Campaign launch countdowns or recurring creative reviews require manual pings, which are easily forgotten during busy launch weeks.",
+    engineering: "DevOps teams struggle with 'alert fatigue' and manual routine tasks; they need event-based triggers (like a specific emoji reaction) to automatically spin up incident channels, archive stale dev environments, or post recurring system health checks."
   },
   "Slackbot Skills": {
     engineering: "Engineers have to repeatedly type complex instructions for recurring tasks like 'summarize this incident' instead of using a one-click playbook.",
