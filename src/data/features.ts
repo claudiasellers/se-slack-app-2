@@ -120,7 +120,8 @@ export const featureData = {
     "Slackbot Skills": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Scheduled Automations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Emails - search, draft, and send": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Slackbot Salesforce Search": {free: "In Sample", pro: "In Sample", pro_ai: "In Sample", plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true}
+    "Slackbot Salesforce Search": {free: "In Sample", pro: "In Sample", pro_ai: "In Sample", plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
+    "Restrict AI access to certain channels, canvases, and lists": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true }
 
 
 
@@ -242,7 +243,8 @@ export const featureData = {
     "Slackbot Scheduled Automations": "Automated actions Slackbot can run on a recurring or one-time schedule. triggered by time, event-based tasks (i.e. when a reaction is added or a message is posted), or webhook triggers for external systems.",
     "Slackbot Skills": "User-defined AI playbooks that combine instructions and tools into a single command. Instead of giving Slackbot one-off prompts, you trigger a skill to have Slackbot execute a saved playbook.",
     "Slackbot Salesforce Search": "Allows Slackbot to search and retrieve data directly from Salesforce records. Instead of switching apps, you can query opportunities, accounts, or contacts using natural language and get the specific details surfaced immediately in your chat.",
-    "Emails - search, draft, and send": "Search, draft, and send emails directly within Slack using your Gmail or Outlook account. Use Slackbot to summarize your inbox, generate drafts based on channel discussions, and send them instantly without switching apps."
+    "Emails - search, draft, and send": "Search, draft, and send emails directly within Slack using your Gmail or Outlook account. Use Slackbot to summarize your inbox, generate drafts based on channel discussions, and send them instantly without switching apps.",
+    "Restrict AI access to certain channels, canvases, and lists": "Allows admins to prevent Slack AI from accessing specific channels, canvases, or lists. Once restricted, the content in those locations is ignored by AI search, summaries, recaps, etc to ensure sensitive data remains private."
 
 
   },
@@ -853,6 +855,14 @@ export const featureData = {
     sales: "Reps lose their flow and 'swivel-chair' between apps just to find a simple lead status or contract value, which adds up to hours of lost selling time every week.",
     operations: "Leadership struggles to get rapid answers during cross-functional meetings because they have to wait for someone to log in and navigate complex Salesforce reports just to find a single data point.",
     customer_support: "Support agents waste time manually searching for Case and Contact records in Salesforce to get context for a Slack escalation, delaying the total time to resolution for the customer."
+  },
+  "Restrict AI access to certain channels, canvases, and lists": {
+    it: "Admins face 'all-or-nothing' security hurdles where they can't deploy productivity-boosting AI because they have no way to exclude high-risk channels (like executive leadership or security response) from AI.",
+    hr: "Sensitive personnel discussions, payroll data, or private employee relations cases risk being surfaced in AI summaries or search results if the AI isn't explicitly barred from accessing HR-only channels.",
+    finance: "Confidential financial planning, M&A discussions, or unreleased quarterly earnings data could be accidentally leaked via AI-generated recaps if finance-specific canvases and channels aren't restricted.",
+    legal: "Attorneys and compliance officers can't block AI from sensitive channels to ensure that attorney-client privileged information or sensitive litigation strategy is completely shielded from AI processing.",
+    engineering: "Proprietary source code or sensitive security credentials stored in private channels or canvases are at risk of exposure if the AI is allowed to summarize technical 'war rooms' containing sensitive data.",
+    sales: "Sales leaders worry that 'shadow deals' or sensitive commission structures could be surfaced to unauthorized users through AI search if specific management channels aren't excluded from the AI's reach."
   }
   }
 }

@@ -137,6 +137,7 @@ const getFeatureIcon = (feature: string) => {
     "Slackbot Scheduled Automations": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Salesforce Search": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Emails - search, draft, and send": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Restrict AI access to certain channels, canvases, and lists": <Shield className="h-5 w-5 text-[#E01E5A]" />,
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -173,6 +174,7 @@ const categorizeFeatures = (features: string[]) => {
       "Approve Workspaces",
     ],
     "Security & Compliance": [
+      "Restrict AI access to certain channels, canvases, and lists",
       "Custom Retention Policies (Workspace)",
       "Custom Retention Policies (Org-Wide)",
       "SAML SSO",
