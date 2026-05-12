@@ -119,7 +119,8 @@ export const featureData = {
     "Real-Time Search API": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Slackbot Skills": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Scheduled Automations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Emails - search, draft, and send": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true}
+    "Emails - search, draft, and send": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Salesforce Search": {free: "In Sample", pro: "In Sample", pro_ai: "In Sample", plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true}
 
 
 
@@ -847,6 +848,11 @@ export const featureData = {
     operations: "Sales leaders lack a consistent, high-level view of account health because they have to manually pull reports to see which key records haven't been updated, rather than receiving proactive summaries in-channel.",
     finance: "Billing and revenue teams face delays when sales reps forget to update critical contract fields in Salesforce, creating a manual follow-up burden to ensure month-end data is accurate.",
     marketing: "Lead conversion rates drop when 'mql' records sit unaddressed in Salesforce; without scheduled nudges in Slack, reps may overlook new leads during busy selling periods."
+  },
+  "Slackbot Salesforce Search": {
+    sales: "Reps lose their flow and 'swivel-chair' between apps just to find a simple lead status or contract value, which adds up to hours of lost selling time every week.",
+    operations: "Leadership struggles to get rapid answers during cross-functional meetings because they have to wait for someone to log in and navigate complex Salesforce reports just to find a single data point.",
+    customer_support: "Support agents waste time manually searching for Case and Contact records in Salesforce to get context for a Slack escalation, delaying the total time to resolution for the customer."
   }
   }
 }
