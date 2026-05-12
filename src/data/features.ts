@@ -121,7 +121,8 @@ export const featureData = {
     "Slackbot Scheduled Automations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Emails - search, draft, and send": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Salesforce Search": {free: "In Sample", pro: "In Sample", pro_ai: "In Sample", plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
-    "Restrict AI access to certain channels, canvases, and lists": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true }
+    "Restrict AI access to certain channels, canvases, and lists": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true },
+    "Enterprise Search in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true }
 
 
 
@@ -244,7 +245,8 @@ export const featureData = {
     "Slackbot Skills": "User-defined AI playbooks that combine instructions and tools into a single command. Instead of giving Slackbot one-off prompts, you trigger a skill to have Slackbot execute a saved playbook.",
     "Slackbot Salesforce Search": "Allows Slackbot to search and retrieve data directly from Salesforce records. Instead of switching apps, you can query opportunities, accounts, or contacts using natural language and get the specific details surfaced immediately in your chat.",
     "Emails - search, draft, and send": "Search, draft, and send emails directly within Slack using your Gmail or Outlook account. Use Slackbot to summarize your inbox, generate drafts based on channel discussions, and send them instantly without switching apps.",
-    "Restrict AI access to certain channels, canvases, and lists": "Allows admins to prevent Slack AI from accessing specific channels, canvases, or lists. Once restricted, the content in those locations is ignored by AI search, summaries, recaps, etc to ensure sensitive data remains private."
+    "Restrict AI access to certain channels, canvases, and lists": "Allows admins to prevent Slack AI from accessing specific channels, canvases, or lists. Once restricted, the content in those locations is ignored by AI search, summaries, recaps, etc to ensure sensitive data remains private.",
+    "Enterprise Search in Slackbot": "Allows Slackbot to pull answers from your entire company tech stack. Instead of searching just Slack, Slackbot queries connected apps like Google Drive, Salesforce, and GitHub to give you a single, unified answer based on all your company's data."
 
 
   },
@@ -863,6 +865,15 @@ export const featureData = {
     legal: "Attorneys and compliance officers can't block AI from sensitive channels to ensure that attorney-client privileged information or sensitive litigation strategy is completely shielded from AI processing.",
     engineering: "Proprietary source code or sensitive security credentials stored in private channels or canvases are at risk of exposure if the AI is allowed to summarize technical 'war rooms' containing sensitive data.",
     sales: "Sales leaders worry that 'shadow deals' or sensitive commission structures could be surfaced to unauthorized users through AI search if specific management channels aren't excluded from the AI's reach."
+  },
+  "Enterprise Search in Slackbot": {
+    it: "Employees waste countless hours in 'digital friction,' manually checking five different apps to find one piece of information, which drives up internal support tickets for simple discovery questions.",
+    engineering: "Engineers lose deep-work focus searching for a bug's history across GitHub, a feature's spec in GDrive, and the original customer complaint in Salesforce—leading to fragmented context and slower development cycles.",
+    sales: "Reps struggle to prepare for calls because the 'complete picture' of a customer is scattered across different tools like Slack threads, Salesforce records, and Box folders, making it nearly impossible to find a single, unified answer quickly.",
+    marketing: "Campaign launches are delayed when teams can't find the 'final-final' asset because the strategy is in a Canvas, the feedback is in Slack, and the actual file is buried in a 3rd-party cloud drive.",
+    customer_support: "Resolution times suffer because agents have to manually piece together a customers technical environment from Jira and their contract status from Salesforce before they can even begin troubleshooting in Slack.",
+    operations: "Leadership decision-making is slowed down by 'information sprawl'; instead of getting a direct answer based on all company data, they have to wait for manual reports to be compiled from various siloed tools.",
+    hr: "New hires feel overwhelmed and unproductive because onboarding knowledge is spread across a dozen different platforms, with no single entry point to ask a question and get a comprehensive answer."
   }
   }
 }
