@@ -122,7 +122,9 @@ export const featureData = {
     "Emails - search, draft, and send": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Salesforce Search": {free: "In Sample", pro: "In Sample", pro_ai: "In Sample", plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
     "Restrict AI access to certain channels, canvases, and lists": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true },
-    "Enterprise Search in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true }
+    "Enterprise Search in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true },
+    "Calendar events - search and create in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true }
+
 
 
 
@@ -246,7 +248,8 @@ export const featureData = {
     "Slackbot Salesforce Search": "Allows Slackbot to search and retrieve data directly from Salesforce records. Instead of switching apps, you can query opportunities, accounts, or contacts using natural language and get the specific details surfaced immediately in your chat.",
     "Emails - search, draft, and send": "Search, draft, and send emails directly within Slack using your Gmail or Outlook account. Use Slackbot to summarize your inbox, generate drafts based on channel discussions, and send them instantly without switching apps.",
     "Restrict AI access to certain channels, canvases, and lists": "Allows admins to prevent Slack AI from accessing specific channels, canvases, or lists. Once restricted, the content in those locations is ignored by AI search, summaries, recaps, etc to ensure sensitive data remains private.",
-    "Enterprise Search in Slackbot": "Allows Slackbot to pull answers from your entire company tech stack. Instead of searching just Slack, Slackbot queries connected apps like Google Drive, Salesforce, and GitHub to give you a single, unified answer based on all your company's data."
+    "Enterprise Search in Slackbot": "Allows Slackbot to pull answers from your entire company tech stack. Instead of searching just Slack, Slackbot queries connected apps like Google Drive, Salesforce, and GitHub to give you a single, unified answer based on all your company's data.",
+    "Calendar events - search and create in Slackbot": "Search, schedule, and manage your calendar directly through Slackbot. Connected to Google Calendar or Outlook, Slackbot can find open time slots, create new events, and provide a daily briefing of your schedule without you ever leaving your chat."
 
 
   },
@@ -874,6 +877,15 @@ export const featureData = {
     customer_support: "Resolution times suffer because agents have to manually piece together a customers technical environment from Jira and their contract status from Salesforce before they can even begin troubleshooting in Slack.",
     operations: "Leadership decision-making is slowed down by 'information sprawl'; instead of getting a direct answer based on all company data, they have to wait for manual reports to be compiled from various siloed tools.",
     hr: "New hires feel overwhelmed and unproductive because onboarding knowledge is spread across a dozen different platforms, with no single entry point to ask a question and get a comprehensive answer."
+  },
+  "Calendar events - search and create in Slackbot": {
+    sales: "Account Executives lose momentum in deal cycles when they have to leave a live customer discussion to check their external calendar app, often leading to delays in booking critical follow-up meetings or discovery calls.",
+    it: "IT leads are constantly interrupted by 'swivel-chair' context switching between Slack and Outlook/Google Calendar to coordinate emergency patch windows or vendor reviews, reducing their ability to focus on deep technical tasks.",
+    engineering: "Engineering managers and team leads waste significant time manually coordinating sprint reviews or incident retrospectives, struggling to find open slots across multiple calendars without leaving the dev-centric environment of Slack.",
+    operations: "Project coordinators face a constant administrative burden manually syncing project timelines with stakeholder availability, leading to scheduling bottlenecks that stall cross-functional initiatives.",
+    customer_support: "Support leads struggle to quickly schedule 'war room' sessions or expert escalations during active outages because they can't see team availability directly within the incident channel.",
+    marketing: "Campaign managers lose efficiency when coordinating with external agencies or internal creative teams, as the friction of switching tools to find meeting times leads to slower project kickoffs.",
+    hr: "Recruiters and HR managers face high 'scheduling friction' when trying to coordinate interviews or onboarding sessions, often leading to a slower time-to-hire because they can't book time instantly from the recruitment channel."
   }
   }
 }
