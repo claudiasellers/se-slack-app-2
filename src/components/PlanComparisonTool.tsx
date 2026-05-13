@@ -641,7 +641,7 @@ export default function PlanComparisonTool() {
                   } else if (hasFeature === false) {
                     return `<td class="no">✗ No</td>`
                   } else {
-                    return `<td class="partial">${hasFeature}</td>`
+                    return `<td class="partial" style="color: #4A154B;">${hasFeature}</td>`
                   }
                 })
                 .join("")}
@@ -1408,13 +1408,22 @@ export default function PlanComparisonTool() {
 
                           {expandedCategories[category] && (
                             <div className="border-t border-gray-100 p-4">
-                              <div className="overflow-x-auto">
-                                <table className="w-full min-w-full divide-y divide-gray-200">
+                              <div className="w-0 min-w-full overflow-x-auto">
+                                <table
+                                  className="divide-y divide-gray-200"
+                                  style={{ tableLayout: "fixed", width: 280 + selectedPlans.length * 140 + "px" }}
+                                >
+                                  <colgroup>
+                                    <col style={{ width: "280px" }} />
+                                    {selectedPlans.map((plan) => (
+                                      <col key={plan} style={{ width: "140px" }} />
+                                    ))}
+                                  </colgroup>
                                   <thead className="bg-gray-50">
                                     <tr>
                                       <th
                                         scope="col"
-                                        className="w-2/5 px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
+                                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
                                       >
                                         Feature
                                       </th>
@@ -1510,7 +1519,7 @@ export default function PlanComparisonTool() {
                                                   <span>No</span>
                                                 </div>
                                               ) : (
-                                                <div className="text-gray-600">{hasFeature}</div>
+                                                <div className="text-sm font-medium" style={{ color: '#4A154B' }}>{hasFeature}</div>
                                               )}
                                             </td>
                                           )
