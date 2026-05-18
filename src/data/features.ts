@@ -122,7 +122,8 @@ export const featureData = {
     "Slackbot Salesforce search, create, and update": {free: "In Sample", pro: "In Sample", pro_ai: "In Sample", plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
     "Restrict AI access to certain channels, canvases, and lists": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true },
     "Enterprise Search in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true },
-    "Calendar events - search and create in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true }
+    "Calendar events - search and create in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true },
+    "Slackbot native Slack actions": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true}
 
 
 
@@ -247,7 +248,8 @@ export const featureData = {
     "Emails - search, draft, and send": "Search, draft, and send emails directly within Slack using your Gmail or Outlook account. Use Slackbot to summarize your inbox, generate drafts based on channel discussions, and send them instantly without switching apps.",
     "Restrict AI access to certain channels, canvases, and lists": "Allows admins to prevent Slack AI from accessing specific channels, canvases, or lists. Once restricted, the content in those locations is ignored by AI search, summaries, recaps, etc to ensure sensitive data remains private.",
     "Enterprise Search in Slackbot": "Allows Slackbot to pull answers from your entire company tech stack. Instead of searching just Slack, Slackbot queries connected apps like Google Drive, Salesforce, and GitHub to give you a single, unified answer based on all your company's data.",
-    "Calendar events - search and create in Slackbot": "Search, schedule, and manage your calendar directly through Slackbot. Connected to Google Calendar or Outlook, Slackbot can find open time slots, create new events, and provide a daily briefing of your schedule without you ever leaving your chat."
+    "Calendar events - search and create in Slackbot": "Search, schedule, and manage your calendar directly through Slackbot. Connected to Google Calendar or Outlook, Slackbot can find open time slots, create new events, and provide a daily briefing of your schedule without you ever leaving your chat.",
+    "Slackbot native Slack actions": "Slackbot can take Slack-native actions on your behalf, including sending messages, creating, inviting people to, leaving, or archiving channels, updating your sidebar, and setting your status."
 
 
   },

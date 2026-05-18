@@ -139,6 +139,7 @@ const getFeatureIcon = (feature: string) => {
     "Restrict AI access to certain channels, canvases, and lists": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Enterprise Search in Slackbot": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Calendar events - search and create in Slackbot": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot native Slack actions": <Bot className="h-5 w-5 text-[#E01E5A]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -254,7 +255,8 @@ const categorizeFeatures = (features: string[]) => {
       "Slackbot Salesforce search, create, and update",
       "Emails - search, draft, and send",
       "Enterprise Search in Slackbot",
-      "Calendar events - search and create in Slackbot"
+      "Calendar events - search and create in Slackbot",
+      "Slackbot native Slack actions"
     ],
     "Slackbot Trust & Security": [
        "International Data Residency",
