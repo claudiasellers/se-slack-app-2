@@ -115,7 +115,6 @@ export const featureData = {
     "Slackbot DLP": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "EKM compatibility": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Audit logs": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Channel Expert Agent": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Real-Time Search API": {free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Slackbot Skills": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Scheduled Automations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
@@ -240,7 +239,6 @@ export const featureData = {
     "Slackbot DLP": "DLP policies can be applied to Slackbot. All user prompts are scanned before inference, blocked/tombstoned prompts generate user-visible explanations, and all DLP actions are tracked in the DLP Admin and Audit Log dashboards.",
     "EKM compatibility": "Slackbot works with EKM. Slackbot conversations are treated as DM conversations for EKM purposes and are encrypted with the customer key. All canvases created by Slackbot are owned by the user and encrypted with the customer key.",
     "Slackbot Audit logs": "Detailed audit logs track all Slackbot usage, including prompts, responses, what data was accessed, timestamps, user attribution, and metadata. Slackbot fully integrated with Audit Log API and Discovery API for security and compliance.",
-    "Channel Expert Agent": "Channel Expert Agent is an AI-powered agent for Slack channels that helps answer frequently asked questions and provides instant, intelligent support directly within Slack channels. It's Slack's first out-of-the-box Agentforce agent designed specifically for help and FAQ-style Slack channels.",
     "Real-Time Search API": "If the customer is building an external app, this API lets external apps securely search Slack content on-demand without storing data outside of Slack.",
     "Exports (Salesforce Channels)": "All Salesforce channels can be included in Slack's full data export functionality for compliance and archival purposes.",
     "Slackbot Scheduled Automations": "Automated actions Slackbot can run on a recurring or one-time schedule. triggered by time, event-based tasks (i.e. when a reaction is added or a message is posted), or webhook triggers for external systems.",
@@ -842,13 +840,6 @@ export const featureData = {
     hr: "Standardized processes like 'Onboard new hire' are executed inconsistently when they rely on manual prompts rather than a saved skill.",
     sales: "Reps waste time writing the same prompts for 'prepare me for this meeting' or 'summarize this thread for the CRM' every day.",
     customer_support: "Agents have to remember specific instructions for 'format this for Jira' or 'summarize for shift handoff' instead of clicking a single skill."
-  },
-  "Channel Expert Agent": {
-    sales: "Sales reps spend hours waiting for responses in 'Ask-Product' or 'Ask-Legal' channels to get quick answers on technical specs or contract terms, causing deal momentum to stall while they wait for a human expert to become available.",
-    it: "IT help desk staff are bogged down by 'how-to' questions that are already answered in pinned posts or documentation, leading to longer resolution times for critical issues.",
-    customer_support: "High-volume 'help' channels are flooded with repetitive questions, causing support staff to burn out on basic queries instead of handling complex escalations.",
-    hr: "HR teams spend excessive time answering the same questions about benefits, payroll, and holidays, especially during peak periods like open enrollment.",
-    engineering: "Platform and DevOps teams are constantly interrupted in 'ask-eng' channels with basic setup questions that have been answered dozens of times before."
   },
   "Salesforce workflow automation (Scheduled triggers)": {
     sales: "Pipeline hygiene suffers because manual 'stale opportunity' checks are inconsistent, leading to inaccurate forecasting and reps pursuing deals that should have been closed or advanced weeks ago.",

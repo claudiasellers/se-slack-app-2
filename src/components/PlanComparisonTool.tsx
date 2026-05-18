@@ -132,7 +132,6 @@ const getFeatureIcon = (feature: string) => {
     "Slackbot DLP": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "EKM compatibility": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Audit logs": <Bot className="h-5 w-5 text-[#E01E5A]" />,
-    "Channel Expert Agent": <Bot className="h-5 w-5 text-[#ECB22E]" />,
     "Real-Time Search API": <Bot className="h-5 w-5 text-[#ECB22E]" />,
     "Slackbot Scheduled Automations": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Salesforce Search": <Bot className="h-5 w-5 text-[#E01E5A]" />,
@@ -237,8 +236,8 @@ const categorizeFeatures = (features: string[]) => {
       "AI Language Translations",
       "AI Admin analytics dashboard",
       "AI Explain",
-      "Canvas AI",
-      "Channel Expert Agent"
+      "Canvas AI"
+      
     ],
     "Slackbot Functionality": [
       "Message Limit",
