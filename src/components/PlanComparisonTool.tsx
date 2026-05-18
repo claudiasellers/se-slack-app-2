@@ -134,7 +134,7 @@ const getFeatureIcon = (feature: string) => {
     "Slackbot Audit logs": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Real-Time Search API": <Bot className="h-5 w-5 text-[#ECB22E]" />,
     "Slackbot Scheduled Automations": <Bot className="h-5 w-5 text-[#E01E5A]" />,
-    "Slackbot Salesforce Search": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot Salesforce search, create, and update": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Emails - search, draft, and send": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Restrict AI access to certain channels, canvases, and lists": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Enterprise Search in Slackbot": <Bot className="h-5 w-5 text-[#E01E5A]" />,
@@ -251,7 +251,7 @@ const categorizeFeatures = (features: string[]) => {
       "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)",
       "Slackbot Scheduled Automations",
       "Slackbot Skills",
-      "Slackbot Salesforce Search",
+      "Slackbot Salesforce search, create, and update",
       "Emails - search, draft, and send",
       "Enterprise Search in Slackbot",
       "Calendar events - search and create in Slackbot"

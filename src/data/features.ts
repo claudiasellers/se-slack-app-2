@@ -119,7 +119,7 @@ export const featureData = {
     "Slackbot Skills": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Scheduled Automations": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Emails - search, draft, and send": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Slackbot Salesforce Search": {free: "In Sample", pro: "In Sample", pro_ai: "In Sample", plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
+    "Slackbot Salesforce search, create, and update": {free: "In Sample", pro: "In Sample", pro_ai: "In Sample", plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
     "Restrict AI access to certain channels, canvases, and lists": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true },
     "Enterprise Search in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true },
     "Calendar events - search and create in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true }
@@ -243,7 +243,7 @@ export const featureData = {
     "Exports (Salesforce Channels)": "All Salesforce channels can be included in Slack's full data export functionality for compliance and archival purposes.",
     "Slackbot Scheduled Automations": "Automated actions Slackbot can run on a recurring or one-time schedule. triggered by time, event-based tasks (i.e. when a reaction is added or a message is posted), or webhook triggers for external systems.",
     "Slackbot Skills": "User-defined AI playbooks that combine instructions and tools into a single command. Instead of giving Slackbot one-off prompts, you trigger a skill to have Slackbot execute a saved playbook.",
-    "Slackbot Salesforce Search": "Allows Slackbot to search and retrieve data directly from Salesforce records. Instead of switching apps, you can query opportunities, accounts, or contacts using natural language and get the specific details surfaced immediately in your chat.",
+    "Slackbot Salesforce search, create, and update": "Users can ask Slackbot to create or update records in Salesforce. Slackbot supports actions on one or multiple records at a time, saving customer-facing teams time and keeping CRM up-to-date.",
     "Emails - search, draft, and send": "Search, draft, and send emails directly within Slack using your Gmail or Outlook account. Use Slackbot to summarize your inbox, generate drafts based on channel discussions, and send them instantly without switching apps.",
     "Restrict AI access to certain channels, canvases, and lists": "Allows admins to prevent Slack AI from accessing specific channels, canvases, or lists. Once restricted, the content in those locations is ignored by AI search, summaries, recaps, etc to ensure sensitive data remains private.",
     "Enterprise Search in Slackbot": "Allows Slackbot to pull answers from your entire company tech stack. Instead of searching just Slack, Slackbot queries connected apps like Google Drive, Salesforce, and GitHub to give you a single, unified answer based on all your company's data.",
@@ -847,7 +847,7 @@ export const featureData = {
     finance: "Billing and revenue teams face delays when sales reps forget to update critical contract fields in Salesforce, creating a manual follow-up burden to ensure month-end data is accurate.",
     marketing: "Lead conversion rates drop when 'mql' records sit unaddressed in Salesforce; without scheduled nudges in Slack, reps may overlook new leads during busy selling periods."
   },
-  "Slackbot Salesforce Search": {
+  "Slackbot Salesforce search, create, and update": {
     sales: "Reps lose their flow and 'swivel-chair' between apps just to find a simple lead status or contract value, which adds up to hours of lost selling time every week.",
     operations: "Leadership struggles to get rapid answers during cross-functional meetings because they have to wait for someone to log in and navigate complex Salesforce reports just to find a single data point.",
     customer_support: "Support agents waste time manually searching for Case and Contact records in Salesforce to get context for a Slack escalation, delaying the total time to resolution for the customer."
