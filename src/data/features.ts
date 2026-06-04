@@ -126,6 +126,7 @@ export const featureData = {
     "Slackbot native Slack actions": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot: Upload Files to Salesforce": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
+    "Slackbot: Read Salesforce reports": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true}
 
 
 
@@ -253,7 +254,8 @@ export const featureData = {
     "Calendar events - search and create in Slackbot": "Search, schedule, and manage your calendar directly through Slackbot. Connected to Google Calendar or Outlook, Slackbot can find open time slots, create new events, and provide a daily briefing of your schedule without you ever leaving your chat.",
     "Slackbot native Slack actions": "Slackbot can take Slack-native actions on your behalf, including sending messages, creating, inviting people to, leaving, or archiving channels, updating your sidebar, and setting your status.",
     "Slackbot Web Search": "When Slackbot needs current information to answer a question, it queries the internet and surfaces results with inline citations and a clickthrough speed bump before any external URL opens in the browser.",
-    "Slackbot: Upload Files to Salesforce":"Users can attach files directly to Salesforce records without ever leaving Slack. Upload a file to Slack: contracts, presentations, images, and more; then ask Slackbot AI to attach it to the relevant Salesforce record. For your security, Slackbot will always ask for your explicit approval before attaching anything."
+    "Slackbot: Upload Files to Salesforce":"Users can attach files directly to Salesforce records without ever leaving Slack. Upload a file to Slack: contracts, presentations, images, and more; then ask Slackbot AI to attach it to the relevant Salesforce record. For your security, Slackbot will always ask for your explicit approval before attaching anything.",
+    "Slackbot: Read Salesforce reports":"Slackbot AI can read Salesforce reports directly, just share a report ID and get back the full results, including aggregates, groupings, and row-level details, all in the report's native format (tabular, summary, matrix, or joined)."
 
 
   },
@@ -899,6 +901,14 @@ export const featureData = {
     it: "Admins struggle to enforce security compliance when users download sensitive company files locally to their personal desktops or mobile devices just to re-upload them into the corporate CRM.",
     operations: "Leadership lacks a single, reliable source of truth for critical customer documentation because team collateral remains fragmented across various Slack channels instead of attached directly to the Salesforce account.",
     marketing: "Enablement teams cannot track which specific customer presentations or case studies are actually closing deals because reps don't attach the final versions used during calls to the corresponding Opportunity record."
+  },
+  "Slackbot: Read Salesforce reports": {
+    sales: "End-of-quarter deal velocity slows down significantly because sales leaders and reps waste critical hours navigating heavy CRM reporting modules and drilling down into dashboards just to extract basic pipeline numbers during pipeline reviews.",
+    operations: "Revenue operations is plagued by a constant queue of manual data requests because cross-functional teams without specialized CRM training or active Salesforce licenses cannot easily view or interpret complex matrix reports.",
+    finance: "Live forecast-reconciliation meetings lose momentum because finance directors cannot instantly pull real-time closed-won aggregates or pipeline groupings into the channel to cross-reference against actual budget targets.",
+    marketing: "Growth marketing teams cannot optimize active ad spend or double down on high-performing channels because they lack a way to quickly pull campaign attribution and lead-source aggregate reports directly into their launch war rooms.",
+    customer_support: "Support executives struggle to track high-level SLA health trends (like open escalations grouped by tier or account health) during team syncs because pulling the data requires leaving their collaboration space to run external CRM queries.",
+    it: "IT is bogged down by excessive software spend and administrative overhead because non-sales leaders constantly request temporary Salesforce licenses just to export specific tabular or joined data sheets."
   }
   }
 }

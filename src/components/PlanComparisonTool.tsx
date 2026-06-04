@@ -141,7 +141,8 @@ const getFeatureIcon = (feature: string) => {
     "Calendar events - search and create in Slackbot": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot native Slack actions": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Web Search": <Bot className="h-5 w-5 text-[#E01E5A]" />,
-    "Slackbot: Upload Files to Salesforce": <Bot className="h-5 w-5 text-[#36C5F0]" />
+    "Slackbot: Upload Files to Salesforce": <Bot className="h-5 w-5 text-[#36C5F0]" />,
+    "Slackbot: Read Salesforce reports": <Bot className="h-5 w-5 text-[#36C5F0]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -260,7 +261,8 @@ const categorizeFeatures = (features: string[]) => {
       "Calendar events - search and create in Slackbot",
       "Slackbot native Slack actions",
       "Slackbot Web Search",
-      "Slackbot: Upload Files to Salesforce"
+      "Slackbot: Upload Files to Salesforce",
+      "Slackbot: Read Salesforce reports"
     ],
     "Slackbot Trust & Security": [
        "International Data Residency",
