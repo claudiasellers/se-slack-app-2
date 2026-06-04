@@ -249,7 +249,8 @@ export const featureData = {
     "Restrict AI access to certain channels, canvases, and lists": "Allows admins to prevent Slack AI from accessing specific channels, canvases, or lists. Once restricted, the content in those locations is ignored by AI search, summaries, recaps, etc to ensure sensitive data remains private.",
     "Enterprise Search in Slackbot": "Allows Slackbot to pull answers from your entire company tech stack. Instead of searching just Slack, Slackbot queries connected apps like Google Drive, Salesforce, and GitHub to give you a single, unified answer based on all your company's data.",
     "Calendar events - search and create in Slackbot": "Search, schedule, and manage your calendar directly through Slackbot. Connected to Google Calendar or Outlook, Slackbot can find open time slots, create new events, and provide a daily briefing of your schedule without you ever leaving your chat.",
-    "Slackbot native Slack actions": "Slackbot can take Slack-native actions on your behalf, including sending messages, creating, inviting people to, leaving, or archiving channels, updating your sidebar, and setting your status."
+    "Slackbot native Slack actions": "Slackbot can take Slack-native actions on your behalf, including sending messages, creating, inviting people to, leaving, or archiving channels, updating your sidebar, and setting your status.",
+    "Slackbot Web Search": "When Slackbot needs current information to answer a question, it queries the internet and surfaces results with inline citations and a clickthrough speed bump before any external URL opens in the browser."
 
 
   },
@@ -879,6 +880,14 @@ export const featureData = {
     customer_support: "Support leads struggle to quickly schedule 'war room' sessions or expert escalations during active outages because they can't see team availability directly within the incident channel.",
     marketing: "Campaign managers lose efficiency when coordinating with external agencies or internal creative teams, as the friction of switching tools to find meeting times leads to slower project kickoffs.",
     hr: "Recruiters and HR managers face high 'scheduling friction' when trying to coordinate interviews or onboarding sessions, often leading to a slower time-to-hire because they can't book time instantly from the recruitment channel."
+  },
+  "Slackbot Web Search": {sales: "Reps waste time leaving Slack to Google a prospect's latest press releases, recent funding rounds, or leadership changes before an executive briefing call, which breaks their workflow and delays preparation.",
+    marketing: "Campaign teams lose momentum when they have to continuously switch tabs to track real-time competitor social campaigns, industry trend shifts, or viral news cycles that they need to react to immediately.",
+    engineering: "Engineers trying to debug an obscure, breaking error or open-source package issue lose deep-work focus when they have to switch to an external browser to hunt through Stack Overflow or Github issues.",
+    it: "IT security and admin teams struggle to stay ahead of fast-moving zero-day vulnerabilities or sudden global cloud tool outages because they have to manually check external tech news and status sites for real-time updates.",
+    operations: "Leadership decision-making stalls during cross-functional strategy meetings when someone needs an external metric, vendor comparison, or real-time regulatory update and everyone has to stop to search the web individually.",
+    finance: "Finance leads cannot quickly check real-time exchange rates, market changes, or macroeconomic indicators during budget negotiations without disrupting the conversation to log into external tracking sites.",
+    customer_support: "Support agents face higher average handle times (AHT) when dealing with complex customer environments because they have to leave Slack to research 3rd-party tech specs, integrations, or error codes on the web."
   }
   }
 }
