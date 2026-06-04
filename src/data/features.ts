@@ -123,7 +123,9 @@ export const featureData = {
     "Restrict AI access to certain channels, canvases, and lists": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true },
     "Enterprise Search in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true },
     "Calendar events - search and create in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true },
-    "Slackbot native Slack actions": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true}
+    "Slackbot native Slack actions": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot: Upload Files to Salesforce": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
 
 
 
@@ -250,7 +252,8 @@ export const featureData = {
     "Enterprise Search in Slackbot": "Allows Slackbot to pull answers from your entire company tech stack. Instead of searching just Slack, Slackbot queries connected apps like Google Drive, Salesforce, and GitHub to give you a single, unified answer based on all your company's data.",
     "Calendar events - search and create in Slackbot": "Search, schedule, and manage your calendar directly through Slackbot. Connected to Google Calendar or Outlook, Slackbot can find open time slots, create new events, and provide a daily briefing of your schedule without you ever leaving your chat.",
     "Slackbot native Slack actions": "Slackbot can take Slack-native actions on your behalf, including sending messages, creating, inviting people to, leaving, or archiving channels, updating your sidebar, and setting your status.",
-    "Slackbot Web Search": "When Slackbot needs current information to answer a question, it queries the internet and surfaces results with inline citations and a clickthrough speed bump before any external URL opens in the browser."
+    "Slackbot Web Search": "When Slackbot needs current information to answer a question, it queries the internet and surfaces results with inline citations and a clickthrough speed bump before any external URL opens in the browser.",
+    "Slackbot: Upload Files to Salesforce":"Users can attach files directly to Salesforce records without ever leaving Slack. Upload a file to Slack: contracts, presentations, images, and more; then ask Slackbot AI to attach it to the relevant Salesforce record. For your security, Slackbot will always ask for your explicit approval before attaching anything."
 
 
   },
@@ -888,6 +891,14 @@ export const featureData = {
     operations: "Leadership decision-making stalls during cross-functional strategy meetings when someone needs an external metric, vendor comparison, or real-time regulatory update and everyone has to stop to search the web individually.",
     finance: "Finance leads cannot quickly check real-time exchange rates, market changes, or macroeconomic indicators during budget negotiations without disrupting the conversation to log into external tracking sites.",
     customer_support: "Support agents face higher average handle times (AHT) when dealing with complex customer environments because they have to leave Slack to research 3rd-party tech specs, integrations, or error codes on the web."
+  },
+  "Slackbot: Upload Files to Salesforce": {
+    sales: "Reps constantly forget to upload signed contracts, pitch decks, or meeting notes to Salesforce because logging into the CRM just to drag-and-drop a file is an administrative chore, leading to incomplete deal records and broken audit trails.",
+    customer_support: "Support agents waste time downloaded logs, screenshots, or error reports from customer Slack threads and manually re-uploading them to Salesforce Cases, which delays technical escalations.",
+    finance: "Billing and finance teams experience delays in deal processing or invoice generation because they have to hunt down sales reps to upload the 'final executed contract' to the Salesforce record.",
+    it: "Admins struggle to enforce security compliance when users download sensitive company files locally to their personal desktops or mobile devices just to re-upload them into the corporate CRM.",
+    operations: "Leadership lacks a single, reliable source of truth for critical customer documentation because team collateral remains fragmented across various Slack channels instead of attached directly to the Salesforce account.",
+    marketing: "Enablement teams cannot track which specific customer presentations or case studies are actually closing deals because reps don't attach the final versions used during calls to the corresponding Opportunity record."
   }
   }
 }
