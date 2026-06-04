@@ -126,7 +126,8 @@ export const featureData = {
     "Slackbot native Slack actions": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot: Upload Files to Salesforce": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
-    "Slackbot: Read Salesforce reports": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true}
+    "Slackbot: Read Salesforce reports": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
+    "Organization Level User Groups": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true}
 
 
 
@@ -255,7 +256,8 @@ export const featureData = {
     "Slackbot native Slack actions": "Slackbot can take Slack-native actions on your behalf, including sending messages, creating, inviting people to, leaving, or archiving channels, updating your sidebar, and setting your status.",
     "Slackbot Web Search": "When Slackbot needs current information to answer a question, it queries the internet and surfaces results with inline citations and a clickthrough speed bump before any external URL opens in the browser.",
     "Slackbot: Upload Files to Salesforce":"Users can attach files directly to Salesforce records without ever leaving Slack. Upload a file to Slack: contracts, presentations, images, and more; then ask Slackbot AI to attach it to the relevant Salesforce record. For your security, Slackbot will always ask for your explicit approval before attaching anything.",
-    "Slackbot: Read Salesforce reports":"Slackbot AI can read Salesforce reports directly, just share a report ID and get back the full results, including aggregates, groupings, and row-level details, all in the report's native format (tabular, summary, matrix, or joined)."
+    "Slackbot: Read Salesforce reports":"Slackbot AI can read Salesforce reports directly, just share a report ID and get back the full results, including aggregates, groupings, and row-level details, all in the report's native format (tabular, summary, matrix, or joined).",
+    "Organization Level User Groups": "Org Owners and Admins can make IDP groups and Admin groups visible in Slack so that they can be used for mentions and channel invites. This means you can add multiple people to channel at once or notify them just by @mentioning their Admin group or IDP Group - no need to create a separate user group."
 
 
   },
@@ -909,6 +911,12 @@ export const featureData = {
     marketing: "Growth marketing teams cannot optimize active ad spend or double down on high-performing channels because they lack a way to quickly pull campaign attribution and lead-source aggregate reports directly into their launch war rooms.",
     customer_support: "Support executives struggle to track high-level SLA health trends (like open escalations grouped by tier or account health) during team syncs because pulling the data requires leaving their collaboration space to run external CRM queries.",
     it: "IT is bogged down by excessive software spend and administrative overhead because non-sales leaders constantly request temporary Salesforce licenses just to export specific tabular or joined data sheets."
+  },
+  "IDP and Admin Group Visibility": {
+    it: "Admins waste significant time creating and maintaining redundant Slack user groups that mirror existing Identity Provider (IDP) or admin groups just so teams can use them for communications.",
+    operations: "Onboarding and managing cross-functional teams is bottlenecked because owners must manually add users to channels one-by-one or manage fragile, duplicate group structures within Slack.",
+    sales: "Enablement and territory changes are slowed down because leaders can't instantly invite a pre-existing regional IDP sales cohort to a new deal room or notify them via a single unified @mention.",
+    engineering: "Incident response and shift handoffs are delayed when developers can't immediately @mention or invite an established corporate admin or engineering directory group directly into an active triage channel."
   }
   }
 }
