@@ -123,7 +123,7 @@ export const featureData = {
     "Restrict AI access to certain channels, canvases, and lists": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true },
     "Enterprise Search in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true },
     "Calendar events - search and create in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true },
-    "Slackbot native Slack actions": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot native Slack actions": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot: Upload Files to Salesforce": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Slackbot: Read Salesforce reports": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
@@ -912,7 +912,7 @@ export const featureData = {
     customer_support: "Support executives struggle to track high-level SLA health trends (like open escalations grouped by tier or account health) during team syncs because pulling the data requires leaving their collaboration space to run external CRM queries.",
     it: "IT is bogged down by excessive software spend and administrative overhead because non-sales leaders constantly request temporary Salesforce licenses just to export specific tabular or joined data sheets."
   },
-  "IDP and Admin Group Visibility": {
+  "Organization Level User Groups": {
     it: "Admins waste significant time creating and maintaining redundant Slack user groups that mirror existing Identity Provider (IDP) or admin groups just so teams can use them for communications.",
     operations: "Onboarding and managing cross-functional teams is bottlenecked because owners must manually add users to channels one-by-one or manage fragile, duplicate group structures within Slack.",
     sales: "Enablement and territory changes are slowed down because leaders can't instantly invite a pre-existing regional IDP sales cohort to a new deal room or notify them via a single unified @mention.",
