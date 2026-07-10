@@ -270,7 +270,8 @@ const categorizeFeatures = (features: string[]) => {
       "Slackbot: Upload Files to Salesforce",
       "Slackbot: Read Salesforce reports",
       "Slackbot MCP Client",
-      "Slackbot Slide Creation"
+      "Slackbot Slide Creation",
+      "Slackbot Web Search"
     ],
     "Slackbot Trust & Security": [
        "International Data Residency",

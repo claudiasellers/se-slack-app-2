@@ -124,13 +124,13 @@ export const featureData = {
     "Enterprise Search in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: true, grid_v2: true },
     "Calendar events - search and create in Slackbot": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: "Q2", plus_v2: "Q2", grid_v1: false, grid_v1_ai: true, grid_v2: true },
     "Slackbot native Slack actions": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot: Upload Files to Salesforce": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Slackbot: Read Salesforce reports": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Organization Level User Groups": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Flag Content": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: true, grid_v1_ai: true, grid_v2: true},
     "Slackbot MCP Client": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
-    "Slackbot Slide Creation": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true}
+    "Slackbot Slide Creation": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true}
 
 
 
@@ -256,13 +256,13 @@ export const featureData = {
     "Enterprise Search in Slackbot": "Allows Slackbot to pull answers from your entire company tech stack. Instead of searching just Slack, Slackbot queries connected apps like Google Drive, Salesforce, and GitHub to give you a single, unified answer based on all your company's data.",
     "Calendar events - search and create in Slackbot": "Search, schedule, and manage your calendar directly through Slackbot. Connected to Google Calendar or Outlook, Slackbot can find open time slots, create new events, and provide a daily briefing of your schedule without you ever leaving your chat.",
     "Slackbot native Slack actions": "Slackbot can take Slack-native actions on your behalf, including sending messages, creating, inviting people to, leaving, or archiving channels, updating your sidebar, and setting your status.",
-    "Slackbot Web Search": "When Slackbot needs current information to answer a question, it queries the internet and surfaces results with inline citations and a clickthrough speed bump before any external URL opens in the browser.",
     "Slackbot: Upload Files to Salesforce":"Users can attach files directly to Salesforce records without ever leaving Slack. Upload a file to Slack: contracts, presentations, images, and more; then ask Slackbot AI to attach it to the relevant Salesforce record. For your security, Slackbot will always ask for your explicit approval before attaching anything.",
     "Slackbot: Read Salesforce reports":"Slackbot AI can read Salesforce reports directly, just share a report ID and get back the full results, including aggregates, groupings, and row-level details, all in the report's native format (tabular, summary, matrix, or joined).",
     "Organization Level User Groups": "Org Owners and Admins can make IDP groups and Admin groups visible in Slack so that they can be used for mentions and channel invites. This means you can add multiple people to channel at once or notify them just by @mentioning their Admin group or IDP Group - no need to create a separate user group.",
     "Flag Content": "Allow members to flag messages and profile content for admins to review, hide, or dismiss.",
     "Slackbot MCP Client": "Slackbot functions as an MCP client, acting as a universal connection point to interact with your entire tech stack and third-party apps through natural conversation.",
-    "Slackbot Slide Creation": "Slackbot can generate slides as part of a skill or prompt output."
+    "Slackbot Slide Creation": "Slackbot can generate slides as part of a skill or prompt output.",
+    "Slackbot Web Search": "When enabled, Slackbot can pull in external website content to supplement its responses. Any external info it surfaces will include cited links."
 
 
   },
