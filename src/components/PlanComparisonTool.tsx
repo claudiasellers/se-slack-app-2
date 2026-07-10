@@ -143,7 +143,8 @@ const getFeatureIcon = (feature: string) => {
     "Slackbot Web Search": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot: Upload Files to Salesforce": <Bot className="h-5 w-5 text-[#36C5F0]" />,
     "Slackbot: Read Salesforce reports": <Bot className="h-5 w-5 text-[#36C5F0]" />,
-    "Organization Level User Groups": <Users className="h-5 w-5 text-[#ECB22E]" />
+    "Organization Level User Groups": <Users className="h-5 w-5 text-[#ECB22E]" />,
+    "Flag Content": <Shield className="h-5 w-5 text-[#E01E5A]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -203,6 +204,7 @@ const categorizeFeatures = (features: string[]) => {
       "Discovery/DLP API",
       "Data Residency (IDR)",
       "Custom Terms of Service",
+      "Flag Content"
     ],
     "External Collaboration": [
       "Guests",

@@ -193,7 +193,6 @@ export const featureData = {
     "Custom Terms of Service": "Add specific verbiage and corporate terms for users to accept before using Slack.",
     "Approve Workspaces": "Configure a corporate network/VPN to only allow access to specific workspace URLs.",
     "Data Residency (IDR)": "Change where data is physically hosted (default: United States).",
-    "Flag Messages": "End users can flag messages for review by admins.",
     "Report to Slack for EU Users": "Allows users to report prohibited content to Slack for review (EU Digital Services Act compliance).",
     "Lock Threads": "Prevent additional messages from being sent in a thread.",
     "Thread & Channel Summaries": "Generates a textual summary of a message thread or channel.",
@@ -257,7 +256,8 @@ export const featureData = {
     "Slackbot Web Search": "When Slackbot needs current information to answer a question, it queries the internet and surfaces results with inline citations and a clickthrough speed bump before any external URL opens in the browser.",
     "Slackbot: Upload Files to Salesforce":"Users can attach files directly to Salesforce records without ever leaving Slack. Upload a file to Slack: contracts, presentations, images, and more; then ask Slackbot AI to attach it to the relevant Salesforce record. For your security, Slackbot will always ask for your explicit approval before attaching anything.",
     "Slackbot: Read Salesforce reports":"Slackbot AI can read Salesforce reports directly, just share a report ID and get back the full results, including aggregates, groupings, and row-level details, all in the report's native format (tabular, summary, matrix, or joined).",
-    "Organization Level User Groups": "Org Owners and Admins can make IDP groups and Admin groups visible in Slack so that they can be used for mentions and channel invites. This means you can add multiple people to channel at once or notify them just by @mentioning their Admin group or IDP Group - no need to create a separate user group."
+    "Organization Level User Groups": "Org Owners and Admins can make IDP groups and Admin groups visible in Slack so that they can be used for mentions and channel invites. This means you can add multiple people to channel at once or notify them just by @mentioning their Admin group or IDP Group - no need to create a separate user group.",
+    "Flag Content": "Allow members to flag messages and profile content for admins to review, hide, or dismiss.",
 
 
   },
