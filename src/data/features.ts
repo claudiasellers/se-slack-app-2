@@ -127,7 +127,8 @@ export const featureData = {
     "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot: Upload Files to Salesforce": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Slackbot: Read Salesforce reports": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
-    "Organization Level User Groups": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true}
+    "Organization Level User Groups": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true},
+    "Flag Content": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: true, grid_v1_ai: true, grid_v2: true}
 
 
 
