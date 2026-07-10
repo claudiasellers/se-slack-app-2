@@ -129,7 +129,8 @@ export const featureData = {
     "Slackbot: Read Salesforce reports": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Organization Level User Groups": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Flag Content": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: true, grid_v1_ai: true, grid_v2: true},
-    "Slackbot MCP Client": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true}
+    "Slackbot MCP Client": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
+    "Slackbot Slide Creation": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true}
 
 
 
@@ -260,7 +261,8 @@ export const featureData = {
     "Slackbot: Read Salesforce reports":"Slackbot AI can read Salesforce reports directly, just share a report ID and get back the full results, including aggregates, groupings, and row-level details, all in the report's native format (tabular, summary, matrix, or joined).",
     "Organization Level User Groups": "Org Owners and Admins can make IDP groups and Admin groups visible in Slack so that they can be used for mentions and channel invites. This means you can add multiple people to channel at once or notify them just by @mentioning their Admin group or IDP Group - no need to create a separate user group.",
     "Flag Content": "Allow members to flag messages and profile content for admins to review, hide, or dismiss.",
-    "Slackbot MCP Client": "Slackbot functions as an MCP client, acting as a universal connection point to interact with your entire tech stack and third-party apps through natural conversation."
+    "Slackbot MCP Client": "Slackbot functions as an MCP client, acting as a universal connection point to interact with your entire tech stack and third-party apps through natural conversation.",
+    "Slackbot Slide Creation": "Slackbot can generate slides as part of a skill or prompt output."
 
 
   },
