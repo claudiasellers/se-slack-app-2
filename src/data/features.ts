@@ -32,7 +32,7 @@ export const featureData = {
     "Granular Admin Roles": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Central Channel Dashboard": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Admin API": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
-    "Analytics API (Members)": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
+    "Analytics API (Members)": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "Analytics API (Conversations)": { free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
     "App Analytics": { free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true },
     "Custom Retention Policies (Workspace)": { free: false, pro: true, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true },
