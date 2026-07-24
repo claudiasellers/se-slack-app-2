@@ -1211,7 +1211,7 @@ export default function PlanComparisonTool() {
                 ) : activeTab === "feature-list" ? (
                   // feature list content (original functionality)
                   <>
-                    <div className="mb-4 flex items-center">
+                    <div className="sticky top-0 z-20 -mx-6 -mt-6 mb-4 flex items-center border-b border-gray-100 bg-white/95 px-6 py-3 backdrop-blur">
                       <div className="flex items-center space-x-2">
                         <div className="rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800">
                           {planOptions.find((option) => option.value === currentPlan)?.label}
@@ -1346,7 +1346,7 @@ export default function PlanComparisonTool() {
                 ) : (
                   // comparison table content
                   <>
-                    <div className="mb-4 flex items-center justify-between">
+                    <div className="sticky top-0 z-20 -mx-6 -mt-6 mb-4 flex items-center justify-between border-b border-gray-100 bg-white/95 px-6 py-3 backdrop-blur">
                       <div className="flex items-center space-x-2">
                         {selectedPlans.map((plan) => (
                           <div
