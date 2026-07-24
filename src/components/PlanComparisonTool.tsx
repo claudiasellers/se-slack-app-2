@@ -147,7 +147,7 @@ const getFeatureIcon = (feature: string) => {
     "Flag Content": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot MCP Client": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Slide Creation": <Bot className="h-5 w-5 text-[#E01E5A]" />,
-    "Salesforce MCP": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Slackbot Salesforce MCP Servers": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Slackbot Memory": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Voice Dictation": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Charts": <Bot className="h-5 w-5 text-[#E01E5A]" />,
@@ -316,7 +316,7 @@ const categorizeFeatures = (features: string[]) => {
       "Sales Home",
       "Slack Sales Templates",
       "Salesforce Channel AI Summary Tab",
-      "Salesforce MCP"
+      "Slackbot Salesforce MCP Servers"
     ],
     "Other Features": [],
   }

@@ -131,7 +131,7 @@ export const featureData = {
     "Slackbot MCP Client": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Slackbot Slide Creation": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
-    "Salesforce MCP": {free: false, pro: false, pro_ai: false, plus_v1: true, plus_v1_ai: true, plus_v2: true, grid_v1: true, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Salesforce MCP Servers": {free: false, pro: false, pro_ai: false, plus_v1: true, plus_v1_ai: true, plus_v2: true, grid_v1: true, grid_v1_ai: true, grid_v2: true},
     "Slackbot Memory": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Voice Dictation": {free: false, pro: false, pro_ai: false, plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
     "Slackbot Charts": {free: false, pro: false, pro_ai: false, plus_v1: true, plus_v1_ai: true, plus_v2: true, grid_v1: true, grid_v1_ai: true, grid_v2: true},
@@ -941,6 +941,86 @@ export const featureData = {
     operations: "Onboarding and managing cross-functional teams is bottlenecked because owners must manually add users to channels one-by-one or manage fragile, duplicate group structures within Slack.",
     sales: "Enablement and territory changes are slowed down because leaders can't instantly invite a pre-existing regional IDP sales cohort to a new deal room or notify them via a single unified @mention.",
     engineering: "Incident response and shift handoffs are delayed when developers can't immediately @mention or invite an established corporate admin or engineering directory group directly into an active triage channel."
+  },
+    "Slackbot Memory": {
+    sales: "Reps waste time continually re-prompting Slackbot with their specific sales methodology, pitch tone, or active deal parameters, leading to repetitive setup effort and inconsistent customer-facing communications across the sales team.",
+    engineering: "Engineers lose efficiency when AI assistants repeatedly forget team-specific tech stack conventions, architecture standards, or preferred coding languages, forcing developers to continuously re-explain context in every new chat.",
+    operations: "Cross-functional processes stall because employees receive generic AI outputs that ignore specialized internal jargon, team-specific approval hierarchy rules, or customized project management frameworks.",
+    marketing: "Brand consistency suffers and review cycles multiply when content creators have to constantly remind the AI of exact brand guidelines, preferred formatting rules, or target audience personas for every single draft.",
+    customer_support: "Support agents face higher handle times because they must manually re-feed escalation rules, VIP SLA terms, or product-specific troubleshooting styles into every query instead of receiving tailor-fitted advice automatically.",
+    it: "Admins face user frustration and shadow-AI risks when employees abandon corporate AI tools because the assistant lacks personal context and cannot remember user preferences or routine workspace behaviors.",
+    hr: "People managers waste time re-establishing department structures, remote-work policies, or team-specific onboarding rules every time they ask the AI to draft performance feedback or team updates."
+  },
+  "Slackbot Voice Dictation": {
+    sales: "Reps in transit between meetings or working on mobile struggle to quickly update deal notes, draft follow-up messages, or query CRM data, leading to delayed communication and administrative bottlenecks when away from their keyboards.",
+    engineering: "Developers suffer from context-switching fatigue and physical wrist strain during long coding sessions when forced to stop typing code and manually type out long, complex prompts to explain technical issues or query documentation.",
+    operations: "Field operations and site managers waste time trying to type out detailed operational updates or incident reports on small mobile screens, slowing down real-time status updates to headquarters.",
+    customer_support: "Support reps handling high-volume triage experience slower response speeds because typing complex troubleshooting steps for multiple tickets creates a physical bottleneck compared to natural voice dictation.",
+    marketing: "Creative and content leads lose fluid 'brain-dump' ideas and strategic thoughts because translating quick spoken concepts into structured text prompts requires tedious manual typing.",
+    it: "Admins face enterprise compliance and privacy hurdles deploying voice features because security officers block tools that retain or store raw employee audio files.",
+    hr: "Multilingual and global HR managers face friction trying to quickly communicate or generate policy drafts across different native languages while multitasking or on the move."
+  },
+  "Slackbot Charts": {
+    sales: "Reps lose momentum during live prospect negotiations or pipeline reviews when they can't instantly visualize revenue trends or win rates directly in chat, forcing them to pause discussions to build charts in external spreadsheets.",
+    operations: "Leadership decision-making stalls during cross-functional alignment meetings because teams have to manually export raw data files and fire up external BI tools just to visualize simple operational bottlenecks.",
+    finance: "Finance leads waste time manually turning raw financial tables and budget variance numbers into presentable visual charts during live monthly budget reconciliation threads.",
+    marketing: "Campaign managers struggle to quickly demonstrate ROI or audience engagement shifts during launch war rooms, as converting raw campaign data into clear visual charts requires leaving the channel to use design or analytics software.",
+    customer_support: "Support executives face friction showing real-time SLA health or escalation spikes to cross-functional partners because translating channel metrics into clear pie or bar charts requires manual data extraction.",
+    engineering: "Engineering leads lose focus when presenting system performance or sprint velocity metrics to non-technical stakeholders, as creating quick, clean visual trend lines requires stepping away from dev-centric workflows.",
+    it: "IT admins spend unnecessary effort generating visual reports for hardware allocation or software license usage queries, when non-technical leaders simply need a quick inline chart created from external data sources."
+  },
+  "Slackbot Salesforce MCP Servers": {
+    it: "Enabling enterprise AI to securely read, mutate, and trigger Salesforce data and logic traditionally requires weeks of custom developer work, fragile middleware, and complex per-user OAuth setups that create massive administrative overhead and security governance headaches.",
+    engineering: "Developers waste valuable sprint cycles building and maintaining custom API wrappers, OAuth integrations, and endpoint pipelines just to allow Slackbot or Agentforce to execute Apex Actions, trigger Flows, or query SObjects.",
+    operations: "Revenue Operations and Process leads cannot quickly deploy automated workflows in Slack (like triggering complex Salesforce Flows or updating multi-object records) because every new automation requires waiting on developer backlogs to build custom endpoints.",
+    sales: "Sales teams cannot leverage full CRM capabilities or deep Tableau Next analytics directly inside Slack because bridging advanced Data 360 profiles and custom Apex logic into conversational AI previously required bespoke engineering projects.",
+    finance: "Finance and ops teams face delayed reporting and execution loops because connecting Slack AI to Tableau dashboards or executing automated financial approval flows in Salesforce required costly integration projects and separate authentication silos."
+  },
+  "AI Content Safety Filters": {
+    it: "Admins in heavily regulated spaces face a total block on enterprise AI adoption because security and compliance teams refuse to sign off on AI features without granular, audit-ready safety controls that align with strict mandates like the EU AI Act.",
+    legal: "Corporate counsel and compliance officers expose the firm to massive regulatory fines and legal liability if employees generate, process, or expose unsafe, biased, or non-compliant content through internal AI workflows.",
+    hr: "HR leads risk severe employee relations issues and toxic workplace incidents if unmonitored AI surfaces inappropriate, discriminatory, or harmful content in open channels or automated recaps.",
+    finance: "Financial institutions face severe compliance risk and potential loss of operating licenses if AI tools generate unvetted advice, process unauthorized sensitive data, or bypass strict industry-standard content safeguards.",
+    engineering: "Technical leads struggle to deploy AI productivity tools safely across global dev teams because varying regional AI governance laws make it difficult to enforce a single, consistent safety standard across all workspace surfaces."
+  },
+  "Slackbot Analytics Dashboard": {
+    it: "IT admins lack granular visibility into AI adoption trends and skill-level usage, making it difficult to prove ROI or justify enterprise Slackbot licensing costs to executive leadership.",
+    operations: "Business Operations teams cannot identify which custom Slackbot skills are actually driving efficiency versus which ones are underperforming, leaving them unable to optimize or Sunset unused workflows.",
+    hr: "Enablement leads struggle to target training efforts because they can't see department-level or skill-specific penetration rates, leaving them blind to which teams are lagging in AI onboarding.",
+    sales: "Sales enablement leaders have no self-service way to measure whether reps are actively adopting custom deal-prep and CRM skills, making it impossible to correlate Slackbot usage with sales velocity.",
+    engineering: "Engineering managers cannot track the adoption of internal technical skills or automated incident response prompts, making it hard to evaluate if AI investment is actually reducing dev toil.",
+    finance: "Finance directors lack clean, isolated usage metrics to evaluate AI spend across departments, as general AI metrics lump basic channel summaries together with high-value conversational Slackbot skills."
+  },
+  "Workflow Builder Collections (Lookups & Repeaters)": {
+    operations: "Ops teams waste hours manually executing repetitive, multi-step administrative workflows across dozens of channels or team members because simple workflows couldn't handle loops or batch processing without writing custom code.",
+    hr: "Onboarding and cohort management require tedious manual work to send individualized welcome messages, assign tasks, or schedule check-ins for groups of new hires one-by-one instead of firing a single bulk automation.",
+    it: "Admins face a high backlog of developer requests just to build basic looping scripts for mass channel management, recurring user reminders, or bulk directory updates that non-technical managers should be able to configure visually.",
+    engineering: "DevOps leads lose valuable sprint time writing and maintaining custom API scripts to execute batch tasks across multiple incident channels or developer teams, simply because standard workflows lacked native collection logic.",
+    sales: "Sales operations managers struggle to run bulk territory updates, mass deal-room reminders, or batch-notify lists of account executives without cluttering channels with @here tags or messaging reps individually.",
+    customer_support: "Support leads face administrative bottlenecks when attempting to broadcast specialized alerts, shift updates, or protocol changes individually to dynamic lists of on-call support agents."
+  },
+  "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": {
+    it: "Admins face massive data governance and permission compliance risks when forced to duplicate external documentation into Slack just to make it accessible to automated workflows, creating dangerous 'shadow copies' that break source-of-truth access controls.",
+    operations: "Process automation breaks or outputs stale information because automated workflows rely on static, manually copied Slack canvases or messages that quickly become out-of-sync with the live source documents hosted in third-party storage.",
+    engineering: "Technical writers and platform teams waste hours re-creating, updating, and formatting live engineering specs and SOPs inside Slack just so workflow automations can pull accurate context for developer queries.",
+    hr: "Policy automations and onboarding workflows risk surfacing sensitive or outdated benefits information to unauthorized employees if HR managers cannot directly ground AI workflow responses in permission-governed source documents like Google Docs.",
+    customer_support: "Support leads struggle to maintain reliable triage automations because grounding AI responses in dynamic product manuals or troubleshooting guides previously required tedious, manual content synchronization into Slack.",
+    legal: "Compliance and legal teams block workflow adoption because they cannot audit or enforce source-app permission boundaries when AI-generated workflow responses pull from unvetted or duplicated internal text blocks."
+  },
+  "App Access Controls": {
+    it: "Admins face an 'all-or-nothing' security dilemma where approving a powerful app or MCP server for a specific power-user team instantly exposes it to the entire enterprise, creating massive shadow-IT and data governance risks.",
+    legal: "Compliance officers are forced to block high-value app integrations entirely because they cannot technically guarantee that restricted data sources or specialized tools remain shielded from non-authorized departments.",
+    finance: "Finance directors experience cost overruns and license waste because installing a paid or tier-restricted third-party app creates unintended workspace-wide access that non-essential employees end up consuming.",
+    engineering: "DevOps and platform leads cannot safely deploy sensitive developer tools or production-connected MCP servers in Slack without risking accidental misuse or execution by non-technical members.",
+    hr: "HR leads struggle to manage sensitive personnel apps or confidential reporting tools safely within the main workspace because access cannot be restricted to specific IDP groups or HR team members."
+  },
+  "Advanced Member Analytics": {
+    it: "Admins struggle to prove tangible enterprise ROI or optimize high-value license allocations because standard high-level analytics cannot surface granular, per-user adoption data across advanced capabilities like AI, Slackbot, and Workflows.",
+    operations: "Business Operations teams cannot accurately identify operational bottlenecks or benchmark digital maturity across departments because they lack visibility into individual member usage patterns across foundational tools like Canvas, Lists, and Clips.",
+    hr: "Enablement and change management leads are unable to design targeted upskilling programs because they have no way to pinpoint specific power users driving productivity versus disengaged members who need additional training.",
+    finance: "Finance directors face resistance during renewal cycles and license audits when attempting to justify premium seat costs without detailed, member-level usage metrics to demonstrate active platform engagement.",
+    sales: "Sales enablement leaders cannot correlate platform usage with revenue outcomes because they lack individual-level adoption metrics to evaluate whether top-performing Account Executives are leveraging tools like Slackbot and Canvas more effectively than lower performers.",
+    engineering: "Engineering leaders cannot evaluate the impact of developer productivity initiatives because they lack individual metrics tracking how dev teams adopt automated workflows and AI features to reduce sprint friction."
   }
   }
 }
