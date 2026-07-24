@@ -130,7 +130,17 @@ export const featureData = {
     "Flag Content": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: true, grid_v1_ai: true, grid_v2: true},
     "Slackbot MCP Client": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Slackbot Slide Creation": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true}
+    "Slackbot Web Search": {free: false, pro: false, pro_ai: false, plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
+    "Salesforce MCP": {free: false, pro: false, pro_ai: false, plus_v1: true, plus_v1_ai: true, plus_v2: true, grid_v1: true, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Memory": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Voice Dictation": {free: false, pro: false, pro_ai: false, plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
+    "Slackbot Charts": {free: false, pro: false, pro_ai: false, plus_v1: true, plus_v1_ai: true, plus_v2: true, grid_v1: true, grid_v1_ai: true, grid_v2: true},
+    "AI Content Safety Filters": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Analytics Dashboard": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "Workflow Builder Collections (Lookups & Repeaters)": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
+    "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "App Access Controls": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true},
+    "Advanced Member Analytics": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true}
 
 
 
@@ -262,8 +272,17 @@ export const featureData = {
     "Flag Content": "Allow members to flag messages and profile content for admins to review, hide, or dismiss.",
     "Slackbot MCP Client": "Slackbot functions as an MCP client, acting as a universal connection point to interact with your entire tech stack and third-party apps through natural conversation.",
     "Slackbot Slide Creation": "Slackbot can generate slides as part of a skill or prompt output.",
-    "Slackbot Web Search": "When enabled, Slackbot can pull in external website content to supplement its responses. Any external info it surfaces will include cited links."
-
+    "Slackbot Web Search": "When enabled, Slackbot can pull in external website content to supplement its responses. Any external info it surfaces will include cited links.",
+    "Slackbot Salesforce MCP Servers": "Six pre-built, Salesforce-hosted MCP servers (SObject Reads/Mutations/All/Deletes, Data 360, Tableau Next) that Slackbot auto-discovers and installs with one click, no dev work or separate OAuth setup. Also supports custom servers for Agentforce agents, Apex Actions, and Flows.",
+    "Slackbot Memory": "A curated, user-taught knowledge base of preferences and topics that Slackbot proactively applies to every response. Members can inspect, edit, or wipe entries at any time and opt into weekly automatic memory updates.",
+    "Slackbot Voice Dictation": "Speak prompts to Slackbot instead of typing, with auto-detection across major languages; audio is discarded after transcription so no voice data is retained.",
+    "Slackbot Charts": "Slackbot can create a bar, line, area, or pie chart inline from a plain-language request (which can be shared and created from data outside of Slack).",
+    "AI Content Safety Filters": "Admin-controlled sensitivity tiers (Default, Maximum, None) that apply uniformly across every Slack generative AI surface, including a Maximum tier built specifically for regulated industries and EU AI Act compliance.",
+    "Slackbot Analytics Dashboard": "Dedicated Slackbot-only admin dashboard with skill-level penetration rates, unique user counts, and CSV export,separated from general AI analytics so admins can measure Slackbot adoption on its own terms.",
+    "Workflow Builder Collections (Lookups & Repeaters)": "Native loop logic in Workflow Builder: define a collection of users or channels (or pull one from a List) and repeat any step over it, unlocking bulk actions like mass onboarding or reminders without custom code.",
+    "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": "Ground the AI generate-response step in external content (starting with Google Docs) using Slack's connector framework, so responses respect the source app's existing permissions instead of requiring data to be copied into Slack.",
+    "App Access Controls": "Restrict any installed app to specific members, IDP groups, or no one,closing the gap where 'installed' previously meant 'available to everyone' and giving admins per-app governance including MCP server access.",
+    "Advanced Member Analytics": "40+ user-level metrics covering AI, Slackbot, canvas, lists, clips, and workflow adoption in one dashboard, enabling per-user ROI analysis that the standard analytics view can't surface."
 
   },
   featurePainPoints: {

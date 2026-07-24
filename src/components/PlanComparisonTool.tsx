@@ -146,7 +146,17 @@ const getFeatureIcon = (feature: string) => {
     "Organization Level User Groups": <Users className="h-5 w-5 text-[#ECB22E]" />,
     "Flag Content": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot MCP Client": <Bot className="h-5 w-5 text-[#E01E5A]" />,
-    "Slackbot Slide Creation": <Bot className="h-5 w-5 text-[#E01E5A]" />
+    "Slackbot Slide Creation": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Salesforce MCP": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Slackbot Memory": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot Voice Dictation": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot Charts": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "AI Content Safety Filters": <Shield className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot Analytics Dashboard": <BarChart className="h-5 w-5 text-[#4A154B]" />,
+    "Workflow Builder Collections (Lookups & Repeaters)": <Workflow className="h-5 w-5 text-[#2EB67D]" />,
+    "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": <Zap className="h-5 w-5 text-[#ECB22E]" />,
+    "App Access Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
+    "Advanced Member Analytics": <BarChart className="h-5 w-5 text-[#4A154B]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -169,6 +179,7 @@ const categorizeFeatures = (features: string[]) => {
       "Slack Channel Templates",
       "Workflow Builder",
       "Conditional Workflows",
+      "Workflow Builder Collections (Lookups & Repeaters)",
       "Channel Posting Permissions"
     ],
     "Administration & Analytics": [
@@ -181,6 +192,9 @@ const categorizeFeatures = (features: string[]) => {
       "Atlas",
       "Message Activity",
       "Approve Workspaces",
+      "Slackbot Analytics Dashboard",
+      "App Access Controls",
+      "Advanced Member Analytics",
     ],
     "Security & Compliance": [
       "Restrict AI access to certain channels, canvases, and lists",
@@ -206,7 +220,8 @@ const categorizeFeatures = (features: string[]) => {
       "Discovery/DLP API",
       "Data Residency (IDR)",
       "Custom Terms of Service",
-      "Flag Content"
+      "Flag Content",
+      "AI Content Safety Filters"
     ],
     "External Collaboration": [
       "Guests",
@@ -246,8 +261,9 @@ const categorizeFeatures = (features: string[]) => {
       "AI Language Translations",
       "AI Admin analytics dashboard",
       "AI Explain",
-      "Canvas AI"
-      
+      "Canvas AI",
+      "Workflow Builder: 3rd-party knowledge sources for AI Generate Response"
+
     ],
     "Slackbot Functionality": [
       "Message Limit",
@@ -271,7 +287,10 @@ const categorizeFeatures = (features: string[]) => {
       "Slackbot: Read Salesforce reports",
       "Slackbot MCP Client",
       "Slackbot Slide Creation",
-      "Slackbot Web Search"
+      "Slackbot Web Search",
+      "Slackbot Memory",
+      "Slackbot Voice Dictation",
+      "Slackbot Charts"
     ],
     "Slackbot Trust & Security": [
        "International Data Residency",
@@ -296,7 +315,8 @@ const categorizeFeatures = (features: string[]) => {
       "Salesforce workflow automation (send to Salesforce app step)",
       "Sales Home",
       "Slack Sales Templates",
-      "Salesforce Channel AI Summary Tab"
+      "Salesforce Channel AI Summary Tab",
+      "Salesforce MCP"
     ],
     "Other Features": [],
   }
