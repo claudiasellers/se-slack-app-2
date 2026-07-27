@@ -189,7 +189,7 @@ export const featureData = {
     "Domain Claiming (join workspace)": "Prevent joining or creating workspaces using a claimed and verified domain.",
     "Domain Claiming (create workspace)": "Prevent Free workspaces from being created that are linked to a claimed corporate email domain.",
     "MDM (Mobile Device Management)": "Apply extra security controls at the device level. Managed via AppConfig vendor apps.",
-    "MAM (Mobile Application Management)": "Apply security controls directly to the Slack app.",
+    "MAM (Mobile Application Management)": "Apply security controls directly to the Slack app via Microsoft Intune MAM (App Protection Policies).",
     "Native Mobile Controls": "Security controls applied directly from Slack (requires no third-party tools).",
     "EKM (Enterprise Key Management)": "Manage your own encryption keys (requires Amazon KMS).",
     "Block File Downloads (Desktop + Mobile)": "Block downloads on desktop and restrict based on an IP address range.",
