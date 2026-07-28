@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, Fragment } from "react"
 import {
   ChevronDown,
   ChevronRight,
@@ -1211,7 +1211,7 @@ export default function PlanComparisonTool() {
                 ) : activeTab === "feature-list" ? (
                   // feature list content (original functionality)
                   <>
-                    <div className="sticky top-0 z-20 -mx-6 -mt-6 mb-4 flex items-center border-b border-gray-100 bg-white/95 px-6 py-3 backdrop-blur">
+                    <div className="mb-4 flex items-center">
                       <div className="flex items-center space-x-2">
                         <div className="rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800">
                           {planOptions.find((option) => option.value === currentPlan)?.label}
@@ -1254,12 +1254,9 @@ export default function PlanComparisonTool() {
                         No additional features available in this upgrade path.
                       </div>
                     ) : (
-                      <div className="space-y-4">
+                      <div>
                         {Object.entries(categorizedFeatures).map(([category, features]) => (
-                          <div
-                            key={category}
-                            className="overflow-hidden rounded-lg bg-white"
-                          >
+                          <Fragment key={category}>
                             <button
                               onClick={() => {
                                 toggleCategory(category)
@@ -1270,7 +1267,7 @@ export default function PlanComparisonTool() {
                                   features_count: features.length,
                                 })
                               }}
-                              className="flex w-full items-center gap-2 px-5 py-4 text-left"
+                              className="sticky top-0 z-10 flex w-full items-center gap-2 border-b border-gray-100 bg-white/95 px-5 py-4 text-left backdrop-blur"
                             >
                               {expandedCategories[category] ? (
                                 <ChevronDown
@@ -1295,7 +1292,7 @@ export default function PlanComparisonTool() {
                             </button>
 
                             {expandedCategories[category] && (
-                            <div className="grid gap-4 px-5 pb-5 sm:grid-cols-2">
+                            <div className="grid gap-4 px-5 py-5 sm:grid-cols-2">
                               {features.map((feature) => {
                                 const hasPainPoint = submittedLineOfBusiness && painPoints[feature]
 
@@ -1338,7 +1335,7 @@ export default function PlanComparisonTool() {
                               })}
                             </div>
                             )}
-                          </div>
+                          </Fragment>
                         ))}
                       </div>
                     )}
@@ -1346,7 +1343,7 @@ export default function PlanComparisonTool() {
                 ) : (
                   // comparison table content
                   <>
-                    <div className="sticky top-0 z-20 -mx-6 -mt-6 mb-4 flex items-center justify-between border-b border-gray-100 bg-white/95 px-6 py-3 backdrop-blur">
+                    <div className="mb-4 flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         {selectedPlans.map((plan) => (
                           <div
@@ -1405,12 +1402,9 @@ export default function PlanComparisonTool() {
                     </div>
 
                     {/* accordions for feature categories */}
-                    <div className="space-y-4">
+                    <div>
                       {Object.entries(categorizedFeatures).map(([category, features]) => (
-                        <div
-                          key={category}
-                          className="overflow-hidden rounded-lg border border-gray-200 bg-white transition-shadow hover:shadow-sm"
-                        >
+                        <Fragment key={category}>
                           <button
                             onClick={() => {
                               toggleCategory(category)
@@ -1422,7 +1416,7 @@ export default function PlanComparisonTool() {
                                 features_count: features.length,
                               })
                             }}
-                            className="flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-gray-50"
+                            className="sticky top-0 z-10 flex w-full items-center justify-between border-b border-gray-200 bg-white/95 px-5 py-4 text-left backdrop-blur transition-colors hover:bg-gray-50"
                           >
                             <h4
                               className="flex items-center gap-2 text-xl font-semibold"
@@ -1443,131 +1437,110 @@ export default function PlanComparisonTool() {
                           </button>
 
                           {expandedCategories[category] && (
-                            <div className="border-t border-gray-100 p-4">
-                              <div className="w-0 min-w-full overflow-x-auto">
-                                <table
-                                  className="divide-y divide-gray-200"
-                                  style={{ tableLayout: "fixed", width: 280 + selectedPlans.length * 140 + "px" }}
-                                >
-                                  <colgroup>
-                                    <col style={{ width: "280px" }} />
-                                    {selectedPlans.map((plan) => (
-                                      <col key={plan} style={{ width: "140px" }} />
-                                    ))}
-                                  </colgroup>
-                                  <thead className="bg-gray-50">
-                                    <tr>
-                                      <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                                      >
-                                        Feature
-                                      </th>
-                                      {selectedPlans.map((plan) => (
-                                        <th
-                                          key={plan}
-                                          scope="col"
-                                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-                                        >
-                                          {planOptions.find((option) => option.value === plan)?.label}
-                                        </th>
-                                      ))}
-                                    </tr>
-                                  </thead>
-                                  <tbody className="divide-y divide-gray-200 bg-white">
-                                    {features.map((feature) => (
-                                      <tr
-                                        key={feature}
-                                        className={submittedLineOfBusiness && painPoints[feature] ? "bg-red-50" : ""}
-                                      >
-                                        <td className="px-6 py-4">
-                                          <div className="flex items-start">
-                                            <div className="mr-3 mt-0.5 flex-shrink-0">{getFeatureIcon(feature)}</div>
-                                            <div>
-                                              <div className="font-medium text-gray-900">{feature}</div>
-                                              <div className="mt-1 text-sm text-gray-500 leading-tight">
-                                                {featureData.featureDescriptions[
-                                                  feature as keyof typeof featureData.featureDescriptions
-                                                ] || "No description available."}
-                                              </div>
-
-                                              {submittedLineOfBusiness && painPoints[feature] && (
-                                                <div className="mt-2 rounded-md bg-red-50 p-2">
-                                                  <div className="flex items-center">
-                                                    <div className="mr-2 h-2 w-2 rounded-full bg-[#E01E5A]"></div>
-                                                    <span className="text-sm font-medium text-[#E01E5A]">
-                                                      {
-                                                        lobOptions.find(
-                                                          (option) => option.value === submittedLineOfBusiness,
-                                                        )?.label
-                                                      }{" "}
-                                                      Pain Point
-                                                    </span>
-                                                  </div>
-                                                  <p className="mt-1 text-sm text-gray-700">{painPoints[feature]}</p>
-                                                </div>
-                                              )}
-                                            </div>
-                                          </div>
-                                        </td>
-
-                                        {selectedPlans.map((plan) => {
-                                          const hasFeature =
-                                            featureData.featureAvailability[
-                                              feature as keyof typeof featureData.featureAvailability
-                                            ][
-                                              plan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-                                            ]
-
-                                          return (
-                                            <td
-                                              key={`${feature}-${plan}`}
-                                              className="px-6 py-4 text-sm align-top whitespace-normal break-words"
-                                            >
-                                              {hasFeature === true ? (
-                                                <div className="flex items-center text-green-600">
-                                                  <svg
-                                                    className="mr-1.5 h-5 w-5"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                  >
-                                                    <path
-                                                      fillRule="evenodd"
-                                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                      clipRule="evenodd"
-                                                    />
-                                                  </svg>
-                                                  <span>Yes</span>
-                                                </div>
-                                              ) : hasFeature === false ? (
-                                                <div className="flex items-center text-red-600">
-                                                  <svg
-                                                    className="mr-1.5 h-5 w-5"
-                                                    fill="currentColor"
-                                                    viewBox="0 0 20 20"
-                                                  >
-                                                    <path
-                                                      fillRule="evenodd"
-                                                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                                                      clipRule="evenodd"
-                                                    />
-                                                  </svg>
-                                                  <span>No</span>
-                                                </div>
-                                              ) : (
-                                                <div className="text-sm font-medium" style={{ color: '#4A154B' }}>{hasFeature}</div>
-                                              )}
-                                            </td>
-                                          )
-                                        })}
-                                      </tr>
-                                    ))}
-                                  </tbody>
-                                </table>
+                            <div
+                              className="grid divide-y divide-gray-200"
+                              style={{ gridTemplateColumns: `minmax(280px, 2fr) repeat(${selectedPlans.length}, minmax(140px, 1fr))` }}
+                            >
+                              <div className="sticky top-[62px] z-[9] col-span-full grid grid-cols-subgrid border-b border-gray-200 bg-gray-50">
+                                <div className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Feature</div>
+                                {selectedPlans.map((plan) => (
+                                  <div key={plan} className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                                    {planOptions.find((option) => option.value === plan)?.label}
+                                  </div>
+                                ))}
                               </div>
+                              {features.map((feature) => (
+                                <div
+                                  key={feature}
+                                  className={`col-span-full grid grid-cols-subgrid ${
+                                    submittedLineOfBusiness && painPoints[feature] ? "bg-red-50" : ""
+                                  }`}
+                                >
+                                  <div className="px-6 py-4">
+                                    <div className="flex items-start">
+                                      <div className="mr-3 mt-0.5 flex-shrink-0">{getFeatureIcon(feature)}</div>
+                                      <div>
+                                        <div className="font-medium text-gray-900">{feature}</div>
+                                        <div className="mt-1 text-sm text-gray-500 leading-tight">
+                                          {featureData.featureDescriptions[
+                                            feature as keyof typeof featureData.featureDescriptions
+                                          ] || "No description available."}
+                                        </div>
+
+                                        {submittedLineOfBusiness && painPoints[feature] && (
+                                          <div className="mt-2 rounded-md bg-red-50 p-2">
+                                            <div className="flex items-center">
+                                              <div className="mr-2 h-2 w-2 rounded-full bg-[#E01E5A]"></div>
+                                              <span className="text-sm font-medium text-[#E01E5A]">
+                                                {
+                                                  lobOptions.find(
+                                                    (option) => option.value === submittedLineOfBusiness,
+                                                  )?.label
+                                                }{" "}
+                                                Pain Point
+                                              </span>
+                                            </div>
+                                            <p className="mt-1 text-sm text-gray-700">{painPoints[feature]}</p>
+                                          </div>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {selectedPlans.map((plan) => {
+                                    const hasFeature =
+                                      featureData.featureAvailability[
+                                        feature as keyof typeof featureData.featureAvailability
+                                      ][
+                                        plan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
+                                      ]
+
+                                    return (
+                                      <div
+                                        key={`${feature}-${plan}`}
+                                        className="px-6 py-4 text-sm"
+                                      >
+                                        {hasFeature === true ? (
+                                          <div className="flex items-center text-green-600">
+                                            <svg
+                                              className="mr-1.5 h-5 w-5"
+                                              fill="currentColor"
+                                              viewBox="0 0 20 20"
+                                            >
+                                              <path
+                                                fillRule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clipRule="evenodd"
+                                              />
+                                            </svg>
+                                            <span>Yes</span>
+                                          </div>
+                                        ) : hasFeature === false ? (
+                                          <div className="flex items-center text-red-600">
+                                            <svg
+                                              className="mr-1.5 h-5 w-5"
+                                              fill="currentColor"
+                                              viewBox="0 0 20 20"
+                                            >
+                                              <path
+                                                fillRule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                                                clipRule="evenodd"
+                                              />
+                                            </svg>
+                                            <span>No</span>
+                                          </div>
+                                        ) : (
+                                          <div className="text-sm font-medium" style={{ color: '#4A154B' }}>{hasFeature}</div>
+                                        )}
+                                      </div>
+                                    )
+                                  })}
+                                </div>
+                              ))}
                             </div>
                           )}
-                        </div>
+                        </Fragment>
                       ))}
                     </div>
                   </>
