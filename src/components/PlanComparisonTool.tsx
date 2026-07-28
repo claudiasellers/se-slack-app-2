@@ -1441,7 +1441,7 @@ export default function PlanComparisonTool() {
                               className="grid divide-y divide-gray-200"
                               style={{ gridTemplateColumns: `minmax(280px, 2fr) repeat(${selectedPlans.length}, minmax(140px, 1fr))` }}
                             >
-                              <div className="sticky top-[62px] z-[9] col-span-full grid grid-cols-subgrid border-b border-gray-200 bg-gray-50">
+                              <div className="sticky top-[60px] z-[9] col-span-full grid grid-cols-subgrid border-b border-gray-200 bg-gray-50">
                                 <div className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Feature</div>
                                 {selectedPlans.map((plan) => (
                                   <div key={plan} className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
