@@ -140,7 +140,8 @@ export const featureData = {
     "Workflow Builder Collections (Lookups & Repeaters)": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
     "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "App Access Controls": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true},
-    "Advanced Member Analytics": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true}
+    "Advanced Member Analytics": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true},
+    "Slackbot Surfaces": {free: false, pro: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true}
 
 
 
@@ -282,7 +283,8 @@ export const featureData = {
     "Workflow Builder Collections (Lookups & Repeaters)": "Native loop logic in Workflow Builder: define a collection of users or channels (or pull one from a List) and repeat any step over it, unlocking bulk actions like mass onboarding or reminders without custom code.",
     "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": "Ground the AI generate-response step in external content (starting with Google Docs) using Slack's connector framework, so responses respect the source app's existing permissions instead of requiring data to be copied into Slack.",
     "App Access Controls": "Restrict any installed app to specific members, IDP groups, or no one,closing the gap where 'installed' previously meant 'available to everyone' and giving admins per-app governance including MCP server access.",
-    "Advanced Member Analytics": "40+ user-level metrics covering AI, Slackbot, canvas, lists, clips, and workflow adoption in one dashboard, enabling per-user ROI analysis that the standard analytics view can't surface."
+    "Advanced Member Analytics": "40+ user-level metrics covering AI, Slackbot, canvas, lists, clips, and workflow adoption in one dashboard, enabling per-user ROI analysis that the standard analytics view can't surface.",
+    "Slackbot Surfaces": "Generate interactive dashboards, reports, and charts from a plain-language prompt, pulling data from Slack or connected systems via MCP (Salesforce, Jira), saved as HTML files that live in Slack and can be pinned to channel tabs. Renders native charts, KPI cards, and tables you can sort, filter, and comment on."
 
   },
   featurePainPoints: {
@@ -1021,6 +1023,14 @@ export const featureData = {
     finance: "Finance directors face resistance during renewal cycles and license audits when attempting to justify premium seat costs without detailed, member-level usage metrics to demonstrate active platform engagement.",
     sales: "Sales enablement leaders cannot correlate platform usage with revenue outcomes because they lack individual-level adoption metrics to evaluate whether top-performing Account Executives are leveraging tools like Slackbot and Canvas more effectively than lower performers.",
     engineering: "Engineering leaders cannot evaluate the impact of developer productivity initiatives because they lack individual metrics tracking how dev teams adopt automated workflows and AI features to reduce sprint friction."
+  },
+  "Slackbot Surfaces": {
+    operations: "Leadership decision-making stalls during strategic syncs because teams waste critical meeting time manually stitching together data from Slack, Salesforce, and Jira into ad-hoc slide decks instead of interacting with live, filterable dashboards directly inside project channels.",
+    sales: "Sales leaders and Account Executives lose deal momentum navigating heavy external CRMs and BI tools during pipeline reviews, unable to instantly pull up, sort, or pin rich deal metrics and forecast KPI cards directly into their Slack war rooms.",
+    engineering: "Engineering managers struggle to maintain alignment on sprint velocity and cross-tool bug tracking because context remains fragmented between Jira tickets and Slack chatter, requiring constant manual status reports instead of pinned, interactive system dashboards.",
+    finance: "Finance directors face friction during budget reconciliation threads when cross-referencing spend across multiple systems, as discussing static data extracts requires switching tools rather than commenting directly on dynamic, interactive tables inside the channel.",
+    it: "Admins and service leads face high administrative overhead building and maintaining custom reporting portals or BI licenses for non-technical managers who just need a quick, filterable operational view backed by live CRM and issue-tracking data.",
+    customer_support: "Support executives struggle to track high-level SLA health and escalation spikes in real time because support metrics remain trapped in external ticketing portals rather than pinned as live KPI cards in active response channels."
   }
   }
 }

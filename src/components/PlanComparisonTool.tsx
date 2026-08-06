@@ -156,7 +156,8 @@ const getFeatureIcon = (feature: string) => {
     "Workflow Builder Collections (Lookups & Repeaters)": <Workflow className="h-5 w-5 text-[#2EB67D]" />,
     "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "App Access Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Advanced Member Analytics": <BarChart className="h-5 w-5 text-[#4A154B]" />
+    "Advanced Member Analytics": <BarChart className="h-5 w-5 text-[#4A154B]" />,
+    "Slackbot Surfaces": <Bot className="h-5 w-5 text-[#4A154B]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -290,7 +291,8 @@ const categorizeFeatures = (features: string[]) => {
       "Slackbot Web Search",
       "Slackbot Memory",
       "Slackbot Voice Dictation",
-      "Slackbot Charts"
+      "Slackbot Charts",
+      "Slackbot Surfaces"
     ],
     "Slackbot Trust & Security": [
        "International Data Residency",
