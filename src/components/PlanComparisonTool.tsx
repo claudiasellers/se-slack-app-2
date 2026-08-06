@@ -157,7 +157,7 @@ const getFeatureIcon = (feature: string) => {
     "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "App Access Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Advanced Member Analytics": <BarChart className="h-5 w-5 text-[#4A154B]" />,
-    "Slackbot Surfaces": <Bot className="h-5 w-5 text-[#4A154B]" />
+    "Slackbot Surfaces": <Bot className="h-5 w-5 text-[#E01E5A]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
