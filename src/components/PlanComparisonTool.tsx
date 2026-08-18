@@ -29,6 +29,14 @@ import {
   LineChart
 } from "lucide-react"
 import { featureData, legacyAddOns } from "../data/features"
+import { lobOptions, planGroups, planHierarchy, planOptions } from "../data/taxonomy"
+import {
+  categorizeFeatures,
+  getHighestPlan,
+  getLOBPainPoints,
+  getPlanFeatures,
+  getUpgradeFeatures,
+} from "../lib/planLogic"
 import mixpanel from "mixpanel-browser"
 
 // get feature icon
@@ -163,195 +171,6 @@ const getFeatureIcon = (feature: string) => {
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
 }
 
-// categorize features
-const categorizeFeatures = (features: string[]) => {
-  if (!features || features.length === 0) {
-    return {}
-  }
-
-  const categories: Record<string, string[]> = {
-   "Collaboration Tools": [
-      "Canvas",
-      "Custom Canvas Templates",
-      "Clips",
-      "Multiple Workspaces",
-      "Multi-Workspace Channels",
-      "Lists",
-      "Slack Channel Templates",
-      "Workflow Builder",
-      "Conditional Workflows",
-      "Workflow Builder Collections (Lookups & Repeaters)",
-      "Channel Posting Permissions"
-    ],
-    "Administration & Analytics": [
-      "Granular Admin Roles",
-      "Central Channel Dashboard",
-      "Admin API",
-      "Analytics API (Members)",
-      "Analytics API (Conversations)",
-      "App Analytics",
-      "Atlas",
-      "Message Activity",
-      "Approve Workspaces",
-      "Slackbot Analytics Dashboard",
-      "App Access Controls",
-      "Advanced Member Analytics",
-    ],
-    "Security & Compliance": [
-      "Restrict AI access to certain channels, canvases, and lists",
-      "Custom Retention Policies (Workspace)",
-      "Custom Retention Policies (Org-Wide)",
-      "SAML SSO",
-      "Multi-SAML SSO",
-      "Session Duration - Desktop + Mobile",
-      "Session Management",
-      "MDM (Mobile Device Management)",
-      "MAM (Mobile Application Management)",
-      "EMM (Enterprise Mobility Management)",
-      "Native Device Management: Block Jailbroken Devices",
-      "Native Device Management: Block Copy / Paste (Mobile)",
-      "EKM (Enterprise Key Management)",
-      "Block File Downloads (Desktop + Mobile)",
-      "Legal Holds",
-      "Information Barriers",
-      "DLP (Data Loss Prevention)",
-      "Native DLP",
-      "Audit Logs API",
-      "Audit Logs (Native Dashboard)",
-      "Discovery/DLP API",
-      "Data Residency (IDR)",
-      "Custom Terms of Service",
-      "Flag Content",
-      "AI Content Safety Filters"
-    ],
-    "External Collaboration": [
-      "Guests",
-      "Slack Connect (Shared Channels)",
-      "Sponsored Connections - Slack Connect",
-      "Per-Org Customization - Slack Connect",
-      "Lock Guest Names"
-    ],
-    "User Management": [
-      "SCIM API Provisioning",
-      "SCIM API Provisioning (Guest Provisioning)",
-      "Atlas",
-      "Custom User Groups",
-      "IDP Groups",
-      "Domain Claiming (create workspace)",
-      "Google OAuth 2.0",
-      "Organization Level User Groups"
-    ],
-    "Data & Exports": [
-      "Exports (Public Data)",
-      "Exports (Full Data)",
-      "Exports (Single User Exports)",
-      "Exports (Salesforce Channels)",
-    ],
-    "Support & Reliability": ["Guaranteed Uptime and Fast Customer Support"],
-    "Slack AI": [
-      "Thread & Channel Summaries",
-      "File Summaries",
-      "Recaps",
-      "Huddles Notes",
-      "Slack AI Search",
-      "Enterprise Search",
-      "3rd Party Agent Apps",
-      "AI Workflow Builder",
-      "AI Steps in Workflow Builder",
-      "Catchup Summaries on Mobile",
-      "AI Language Translations",
-      "AI Admin analytics dashboard",
-      "AI Explain",
-      "Canvas AI",
-      "Workflow Builder: 3rd-party knowledge sources for AI Generate Response"
-
-    ],
-    "Slackbot Functionality": [
-      "Message Limit",
-      "Full Access: Unlimited Messages",
-      "Slack search (including canvases)",
-      "Multiple searches at once",
-      "Desktop & mobile parity",
-      "File uploads & calendar entity read",
-      "Create & update canvases",
-      "3P entity read (GDrive, OneDrive, Box, etc)",
-      "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)",
-      "Slackbot Scheduled Automations",
-      "Slackbot Skills",
-      "Slackbot Salesforce search, create, and update",
-      "Emails - search, draft, and send",
-      "Enterprise Search in Slackbot",
-      "Calendar events - search and create in Slackbot",
-      "Slackbot native Slack actions",
-      "Slackbot Web Search",
-      "Slackbot: Upload Files to Salesforce",
-      "Slackbot: Read Salesforce reports",
-      "Slackbot MCP Client",
-      "Slackbot Slide Creation",
-      "Slackbot Web Search",
-      "Slackbot Memory",
-      "Slackbot Voice Dictation",
-      "Slackbot Charts",
-      "Slackbot Surfaces"
-    ],
-    "Slackbot Trust & Security": [
-       "International Data Residency",
-       "Full-org kill switch",
-       "Custom group access",
-       "Full Data Export",
-       "Filtered & single user export",
-       "Slackbot DLP",
-       "EKM compatibility",
-       "Slackbot Audit logs"
-    ],
-    "Salesforce Integration": [
-      "Salesforce Channels",
-      "Record Unfurls",
-      "Record Search",
-      "Record View & Edit",
-      "Related List Views",
-      "Connect multiple Salesforce orgs",
-      "Salesforce standalone List Views",
-      "Salesforce workflow automation (Event triggers)",
-      "Salesforce workflow automation (Scheduled triggers)",
-      "Salesforce workflow automation (send to Salesforce app step)",
-      "Sales Home",
-      "Slack Sales Templates",
-      "Salesforce Channel AI Summary Tab",
-      "Slackbot Salesforce MCP Servers"
-    ],
-    "Other Features": [],
-  }
-
-  // create a map of categorized features
-  const categorized: Record<string, string[]> = {}
-
-  // add all features that match  predefined categories
-  for (const category in categories) {
-    const categoryFeatures = features.filter((feature) => categories[category].includes(feature))
-
-    if (categoryFeatures.length > 0) {
-      categorized[category] = categoryFeatures
-    }
-  }
-
-  // add remaining features to "Other Features"
-  const otherFeatures = features.filter((feature) => {
-    for (const category in categories) {
-      if (category !== "Other Features" && categories[category].includes(feature)) {
-        return false
-      }
-    }
-    return true
-  })
-
-  if (otherFeatures.length > 0) {
-    categorized["Other Features"] = otherFeatures
-  }
-
-  return categorized
-}
-
 // get section colors
 const getSectionColor = (category: string) => {
   const colorMap: Record<string, string> = {
@@ -401,44 +220,6 @@ export default function PlanComparisonTool() {
   const [submittedLineOfBusiness, setSubmittedLineOfBusiness] = useState("")
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({})
 
-  // Get feature access for a plan, with add-on fallback
-  // If plus_v1_ai key exists, use it; otherwise fall back to plus_v1
-  const getFeatureAccess = (feature: string, plan: string, addOns: string[]): boolean | string => {
-    const featureAvail = featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability] as Record<string, boolean | string> | undefined
-    if (!featureAvail) return false
-
-    // Check if there's an add-on specific key for this feature
-    for (const addOnKey of addOns) {
-      const addOn = legacyAddOns[addOnKey]
-      if (addOn && addOn.applicablePlans.includes(plan)) {
-        const addOnPlanKey = `${plan}${addOn.planKeySuffix}`
-        if (addOnPlanKey in featureAvail) {
-          return featureAvail[addOnPlanKey]
-        }
-      }
-    }
-
-    // Fall back to base plan access
-    return featureAvail[plan] ?? false
-  }
-
-  // get upgrade features (for Feature List tab)
-  const getUpgradeFeatures = (current: string, future: string, currentAddOns: string[] = []) => {
-    const addedFeatures: string[] = []
-
-    for (const feature in featureData.featureAvailability) {
-      const currentAccess = getFeatureAccess(feature, current, currentAddOns)
-      const futureAccess = getFeatureAccess(feature, future, []) // Future plan doesn't use legacy add-ons
-
-      // Add feature if it's available in future plan but not in current plan
-      if (currentAccess !== futureAccess && futureAccess) {
-        addedFeatures.push(feature)
-      }
-    }
-
-    return addedFeatures
-  }
-
   // toggle category expansion
   const toggleCategory = (category: string) => {
     setExpandedCategories((prev) => ({
@@ -461,20 +242,6 @@ export default function PlanComparisonTool() {
       tab: activeTab,
       categories_count: Object.keys(categorizedFeatures).length,
     })
-  }
-
-  // get LOB pain points
-  const getLOBPainPoints = (features: string[], lob: string) => {
-    const relevantPainPoints: { [key: string]: string } = {}
-
-    features.forEach((feature) => {
-      const painPoint = featureData.featurePainPoints[feature as keyof typeof featureData.featurePainPoints]
-      if (painPoint && painPoint[lob as keyof typeof painPoint]) {
-        relevantPainPoints[feature] = painPoint[lob as keyof typeof painPoint] as string
-      }
-    })
-
-    return relevantPainPoints
   }
 
   // download PDF
@@ -757,22 +524,8 @@ export default function PlanComparisonTool() {
         } else {
           // comparison table logic - show all features from highest selected plan
           // get features from highest selected plan
-          const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
-          const highestSelectedPlan =
-            planHierarchy.reverse().find((plan) => selectedPlans.includes(plan)) || selectedPlans[0]
-
-          // get ALL features available in highest selected plan
-          const highestPlanFeatures: string[] = []
-          for (const feature in featureData.featureAvailability) {
-            const hasAccess =
-              featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][
-                highestSelectedPlan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-              ] ?? false
-
-            if (hasAccess) {
-              highestPlanFeatures.push(feature)
-            }
-          }
+          const highestSelectedPlan = getHighestPlan(selectedPlans)
+          const highestPlanFeatures = getPlanFeatures(highestSelectedPlan)
           featuresForTracking = highestPlanFeatures
 
           // categorize features from highest plan
@@ -867,43 +620,6 @@ export default function PlanComparisonTool() {
     // mp event tab change
     mixpanel.track("Tab Changed", { tab: tab })
   }
-
-  type PlanOption = { value: string; label: string }
-  type PlanGroup = { label: string; options: PlanOption[] }
-  type PlanStructure = (PlanOption | PlanGroup)[]
-
-  const planGroups: PlanStructure = [
-    { value: "free", label: "Free" },
-    { value: "pro", label: "Pro" },
-    {
-      label: "Business+",
-      options: [
-        { value: "plus_v1", label: "Business+ V1" },
-        { value: "plus_v2", label: "Business+ V2" },
-      ],
-    },
-    {
-      label: "Enterprise",
-      options: [
-        { value: "grid_v1", label: "Grid V1" },
-        { value: "grid_v2", label: "Enterprise+" },
-      ],
-    },
-  ]
-
-  const planOptions: PlanOption[] = planGroups.flatMap((g) => ("options" in g ? g.options : g))
-
-  const lobOptions: { value: string; label: string }[] = [
-    { value: "", label: "Select Line of Business (Optional)" },
-    { value: "it", label: "IT" },
-    { value: "engineering", label: "Engineering" },
-    { value: "sales", label: "Sales" },
-    { value: "hr", label: "Human Resources" },
-    { value: "marketing", label: "Marketing" },
-    { value: "finance", label: "Finance" },
-    { value: "customer_support", label: "Customer Support" },
-    { value: "operations", label: "Operations" },
-  ]
 
   return (
     <div className="min-h-screen bg-white">
@@ -1092,7 +808,6 @@ export default function PlanComparisonTool() {
                             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                               const plan = option.value
                               const action = e.target.checked ? "selected" : "deselected"
-                              const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
                               if (e.target.checked) {
                                 setSelectedPlans((prev) =>
                                   [...prev, option.value].sort(
