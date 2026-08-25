@@ -183,18 +183,20 @@ const categorizeFeatures = (features: string[]) => {
       "Workflow Builder Collections (Lookups & Repeaters)",
       "Channel Posting Permissions"
     ],
-    "Administration & Analytics": [
+    "Administration": [
       "Granular Admin Roles",
       "Central Channel Dashboard",
       "Admin API",
+      "Atlas",
+      "Approve Workspaces",
+      "App Access Controls",
+    ],
+    "Analytics": [
       "Analytics API (Members)",
       "Analytics API (Conversations)",
       "App Analytics",
-      "Atlas",
       "Message Activity",
-      "Approve Workspaces",
       "Slackbot Analytics Dashboard",
-      "App Access Controls",
       "Advanced Member Analytics",
     ],
     "Security & Compliance": [
@@ -234,7 +236,6 @@ const categorizeFeatures = (features: string[]) => {
     "User Management": [
       "SCIM API Provisioning",
       "SCIM API Provisioning (Guest Provisioning)",
-      "Atlas",
       "Custom User Groups",
       "IDP Groups",
       "Domain Claiming (create workspace)",
