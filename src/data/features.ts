@@ -135,13 +135,15 @@ export const featureData = {
     "Slackbot Memory": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Voice Dictation": {free: false, pro: false, pro_ai: false, plus_v1: "In Sample", plus_v1_ai: true, plus_v2: true, grid_v1: "In Sample", grid_v1_ai: true, grid_v2: true},
     "Slackbot Charts": {free: false, pro: false, pro_ai: false, plus_v1: true, plus_v1_ai: true, plus_v2: true, grid_v1: true, grid_v1_ai: true, grid_v2: true},
-    "AI Content Safety Filters": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "AI Content Safety Filters": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "Slackbot Analytics Dashboard": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "Workflow Builder Collections (Lookups & Repeaters)": {free: false, pro: false, plus_v1: true, plus_v2: true, grid_v1: true, grid_v2: true},
-    "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": {free: false, pro: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
-    "App Access Controls": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true},
-    "Advanced Member Analytics": {free: false, pro: false, plus_v1: false, plus_v2: false, grid_v1: true, grid_v2: true},
-    "Slackbot Surfaces": {free: false, pro: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true}
+    "Workflow Builder Collections (Lookups & Repeaters)": {free: false, pro: false, pro_ai: false, plus_v1: true, plus_v1_ai: true, plus_v2: true, grid_v1: true, grid_v1_ai: true, grid_v2: true},
+    "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
+    "App Access Controls": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: true, grid_v1_ai: true, grid_v2: true},
+    "Advanced Member Analytics": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: true, grid_v1_ai: true, grid_v2: true},
+    "Slackbot Surfaces": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
+    "IDP-Managed Access to Slack MCP Server": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true},
+    "Share Slackbot Skills Externally": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true}
 
 
 
@@ -284,7 +286,9 @@ export const featureData = {
     "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": "Ground the AI generate-response step in external content (starting with Google Docs) using Slack's connector framework, so responses respect the source app's existing permissions instead of requiring data to be copied into Slack.",
     "App Access Controls": "Restrict any installed app to specific members, IDP groups, or no one,closing the gap where 'installed' previously meant 'available to everyone' and giving admins per-app governance including MCP server access.",
     "Advanced Member Analytics": "40+ user-level metrics covering AI, Slackbot, canvas, lists, clips, and workflow adoption in one dashboard, enabling per-user ROI analysis that the standard analytics view can't surface.",
-    "Slackbot Surfaces": "Generate interactive dashboards, reports, and charts from a plain-language prompt, pulling data from Slack or connected systems via MCP (Salesforce, Jira), saved as HTML files that live in Slack and can be pinned to channel tabs. Renders native charts, KPI cards, and tables you can sort, filter, and comment on."
+    "Slackbot Surfaces": "Generate interactive dashboards, reports, and charts from a plain-language prompt, pulling data from Slack or connected systems via MCP (Salesforce, Jira), saved as HTML files that live in Slack and can be pinned to channel tabs. Renders native charts, KPI cards, and tables you can sort, filter, and comment on.",
+    "IDP-Managed Access to Slack MCP Server": "Admins can control which employees can connect external AI tools (like Claude) to Slack's MCP server through their existing SSO provider, instead of each employee having to approve access one-by-one.",
+    "Share Slackbot Skills Externally": "Skill authors can generate a shareable link so someone in a different Slack org can add a copy of the skill to their own workspace. Admins can toggle sending and receiving off from the Slackbot admin dashboard."
 
   },
   featurePainPoints: {
@@ -1031,6 +1035,12 @@ export const featureData = {
     finance: "Finance directors face friction during budget reconciliation threads when cross-referencing spend across multiple systems, as discussing static data extracts requires switching tools rather than commenting directly on dynamic, interactive tables inside the channel.",
     it: "Admins and service leads face high administrative overhead building and maintaining custom reporting portals or BI licenses for non-technical managers who just need a quick, filterable operational view backed by live CRM and issue-tracking data.",
     customer_support: "Support executives struggle to track high-level SLA health and escalation spikes in real time because support metrics remain trapped in external ticketing portals rather than pinned as live KPI cards in active response channels."
+  },
+  "IDP-Managed Access to Slack MCP Server": {
+    it: "Admins face massive governance and shadow-AI risks when employees individually connect third-party AI clients (like Claude) to Slack via self-serve OAuth, creating an untracked web of external API connections that violates corporate security policies.",
+    legal: "Compliance officers and security leads block teams from connecting external AI tools to Slack because they lack centralized, audit-ready access controls and cannot enforce single sign-on (SSO) entitlement policies over third-party MCP connections.",
+    engineering: "Developers and technical teams experience onboarding friction when setting up developer environments because every engineer has to manually navigate individual, multi-step OAuth consent flows to link their AI tools to Slack's MCP server.",
+    operations: "Business Operations leads struggle with slow AI tool adoption across departments because non-technical employees get confused or blocked by manual OAuth consent screens when trying to connect external AI tools like Claude to workspace data."
   }
   }
 }

@@ -54,7 +54,7 @@ const getFeatureIcon = (feature: string) => {
     "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Channel Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
     "Granular Admin Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
-    "Central Channel Dashboard": <BarChart className="h-5 w-5 text-[#4A154B]" />,
+    "Central Channel Dashboard": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Admin API": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Analytics API (Members)": <BarChart className="h-5 w-5 text-[#4A154B]" />,
     "Analytics API (Conversations)": <BarChart className="h-5 w-5 text-[#4A154B]" />,
@@ -157,7 +157,9 @@ const getFeatureIcon = (feature: string) => {
     "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "App Access Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Advanced Member Analytics": <BarChart className="h-5 w-5 text-[#4A154B]" />,
-    "Slackbot Surfaces": <Bot className="h-5 w-5 text-[#E01E5A]" />
+    "Slackbot Surfaces": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "IDP-Managed Access to Slack MCP Server": <Shield className="h-5 w-5 text-[#E01E5A]" />,
+    "Share Slackbot Skills Externally": <Bot className="h-5 w-5 text-[#E01E5A]" />
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -224,7 +226,8 @@ const categorizeFeatures = (features: string[]) => {
       "Data Residency (IDR)",
       "Custom Terms of Service",
       "Flag Content",
-      "AI Content Safety Filters"
+      "AI Content Safety Filters",
+      "IDP-Managed Access to Slack MCP Server"
     ],
     "External Collaboration": [
       "Guests",
@@ -279,6 +282,7 @@ const categorizeFeatures = (features: string[]) => {
       "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)",
       "Slackbot Scheduled Automations",
       "Slackbot Skills",
+      "Share Slackbot Skills Externally",
       "Slackbot Salesforce search, create, and update",
       "Emails - search, draft, and send",
       "Enterprise Search in Slackbot",
