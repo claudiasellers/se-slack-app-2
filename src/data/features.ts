@@ -245,7 +245,7 @@ export const featureData = {
     "Salesforce workflow automation (send to Salesforce app step)": "Send automated, Salesforce-triggered messages directly to a user’s private Salesforce app in Slack. By moving notifications out of noisy public channels and into a personal workspace, you transition from a 'public broadcast' that gets ignored to a 'personal task' that drives immediate action.",
     "Message Limit": "Users can access Slackbot, but are limited to 15 messages per user per week. If they hit the limit, they have to wait until the next week to send more messages.",
     "Full Access: Unlimited Messages": "Users can send unlimited messages to Slackbot with no restrictions.",
-    "Slack search (including canvases)": "Slackbot can search through all your Slack messages, files, and canvases to find relevant information when answering questions.",
+    "Slack search (including canvases)": "Slackbot can search through all your Slack messages, files, canvases, and canvas comments to find relevant information when answering questions.",
     "Multiple iterative parallel searches": "Slackbot can run several parallel searches simultaneously to gather comprehensive information quickly rather than searching sequentially.",
     "Desktop & mobile parity": "Slackbot offers the same full functionality and experience across both desktop and mobile Slack apps.",
     "File uploads & calendar entity read": "Slackbot can read content from uploaded files (PDFs, images, documents) and access calendar event details (Google Calendar and Outlook) to provide context-aware answers.",
