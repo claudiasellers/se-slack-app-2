@@ -141,7 +141,7 @@ export const featureData = {
     "Workflow Builder: 3rd-party knowledge sources for AI Generate Response": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true},
     "App Access Controls": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: true, grid_v1_ai: true, grid_v2: true},
     "Advanced Member Analytics": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: true, grid_v1_ai: true, grid_v2: true},
-    "Slackbot Surfaces": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: true, grid_v1: false, grid_v1_ai: false, grid_v2: true},
+    "Slackbot Surfaces": {free: true, pro: true, pro_ai: true, plus_v1: true, plus_v1_ai: true, plus_v2: true, grid_v1: true, grid_v1_ai: true, grid_v2: true},
     "IDP-Managed Access to Slack MCP Server": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: false, plus_v2: false, grid_v1: false, grid_v1_ai: false, grid_v2: true},
     "Share Slackbot Skills Externally": {free: false, pro: false, pro_ai: false, plus_v1: false, plus_v1_ai: true, plus_v2: true, grid_v1: false, grid_v1_ai: true, grid_v2: true}
 
