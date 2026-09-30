@@ -1,6 +1,5 @@
 // src/App.tsx
 import mixpanel from 'mixpanel-browser';
-import PlanComparisonTool from './components/PlanComparisonTool';
 
 // Helper to get or create a persistent distinct ID
 const getOrCreateDistinctId = (): string => {
