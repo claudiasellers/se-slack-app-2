@@ -26,7 +26,10 @@ import {
   Download,
   Cloud,
   Smartphone,
-  LineChart
+  LineChart,
+  ImageIcon,
+  Search,
+  Video
 } from "lucide-react"
 import { featureData, legacyAddOns } from "../data/features"
 import mixpanel from "mixpanel-browser"
@@ -53,7 +56,7 @@ const getFeatureIcon = (feature: string) => {
     "Out of Office Responder": <Clock className="h-5 w-5 text-[#ECB22E]" />,
     "Lists": <List className="h-5 w-5 text-[#2EB67D]" />,
     "Slack Channel Templates": <FileText className="h-5 w-5 text-[#2EB67D]" />,
-    "Granular Admin Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
+    "System & Custom Roles": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Central Channel Dashboard": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Admin API": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Analytics API (Members)": <BarChart className="h-5 w-5 text-[#4A154B]" />,
@@ -101,6 +104,7 @@ const getFeatureIcon = (feature: string) => {
     "Record View & Edit": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Related List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Connect multiple Salesforce orgs": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
+    "Provisioning and Auth": <UserCheck className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce standalone List Views": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce workflow automation (Event triggers)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
     "Salesforce workflow automation (send to Salesforce app step)": <Cloud className="h-5 w-5 text-[#36C5F0]" />,
@@ -114,6 +118,7 @@ const getFeatureIcon = (feature: string) => {
     "AI Admin analytics dashboard": <LineChart className="h-5 w-5 text-[#ECB22E]" />,
     "AI Explain": <Zap className="h-5 w-5 text-[#ECB22E]" />,
     "Canvas AI": <FileText className="h-5 w-5 text-[#ECB22E]" />,
+    "Natural Language Search Filters": <Search className="h-5 w-5 text-[#ECB22E]" />,
     "Message Limit": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Full Access: Unlimited Messages": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Multiple iterative parallel searches": <Bot className="h-5 w-5 text-[#E01E5A]" />,
@@ -124,7 +129,7 @@ const getFeatureIcon = (feature: string) => {
     "3P entity read (GDrive, OneDrive, Box, etc)": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Enterprise search w/ 3P read only connectors (OneDrive, Box, GDrive)": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Skills": <Bot className="h-5 w-5 text-[#E01E5A]" />,
-    "International Data Residency": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot IDR": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Full-org kill switch": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Custom group access": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Full Data Export": <Bot className="h-5 w-5 text-[#E01E5A]" />,
@@ -151,6 +156,9 @@ const getFeatureIcon = (feature: string) => {
     "Slackbot Memory": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Voice Dictation": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Charts": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot in Lightning": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Slackbot in Channels": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Big Mode UX": <Bot className="h-5 w-5 text-[#E01E5A]" />,
     "AI Content Safety Filters": <Shield className="h-5 w-5 text-[#E01E5A]" />,
     "Slackbot Analytics Dashboard": <BarChart className="h-5 w-5 text-[#4A154B]" />,
     "Workflow Builder Collections (Lookups & Repeaters)": <Workflow className="h-5 w-5 text-[#2EB67D]" />,
@@ -158,8 +166,25 @@ const getFeatureIcon = (feature: string) => {
     "App Access Controls": <Settings className="h-5 w-5 text-[#4A154B]" />,
     "Advanced Member Analytics": <BarChart className="h-5 w-5 text-[#4A154B]" />,
     "Slackbot Surfaces": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "3P File Creation": <FileText className="h-5 w-5 text-[#E01E5A]" />,
+    "Image Generation": <ImageIcon className="h-5 w-5 text-[#E01E5A]" />,
+    "Video Generation": <Video className="h-5 w-5 text-[#E01E5A]" />,
+    "Deep Research": <Search className="h-5 w-5 text-[#E01E5A]" />,
+    "Channel Expert Agent": <Bot className="h-5 w-5 text-[#4A154B]" />,
     "IDP-Managed Access to Slack MCP Server": <Shield className="h-5 w-5 text-[#E01E5A]" />,
-    "Share Slackbot Skills Externally": <Bot className="h-5 w-5 text-[#E01E5A]" />
+    "Share Slackbot Skills Externally": <Bot className="h-5 w-5 text-[#E01E5A]" />,
+    "Huddles": <Bot className="h-5 w-5 text-[#2EB67D]" />,
+    "Sidebar Sections": <List className="h-5 w-5 text-[#2EB67D]" />,
+    "Slack Code": <List className="h-5 w-5 text-[#2EB67D]" />,
+    "Custom Workflow Steps": <List className="h-5 w-5 text-[#2EB67D]" />,
+    "Deploy apps to Slack Infrastructure": <Cloud className="h-5 w-5 text-[#2EB67D]" />,
+    "Secondary Authentication": <Shield className="h-5 w-5 text-[#E01E5A]" />,
+    "Default Browser Control": <Smartphone className="h-5 w-5 text-[#E01E5A]" />,
+    "Minimum App Version": <Smartphone className="h-5 w-5 text-[#E01E5A]" />,
+    "HIPAA Compliance Support": <Shield className="h-5 w-5 text-[#E01E5A]" />,
+    "Splunk App for Slack": <Database className="h-5 w-5 text-[#E01E5A]" />,
+
+
   }
 
   return iconMap[feature] || <Zap className="h-5 w-5 text-[#ECB22E]" />
@@ -176,17 +201,22 @@ const categorizeFeatures = (features: string[]) => {
       "Canvas",
       "Custom Canvas Templates",
       "Clips",
+      "Huddles",
       "Multiple Workspaces",
       "Multi-Workspace Channels",
       "Lists",
       "Slack Channel Templates",
       "Workflow Builder",
       "Conditional Workflows",
+      "Custom Workflow Steps",
       "Workflow Builder Collections (Lookups & Repeaters)",
-      "Channel Posting Permissions"
+      "Channel Posting Permissions",
+      "Sidebar Sections",
+      "Slack Code",
+      "Deploy apps to Slack Infrastructure"
     ],
     "Administration": [
-      "Granular Admin Roles",
+      "System & Custom Roles",
       "Central Channel Dashboard",
       "Admin API",
       "Atlas",
@@ -227,7 +257,12 @@ const categorizeFeatures = (features: string[]) => {
       "Custom Terms of Service",
       "Flag Content",
       "AI Content Safety Filters",
-      "IDP-Managed Access to Slack MCP Server"
+      "IDP-Managed Access to Slack MCP Server",
+      "Secondary Authentication",
+      "Default Browser Control",
+      "Minimum App Version",
+      "HIPAA Compliance Support",
+      "Splunk App for Slack"
     ],
     "External Collaboration": [
       "Guests",
@@ -258,6 +293,7 @@ const categorizeFeatures = (features: string[]) => {
       "Recaps",
       "Huddles Notes",
       "Slack AI Search",
+      "Natural Language Search Filters",
       "Enterprise Search",
       "3rd Party Agent Apps",
       "AI Workflow Builder",
@@ -269,6 +305,9 @@ const categorizeFeatures = (features: string[]) => {
       "Canvas AI",
       "Workflow Builder: 3rd-party knowledge sources for AI Generate Response"
 
+    ],
+    "Agentforce": [
+      "Channel Expert Agent"
     ],
     "Slackbot Functionality": [
       "Message Limit",
@@ -297,10 +336,19 @@ const categorizeFeatures = (features: string[]) => {
       "Slackbot Memory",
       "Slackbot Voice Dictation",
       "Slackbot Charts",
-      "Slackbot Surfaces"
+      "Slackbot in Lightning",
+      "Slackbot in Channels",
+      "Big Mode UX"
+    ],
+    "Slackbot Advanced Functionality": [
+      "Slackbot Surfaces",
+      "3P File Creation",
+      "Image Generation",
+      "Video Generation",
+      "Deep Research"
     ],
     "Slackbot Trust & Security": [
-       "International Data Residency",
+       "Slackbot IDR",
        "Full-org kill switch",
        "Custom group access",
        "Full Data Export",
@@ -311,6 +359,7 @@ const categorizeFeatures = (features: string[]) => {
     ],
     "Salesforce Integration": [
       "Salesforce Channels",
+      "Provisioning and Auth",
       "Record Unfurls",
       "Record Search",
       "Record View & Edit",
@@ -324,6 +373,11 @@ const categorizeFeatures = (features: string[]) => {
       "Slack Sales Templates",
       "Salesforce Channel AI Summary Tab",
       "Slackbot Salesforce MCP Servers"
+    ],
+    "Success Plans": [
+      "Standard",
+      "Premier",
+      "Signature"
     ],
     "Other Features": [],
   }
