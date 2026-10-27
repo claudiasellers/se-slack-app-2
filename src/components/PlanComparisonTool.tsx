@@ -677,7 +677,7 @@ export default function PlanComparisonTool() {
             <strong>Comparing Plans:</strong>
             ${selectedPlans
               .map((plan) => {
-                const planLabel = planOptions.find((option) => option.value === plan)?.label || plan
+                const planLabel = getColumnLabel(plan)
                 return `<span class="plan-pill">${planLabel}</span>`
               })
               .join("")}
@@ -695,7 +695,7 @@ export default function PlanComparisonTool() {
                   <th style="width: 40%;">Feature</th>
                   ${selectedPlans
                     .map((plan) => {
-                      const planLabel = planOptions.find((option) => option.value === plan)?.label || plan
+                      const planLabel = getColumnLabel(plan)
                       return `<th style="width: ${60 / selectedPlans.length}%;">${planLabel}</th>`
                     })
                     .join("")}
@@ -728,10 +728,7 @@ export default function PlanComparisonTool() {
               </td>
               ${selectedPlans
                 .map((plan) => {
-                  const hasFeature =
-                    featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][
-                      plan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-                    ]
+                  const hasFeature = getColumnAccess(feature, plan)
 
                   if (hasFeature === true) {
                     return `<td class="yes">✓ Yes</td>`
@@ -814,28 +811,14 @@ export default function PlanComparisonTool() {
             setSubmittedLineOfBusiness("")
           }
         } else {
-          // comparison table logic - show all features from highest selected plan
-          // get features from highest selected plan
-          const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
-          const highestSelectedPlan =
-            planHierarchy.reverse().find((plan) => selectedPlans.includes(plan)) || selectedPlans[0]
+          // comparison table logic - show every feature available in at least one selected column
+          const comparedFeatures = Object.keys(featureData.featureAvailability).filter((feature) =>
+            selectedPlans.some((column) => getColumnAccess(feature, column)),
+          )
+          featuresForTracking = comparedFeatures
 
-          // get ALL features available in highest selected plan
-          const highestPlanFeatures: string[] = []
-          for (const feature in featureData.featureAvailability) {
-            const hasAccess =
-              featureData.featureAvailability[feature as keyof typeof featureData.featureAvailability][
-                highestSelectedPlan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-              ] ?? false
-
-            if (hasAccess) {
-              highestPlanFeatures.push(feature)
-            }
-          }
-          featuresForTracking = highestPlanFeatures
-
-          // categorize features from highest plan
-          const categorized = categorizeFeatures(highestPlanFeatures)
+          // categorize compared features
+          const categorized = categorizeFeatures(comparedFeatures)
           setCategorizedFeatures(categorized)
           categorizedForTracking = categorized
 
@@ -848,7 +831,7 @@ export default function PlanComparisonTool() {
 
           // get pain points if LOB selected
           if (lineOfBusiness) {
-            const lobPainPoints = getLOBPainPoints(highestPlanFeatures, lineOfBusiness)
+            const lobPainPoints = getLOBPainPoints(comparedFeatures, lineOfBusiness)
             setPainPoints(lobPainPoints)
             setSubmittedLineOfBusiness(lineOfBusiness)
           } else {
@@ -951,6 +934,67 @@ export default function PlanComparisonTool() {
   ]
 
   const planOptions: PlanOption[] = planGroups.flatMap((g) => ("options" in g ? g.options : g))
+
+  // comparison table columns are a base plan key (e.g. "plus_v1") or a plan + legacy add-on key (e.g. "plus_v1_ai")
+  const resolveColumn = (column: string): { plan: string; addOns: string[] } => {
+    for (const [addOnKey, addOn] of Object.entries(legacyAddOns)) {
+      const plan = addOn.applicablePlans.find((p) => `${p}${addOn.planKeySuffix}` === column)
+      if (plan) return { plan, addOns: [addOnKey] }
+    }
+    return { plan: column, addOns: [] }
+  }
+
+  const getColumnAccess = (feature: string, column: string) => {
+    const { plan, addOns } = resolveColumn(column)
+    return getFeatureAccess(feature, plan, addOns)
+  }
+
+  const getColumnLabel = (column: string) => {
+    const { plan, addOns } = resolveColumn(column)
+    const planLabel = planOptions.find((option) => option.value === plan)?.label || plan
+    const addOnLabels = addOns.map((addOnKey) => legacyAddOns[addOnKey].label.replace(/ Add-on$/, ""))
+    return [planLabel, ...addOnLabels].join(" + ")
+  }
+
+  // column order: each base plan followed by its add-on variants
+  const columnOrder = planOptions.flatMap((option) => [
+    option.value,
+    ...Object.values(legacyAddOns)
+      .filter((addOn) => addOn.applicablePlans.includes(option.value))
+      .map((addOn) => `${option.value}${addOn.planKeySuffix}`),
+  ])
+
+  const isPlanCompared = (plan: string) => selectedPlans.some((column) => resolveColumn(column).plan === plan)
+
+  const toggleComparedPlan = (plan: string, checked: boolean) => {
+    if (checked) {
+      setSelectedPlans((prev) =>
+        [...prev, plan].sort((a, b) => columnOrder.indexOf(a) - columnOrder.indexOf(b)),
+      )
+    } else {
+      // removing a plan also clears its add-on variant
+      setSelectedPlans((prev) => prev.filter((column) => resolveColumn(column).plan !== plan))
+    }
+    mixpanel.track("Compared Plans Selected", {
+      plan,
+      action: checked ? "selected" : "deselected",
+      tab: activeTab,
+    })
+  }
+
+  // legacy add-ons can't be bought anymore, so an add-on swaps the plan's column to what the customer already has
+  const toggleComparedAddOn = (plan: string, addOnKey: string, checked: boolean) => {
+    const variant = `${plan}${legacyAddOns[addOnKey].planKeySuffix}`
+    setSelectedPlans((prev) =>
+      prev.map((column) => (resolveColumn(column).plan === plan ? (checked ? variant : plan) : column)),
+    )
+    mixpanel.track("Legacy Add-on Toggled", {
+      add_on: addOnKey,
+      enabled: checked,
+      current_plan: plan,
+      tab: activeTab,
+    })
+  }
 
   const lobOptions: { value: string; label: string }[] = [
     { value: "", label: "Select Line of Business (Optional)" },
@@ -1143,32 +1187,49 @@ export default function PlanComparisonTool() {
                     </label>
                     <div className="space-y-2">
                       {planOptions.map((option) => (
-                        <div key={option.value} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            id={`plan-${option.value}`}
-                            checked={selectedPlans.includes(option.value)}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                              const plan = option.value
-                              const action = e.target.checked ? "selected" : "deselected"
-                              const planHierarchy = ["free", "pro", "plus_v1", "plus_v2", "grid_v1", "grid_v2"]
-                              if (e.target.checked) {
-                                setSelectedPlans((prev) =>
-                                  [...prev, option.value].sort(
-                                    (a, b) => planHierarchy.indexOf(a) - planHierarchy.indexOf(b),
-                                  ),
-                                )
-                              } else {
-                                setSelectedPlans((prev) => prev.filter((p) => p !== option.value))
+                        <div key={option.value}>
+                          <div className="flex items-center">
+                            <input
+                              type="checkbox"
+                              id={`plan-${option.value}`}
+                              checked={isPlanCompared(option.value)}
+                              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                toggleComparedPlan(option.value, e.target.checked)
                               }
-                              mixpanel.track("Compared Plans Selected", { plan, action, tab: activeTab })
-                            }}
-                            className="h-4 w-4 rounded border-gray-300 text-[#36C5F0] focus:ring-[#36C5F0]"
-                            disabled={isLoading}
-                          />
-                          <label htmlFor={`plan-${option.value}`} className="ml-2 block text-sm text-gray-900">
-                            {option.label}
-                          </label>
+                              className="h-4 w-4 rounded border-gray-300 text-[#36C5F0] focus:ring-[#36C5F0]"
+                              disabled={isLoading}
+                            />
+                            <label htmlFor={`plan-${option.value}`} className="ml-2 block text-sm text-gray-900">
+                              {option.label}
+                            </label>
+                          </div>
+
+                          {/* legacy add-ons the customer already has on this plan (swaps the column, doesn't add one) */}
+                          {Object.entries(legacyAddOns).map(([addOnKey, addOn]) => {
+                            if (!addOn.applicablePlans.includes(option.value)) return null
+                            const column = `${option.value}${addOn.planKeySuffix}`
+                            const planCompared = isPlanCompared(option.value)
+                            return (
+                              <div key={addOnKey} className="ml-6 mt-1 flex items-center">
+                                <input
+                                  type="checkbox"
+                                  id={`plan-${column}`}
+                                  checked={selectedPlans.includes(column)}
+                                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                    toggleComparedAddOn(option.value, addOnKey, e.target.checked)
+                                  }
+                                  className="h-4 w-4 rounded border-gray-300 text-[#4A154B] focus:ring-[#4A154B] disabled:opacity-40"
+                                  disabled={isLoading || !planCompared}
+                                />
+                                <label
+                                  htmlFor={`plan-${column}`}
+                                  className={`ml-2 block text-sm ${planCompared ? "text-gray-600" : "text-gray-400"}`}
+                                >
+                                  Customer has {addOn.label.replace(/ Add-on$/, "")} add-on
+                                </label>
+                              </div>
+                            )
+                          })}
                         </div>
                       ))}
                     </div>
@@ -1411,7 +1472,7 @@ export default function PlanComparisonTool() {
                             key={plan}
                             className="rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-800"
                           >
-                            {planOptions.find((option) => option.value === plan)?.label}
+                            {getColumnLabel(plan)}
                           </div>
                         ))}
                       </div>
@@ -1506,7 +1567,7 @@ export default function PlanComparisonTool() {
                                 <div className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">Feature</div>
                                 {selectedPlans.map((plan) => (
                                   <div key={plan} className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                                    {planOptions.find((option) => option.value === plan)?.label}
+                                    {getColumnLabel(plan)}
                                   </div>
                                 ))}
                               </div>
@@ -1549,12 +1610,7 @@ export default function PlanComparisonTool() {
                                   </div>
 
                                   {selectedPlans.map((plan) => {
-                                    const hasFeature =
-                                      featureData.featureAvailability[
-                                        feature as keyof typeof featureData.featureAvailability
-                                      ][
-                                        plan as keyof (typeof featureData.featureAvailability)[keyof typeof featureData.featureAvailability]
-                                      ]
+                                    const hasFeature = getColumnAccess(feature, plan)
 
                                     return (
                                       <div

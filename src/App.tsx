@@ -1,5 +1,6 @@
 // src/App.tsx
 import mixpanel from 'mixpanel-browser';
+import PlanComparisonTool from './components/PlanComparisonTool';
 
 // Helper to get or create a persistent distinct ID
 const getOrCreateDistinctId = (): string => {
@@ -63,27 +64,9 @@ mixpanel.track('App Loaded', {
 });
 
 function App() {
+    
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '100vh',
-      backgroundColor: '#1a1a2e',
-      color: '#ffffff',
-      fontFamily: 'sans-serif',
-      textAlign: 'center',
-      padding: '2rem',
-    }}>
-      <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🔧</div>
-      <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem', letterSpacing: '0.05em' }}>
-        WORK IN PROGRESS
-      </h1>
-      <p style={{ fontSize: '1.25rem', color: '#a0aec0', marginTop: '0.5rem' }}>
-        WE WILL BE BACK SOON
-      </p>
-    </div>
+    <PlanComparisonTool />
   );
 }
 
